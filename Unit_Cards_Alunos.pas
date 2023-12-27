@@ -71,7 +71,8 @@ begin
     Card.Margins.Top := 15;
     Card.Margins.Left := 10;
     Card.Margins.Right := 5;
-    Card.Fill.Color := $FFBFD6C7;
+    //Card.Fill.Color := $FFBFD6C7;
+    Card.Fill.Color := $FF2E4347;
 
     Card.OnMouseEnter := CardMouseEnter;
     Card.OnMouseLeave := CardMouseLeave;
@@ -127,7 +128,7 @@ end;
 procedure Tform_cards_alunos.CardMouseLeave(Sender: TObject);
 begin
   // Restaure a cor de fundo quando o mouse sai
-  TRectangle(Sender).Fill.Color := $FFBFD6C7; // Ou retorne à cor original
+  TRectangle(Sender).Fill.Color := $FF2E4347; // Ou retorne à cor original
 end;
 
 procedure Tform_cards_alunos.CardClick(Sender: TObject);
