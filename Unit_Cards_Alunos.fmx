@@ -1,0 +1,119 @@
+object form_cards_alunos: Tform_cards_alunos
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  Position = DesktopCenter
+  StyleBook = StyleBook1
+  WindowState = wsMaximized
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object pnl_fundo: TRectangle
+    Align = Client
+    Fill.Color = xFFE1E6E3
+    Size.Width = 640.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    object pnl_header: TPanel
+      Align = MostTop
+      Size.Width = 640.000000000000000000
+      Size.Height = 97.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object btn_filtro: TRectangle
+        Cursor = crHandPoint
+        Fill.Color = xFF03223F
+        Position.X = 424.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 169.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claBlanchedalmond
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+        OnMouseEnter = btn_filtroMouseEnter
+        OnMouseLeave = btn_filtroMouseLeave
+        object lbl_btn_filtro: TLabel
+          Align = Client
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Size.Width = 159.000000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Arial'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claBlanchedalmond
+          TextSettings.HorzAlign = Center
+          Text = 'Aplicar Filtro'
+          TabOrder = 0
+        end
+      end
+      object lbl_filtro: TLabel
+        AutoSize = True
+        StyledSettings = [Style, FontColor]
+        Position.X = 24.000000000000000000
+        Position.Y = 43.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Arial'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Filtrar'
+        TabOrder = 2
+        object edt_filtro: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 4
+          TextSettings.Font.Family = 'Arial'
+          TextSettings.Font.Size = 16.000000000000000000
+          Position.X = 51.000000000000000000
+          Position.Y = -4.000000000000000000
+          Size.Width = 273.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+        end
+      end
+    end
+    object scr_box: TScrollBox
+      Align = Client
+      Size.Width = 640.000000000000000000
+      Size.Height = 383.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Viewport.Width = 640.000000000000000000
+      Viewport.Height = 383.000000000000000000
+    end
+  end
+  object StyleBook1: TStyleBook
+    Styles = <
+      item
+      end
+      item
+        Platform = 'Windows 10 Desktop'
+        ResourcesBin = {
+          464D585F5354594C4520322E3501060E6C626C5F636172645F7374796C6503A4
+          01005450463007544C61796F757400095374796C654E616D65060E6C626C5F63
+          6172645F7374796C6505416C69676E070643656E7465720A53697A652E576964
+          74680500000000000000F005400B53697A652E48656967687405000000000000
+          009803401453697A652E506C6174666F726D44656661756C7408085461624F72
+          64657202030005545465787400095374796C654E616D6506047465787405416C
+          69676E0706436C69656E74064C6F636B6564090748697454657374080A53697A
+          652E57696474680500000000000000F005400B53697A652E4865696768740500
+          0000000000009803401453697A652E506C6174666F726D44656661756C740804
+          54657874060454657874185465787453657474696E67732E466F6E742E46616D
+          696C790605417269616C165465787453657474696E67732E466F6E742E53697A
+          6505000000000000009003401A5465787453657474696E67732E466F6E742E53
+          74796C654578740A0D0000000007000000000000000400000016546578745365
+          7474696E67732E466F6E74436F6C6F720711636C61426C616E63686564616C6D
+          6F6E64000000}
+      end>
+  end
+end

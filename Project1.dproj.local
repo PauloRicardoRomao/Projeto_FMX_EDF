@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/09/08 11:44:06.000.639,=C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/10/20 22:47:24.000.290,=C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/01/28 16:07:44.000.273,=C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/05/13 18:16:01.000.872,=C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/06/03 22:40:25.000.902,=C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/11/19 12:36:18.000.114,=C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/12/23 18:37:20.000.470,=C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/12/23 18:42:50.000.318,C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\ADM\Desktop\FMX EDF\Unit_Cards_Alunos.fmx</Transaction>
+    <Transaction>2023/12/23 18:42:50.000.318,C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\ADM\Desktop\FMX EDF\Unit_Cards_Alunos.pas</Transaction>
+    <Transaction>2023/12/23 18:42:59.000.030,C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\ADM\Desktop\FMX EDF\Project1.dproj</Transaction>
+    <Transaction>2023/12/25 01:05:25.000.030,=C:\Users\ADM\Desktop\FMX EDF\Unit1.pas</Transaction>
+    <Transaction>2023/12/25 01:09:28.000.644,C:\Users\ADM\Desktop\FMX EDF\Unit1.fmx=C:\Users\ADM\Desktop\FMX EDF\Unit_Cliente.fmx</Transaction>
+    <Transaction>2023/12/25 01:09:28.000.644,C:\Users\ADM\Desktop\FMX EDF\Unit1.pas=C:\Users\ADM\Desktop\FMX EDF\Unit_Cliente.pas</Transaction>
+  </Transactions>
+</BorlandProject>
