@@ -12,6 +12,7 @@ object form_aluno: Tform_aluno
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = menu_info_basicClick
+  OnClose = FormClose
   DesignerMasterStyle = 0
   object pnl_fundo: TRectangle
     Align = Client
@@ -39,6 +40,7 @@ object form_aluno: Tform_aluno
           Size.Width = 1268.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
+          StyleLookup = 'mnu_cadStyle1'
           TabOrder = 0
           object menu_info_basic: TMenuItem
             StyleLookup = 'btn_menu_style'
@@ -53,7 +55,6 @@ object form_aluno: Tform_aluno
           object menu_med_corp: TMenuItem
             StyleLookup = 'btn_menu_style'
             Text = 'Medidas Corporais'
-            OnClick = menu_med_corpClick
             object menu_med_corp_cir: TMenuItem
               Locked = True
               StyleLookup = 'btn_menu_style'
@@ -67,9 +68,29 @@ object form_aluno: Tform_aluno
               OnClick = menu_med_corp_dob_cutClick
             end
           end
+          object lbl_dsc_menu: TLabel
+            Align = MostRight
+            StyledSettings = []
+            Margins.Top = 10.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Margins.Bottom = 10.000000000000000000
+            Position.X = 1005.000000000000000000
+            Position.Y = 10.000000000000000000
+            Size.Width = 253.000000000000000000
+            Size.Height = 29.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Bahnschrift'
+            TextSettings.Font.Size = 16.000000000000000000
+            TextSettings.Font.StyleExt = {00040000000200000004000000}
+            TextSettings.FontColor = claCadetblue
+            TextSettings.HorzAlign = Center
+            Text = 'Cadastro de Informa'#231#245'es Iniciais'
+            TabOrder = 0
+          end
         end
         object pnl_foto: TRectangle
           Align = Left
+          Cursor = crHandPoint
           Margins.Left = 10.000000000000000000
           Margins.Top = 10.000000000000000000
           Margins.Bottom = 10.000000000000000000
@@ -85,6 +106,7 @@ object form_aluno: Tform_aluno
               item
               end>
             Align = Client
+            Cursor = crHandPoint
             Margins.Left = 10.000000000000000000
             Margins.Top = 10.000000000000000000
             Margins.Right = 10.000000000000000000
@@ -171,7 +193,7 @@ object form_aluno: Tform_aluno
         Size.Height = 554.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        Viewport.Width = 1268.000000000000000000
+        Viewport.Width = 1252.000000000000000000
         Viewport.Height = 554.000000000000000000
         object pnl_fundo_info_basic: TRectangle
           Align = MostTop
@@ -326,6 +348,7 @@ object form_aluno: Tform_aluno
             end
           end
           object btn_grava_inf_bsc: TRectangle
+            Cursor = crHandPoint
             Fill.Color = xFF03223F
             Position.X = 467.000000000000000000
             Position.Y = 471.000000000000000000
@@ -356,6 +379,7 @@ object form_aluno: Tform_aluno
             end
           end
           object btn_lmp_inf_bsc: TRectangle
+            Cursor = crHandPoint
             Fill.Color = xFF03223F
             Position.X = 672.000000000000000000
             Position.Y = 471.000000000000000000
@@ -588,6 +612,7 @@ object form_aluno: Tform_aluno
             TabOrder = 8
           end
           object btn_grava_anm_med: TRectangle
+            Cursor = crHandPoint
             Fill.Color = xFF03223F
             Position.X = 479.000000000000000000
             Position.Y = 551.000000000000000000
@@ -618,6 +643,7 @@ object form_aluno: Tform_aluno
             end
           end
           object btn_lmp_anm_med: TRectangle
+            Cursor = crHandPoint
             Fill.Color = xFF03223F
             Position.X = 759.000000000000000000
             Position.Y = 551.000000000000000000
@@ -654,7 +680,6 @@ object form_aluno: Tform_aluno
           Size.Width = 1252.000000000000000000
           Size.Height = 889.000000000000000000
           Size.PlatformDefault = False
-          Visible = False
           object pnl_fundo_med_cir: TRectangle
             Align = MostTop
             Fill.Color = xFFC0D1C2
@@ -844,7 +869,7 @@ object form_aluno: Tform_aluno
               TabOrder = 6
               object edt_cir_pan_dir: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
-                TabOrder = 4
+                TabOrder = 3
                 TextSettings.Font.Family = 'Arial'
                 TextSettings.Font.Size = 18.000000000000000000
                 Position.X = 245.000000000000000000
@@ -865,7 +890,7 @@ object form_aluno: Tform_aluno
               TabOrder = 7
               object edt_cir_pan_esq: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
-                TabOrder = 4
+                TabOrder = 3
                 TextSettings.Font.Family = 'Arial'
                 TextSettings.Font.Size = 18.000000000000000000
                 Position.X = 253.000000000000000000
@@ -960,6 +985,7 @@ object form_aluno: Tform_aluno
               end
             end
             object btn_grava_med_cir: TRectangle
+              Cursor = crHandPoint
               Fill.Color = xFF03223F
               Position.X = 488.000000000000000000
               Position.Y = 739.000000000000000000
@@ -990,6 +1016,7 @@ object form_aluno: Tform_aluno
               end
             end
             object btn_lmp_med_cir: TRectangle
+              Cursor = crHandPoint
               Fill.Color = xFF03223F
               Position.X = 735.000000000000000000
               Position.Y = 739.000000000000000000
@@ -1040,7 +1067,6 @@ object form_aluno: Tform_aluno
             Size.Width = 1252.000000000000000000
             Size.Height = 889.000000000000000000
             Size.PlatformDefault = False
-            Visible = False
             object lbl_db_sub_med_dob_cut: TLabel
               Position.X = 352.000000000000000000
               Position.Y = 244.000000000000000000
@@ -1146,7 +1172,7 @@ object form_aluno: Tform_aluno
                 StyledSettings = [Style, FontColor]
               end
             end
-            object Label8: TLabel
+            object lbl_data_med_dob_cut: TLabel
               Position.X = 663.000000000000000000
               Position.Y = 108.000000000000000000
               Size.Width = 120.000000000000000000
@@ -1155,7 +1181,7 @@ object form_aluno: Tform_aluno
               StyleLookup = 'lbl_style'
               Text = 'Data:'
               TabOrder = 8
-              object DateEdit2: TDateEdit
+              object edt_data_med_dob_cut: TDateEdit
                 Date = 45285.000000000000000000
                 Position.X = 48.000000000000000000
                 Size.Width = 149.000000000000000000
@@ -1167,7 +1193,7 @@ object form_aluno: Tform_aluno
                 TextSettings.Font.Size = 18.000000000000000000
               end
             end
-            object Label9: TLabel
+            object lbl_out_med_dob_cut: TLabel
               Position.X = 352.000000000000000000
               Position.Y = 468.000000000000000000
               Size.Width = 174.000000000000000000
@@ -1176,7 +1202,7 @@ object form_aluno: Tform_aluno
               StyleLookup = 'lbl_style'
               Text = 'Outras Medi'#231#245'es:'
               TabOrder = 2
-              object Memo6: TMemo
+              object mmo_out_med_dob_cut: TMemo
                 Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
                 DataDetectorTypes = []
                 StyledSettings = [Style, FontColor]
@@ -1187,8 +1213,8 @@ object form_aluno: Tform_aluno
                 Size.Height = 121.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 4
-                Viewport.Width = 613.000000000000000000
-                Viewport.Height = 117.000000000000000000
+                Viewport.Width = 617.000000000000000000
+                Viewport.Height = 121.000000000000000000
               end
             end
             object lbl_db_bcp_med_dob_cut: TLabel
@@ -1234,6 +1260,7 @@ object form_aluno: Tform_aluno
               end
             end
             object btn_grava_db_cut: TRectangle
+              Cursor = crHandPoint
               Fill.Color = xFF03223F
               Position.X = 460.000000000000000000
               Position.Y = 667.000000000000000000
@@ -1264,6 +1291,7 @@ object form_aluno: Tform_aluno
               end
             end
             object btn_lmp_db_cut: TRectangle
+              Cursor = crHandPoint
               Fill.Color = xFF03223F
               Position.X = 694.000000000000000000
               Position.Y = 667.000000000000000000

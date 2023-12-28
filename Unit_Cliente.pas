@@ -111,10 +111,10 @@ type
     edt_db_pnm_med_dob_cut: TEdit;
     lbl_db_axl_med_dob_cut: TLabel;
     edt_db_axl_med_dob_cut: TEdit;
-    Label8: TLabel;
-    DateEdit2: TDateEdit;
-    Label9: TLabel;
-    Memo6: TMemo;
+    lbl_data_med_dob_cut: TLabel;
+    edt_data_med_dob_cut: TDateEdit;
+    lbl_out_med_dob_cut: TLabel;
+    mmo_out_med_dob_cut: TMemo;
     lbl_db_bcp_med_dob_cut: TLabel;
     edt_db_bcp_med_dob_cut: TEdit;
     lbl_db_abd_med_dob_cut: TLabel;
@@ -126,9 +126,9 @@ type
     lbl_tit_fun_med_dob_cut: TLabel;
     menu_med_corp_cir: TMenuItem;
     menu_med_corp_dob_cut: TMenuItem;
+    lbl_dsc_menu: TLabel;
     procedure menu_info_basicClick(Sender: TObject);
     procedure menu_anamneseClick(Sender: TObject);
-    procedure menu_med_corpClick(Sender: TObject);
     procedure menu_med_corp_cirClick(Sender: TObject);
     procedure menu_med_corp_dob_cutClick(Sender: TObject);
     procedure btn_grava_med_cirMouseEnter(Sender: TObject);
@@ -147,6 +147,7 @@ type
     procedure btn_grava_db_cutMouseLeave(Sender: TObject);
     procedure btn_lmp_db_cutMouseLeave(Sender: TObject);
     procedure btn_lmp_db_cutMouseEnter(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -165,6 +166,8 @@ procedure Tform_aluno.menu_info_basicClick(Sender: TObject);
 begin
   pnl_fundo_anamnese.Visible := False;
   pnl_fundo_med_corp.Visible := False;
+  pnl_fundo_med_dob_cut.Visible := False;
+  pnl_fundo_med_cir.Visible := False;
   if pnl_fundo_info_basic.Visible = False then
     pnl_fundo_info_basic.Visible := True
   else
@@ -271,20 +274,12 @@ procedure Tform_aluno.menu_anamneseClick(Sender: TObject);
 begin
   pnl_fundo_info_basic.Visible := False;
   pnl_fundo_med_corp.Visible := False;
+  pnl_fundo_med_dob_cut.Visible := False;
+  pnl_fundo_med_cir.Visible := False;
   if pnl_fundo_anamnese.Visible = False then
     pnl_fundo_anamnese.Visible := True
   else
     pnl_fundo_anamnese.Visible := False;
-end;
-
-procedure Tform_aluno.menu_med_corpClick(Sender: TObject);
-begin
-  pnl_fundo_info_basic.Visible := False;
-  pnl_fundo_anamnese.Visible := False;
-  if pnl_fundo_med_corp.Visible = False then
-    pnl_fundo_med_corp.Visible := True
-  else
-    pnl_fundo_med_corp.Visible := False;
 end;
 
 procedure Tform_aluno.menu_med_corp_cirClick(Sender: TObject);
@@ -310,5 +305,12 @@ begin
   else
     pnl_fundo_med_dob_cut.Visible := False;
 end;
+
+procedure Tform_aluno.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  form_aluno := nil;
+  form_aluno.Free;
+end;
+
 
 end.

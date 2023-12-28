@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Edit,
-  FMX.StdCtrls, FMX.Objects, FMX.Controls.Presentation, FMX.Layouts;
+  FMX.StdCtrls, FMX.Objects, FMX.Controls.Presentation, FMX.Layouts, FMX.DialogService,
+  FMX.Menus;
 
 type
   Tform_cards_alunos = class(TForm)
@@ -37,7 +38,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_Cliente;
+uses Unit_Cliente, Unit_Popup_Card_Aluno;
 
 
 procedure Tform_cards_alunos.btn_filtroMouseEnter(Sender: TObject);
@@ -71,7 +72,6 @@ begin
     Card.Margins.Top := 15;
     Card.Margins.Left := 10;
     Card.Margins.Right := 5;
-    //Card.Fill.Color := $FFBFD6C7;
     Card.Fill.Color := $FF2E4347;
 
     Card.OnMouseEnter := CardMouseEnter;
@@ -93,18 +93,13 @@ begin
 
     lbl_card := TLabel.Create(Self);
     lbl_card.Parent := Card;
-    lbl_card.Align := TAlignLayout.Client; // Ocupa o restante do espaço à direita da imagem
+    lbl_card.Align := TAlignLayout.Client;
     lbl_card.Size.Height := 20;
     lbl_card.AutoSize := False;
-    //lbl_card.TextSettings.Font.Family := 'Arial';
     lbl_card.TextSettings.Font.Size := 14;
-    //lbl_card.TextSettings.Font.Style := [TFontStyle.fsBold]; // Adicione outros estilos conforme necessário
-    //lbl_card.TextSettings.FontColor := TAlphaColors.Black; // Cor do texto
 
-    // Espaçamento entre a imagem e o label
     lbl_card.Margins.Left := 10;
 
-    // Configurações de texto
     lbl_card.TextSettings.HorzAlign := TTextAlign.Leading;
     lbl_card.TextSettings.VertAlign := TTextAlign.Center;
     lbl_card.TextSettings.WordWrap := True;
@@ -112,28 +107,24 @@ begin
 
     lbl_card.StyleLookup :=  'lbl_card_style';
 
-    // Texto do Label (exemplo: Nome do Cliente)
     lbl_card.Text := 'Nome do Cliente';
-
 
   end;
 end;
 
 procedure Tform_cards_alunos.CardMouseEnter(Sender: TObject);
 begin
-  // Altere a cor de fundo ou adicione efeitos quando o mouse entra
-  TRectangle(Sender).Fill.Color := $FF942222; // Substitua pela cor desejada
+  TRectangle(Sender).Fill.Color := $FF942222;
 end;
 
 procedure Tform_cards_alunos.CardMouseLeave(Sender: TObject);
 begin
-  // Restaure a cor de fundo quando o mouse sai
-  TRectangle(Sender).Fill.Color := $FF2E4347; // Ou retorne à cor original
+  TRectangle(Sender).Fill.Color := $FF2E4347;
 end;
 
 procedure Tform_cards_alunos.CardClick(Sender: TObject);
 begin
-  Unit_Cliente.form_aluno.ShowModal;
+  Unit_Popup_Card_Aluno.form_popup_card_aluno.ShowModal;
 end;
 
 procedure Tform_cards_alunos.FormCreate(Sender: TObject);
