@@ -12,7 +12,16 @@
     <Transaction>2023/12/23 18:42:50.000.318,C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\ADM\Desktop\FMX EDF\Unit_Cards_Alunos.pas</Transaction>
     <Transaction>2023/12/23 18:42:59.000.030,C:\Users\ADM\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\ADM\Desktop\FMX EDF\Project1.dproj</Transaction>
     <Transaction>2023/12/25 01:05:25.000.030,=C:\Users\ADM\Desktop\FMX EDF\Unit1.pas</Transaction>
-    <Transaction>2023/12/25 01:09:28.000.644,C:\Users\ADM\Desktop\FMX EDF\Unit1.fmx=C:\Users\ADM\Desktop\FMX EDF\Unit_Cliente.fmx</Transaction>
     <Transaction>2023/12/25 01:09:28.000.644,C:\Users\ADM\Desktop\FMX EDF\Unit1.pas=C:\Users\ADM\Desktop\FMX EDF\Unit_Cliente.pas</Transaction>
+    <Transaction>2023/12/25 01:09:28.000.644,C:\Users\ADM\Desktop\FMX EDF\Unit1.fmx=C:\Users\ADM\Desktop\FMX EDF\Unit_Cliente.fmx</Transaction>
+    <Transaction>2023/12/28 11:24:44.614,=C:\Users\ADM\Desktop\FMX EDF\Unit1.pas</Transaction>
+    <Transaction>2023/12/28 11:27:10.793,C:\Users\ADM\Desktop\FMX EDF\Unit_Popup_Card_Aluno.fmx=C:\Users\ADM\Desktop\FMX EDF\Unit1.fmx</Transaction>
+    <Transaction>2023/12/28 11:27:10.793,C:\Users\ADM\Desktop\FMX EDF\Unit_Popup_Card_Aluno.pas=C:\Users\ADM\Desktop\FMX EDF\Unit1.pas</Transaction>
+    <Transaction>2023/12/28 14:10:01.139,=C:\Users\ADM\Desktop\FMX EDF\Unit1.pas</Transaction>
+    <Transaction>2023/12/28 14:12:04.726,C:\Users\ADM\Desktop\FMX EDF\Unit_Ficha_Consulta.pas=C:\Users\ADM\Desktop\FMX EDF\Unit1.pas</Transaction>
+    <Transaction>2023/12/28 14:12:04.726,C:\Users\ADM\Desktop\FMX EDF\Unit_Ficha_Consulta.fmx=C:\Users\ADM\Desktop\FMX EDF\Unit1.fmx</Transaction>
+    <Transaction>2023/12/28 15:53:53.728,=C:\Users\ADM\Desktop\FMX EDF\Unit1.pas</Transaction>
+    <Transaction>2023/12/28 15:58:19.873,C:\Users\ADM\Desktop\FMX EDF\Unit_Menu_Principal.fmx=C:\Users\ADM\Desktop\FMX EDF\Unit1.fmx</Transaction>
+    <Transaction>2023/12/28 15:58:19.873,C:\Users\ADM\Desktop\FMX EDF\Unit_Menu_Principal.pas=C:\Users\ADM\Desktop\FMX EDF\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>
