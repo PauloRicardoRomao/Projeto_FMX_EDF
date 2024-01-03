@@ -21,6 +21,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btn_filtroMouseEnter(Sender: TObject);
     procedure btn_filtroMouseLeave(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     procedure CriaCards;
@@ -130,6 +131,13 @@ end;
 procedure Tform_cards_alunos.FormCreate(Sender: TObject);
 begin
   CriaCards;
+end;
+
+procedure Tform_cards_alunos.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  form_cards_alunos := nil;
+  form_cards_alunos.Free;
 end;
 
 end.

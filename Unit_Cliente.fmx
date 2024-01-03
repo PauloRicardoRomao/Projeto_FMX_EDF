@@ -853,7 +853,7 @@ object form_aluno: Tform_aluno
                 Size.Width = 801.000000000000000000
                 Size.Height = 121.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 3
+                TabOrder = 4
                 Viewport.Width = 797.000000000000000000
                 Viewport.Height = 117.000000000000000000
               end
@@ -869,7 +869,7 @@ object form_aluno: Tform_aluno
               TabOrder = 6
               object edt_cir_pan_dir: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
-                TabOrder = 3
+                TabOrder = 4
                 TextSettings.Font.Family = 'Arial'
                 TextSettings.Font.Size = 18.000000000000000000
                 Position.X = 245.000000000000000000
@@ -890,7 +890,7 @@ object form_aluno: Tform_aluno
               TabOrder = 7
               object edt_cir_pan_esq: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
-                TabOrder = 3
+                TabOrder = 4
                 TextSettings.Font.Family = 'Arial'
                 TextSettings.Font.Size = 18.000000000000000000
                 Position.X = 253.000000000000000000

@@ -23,6 +23,8 @@ type
     Image2: TImage;
     Image3: TImage;
     procedure Rectangle1Click(Sender: TObject);
+    procedure Rectangle3Click(Sender: TObject);
+    procedure Rectangle2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,11 +39,21 @@ implementation
 {$R *.fmx}
 
 uses Unit_Cards_Alunos, Unit_Cliente, Unit_Ficha_Consulta,
-  Unit_Popup_Card_Aluno;
+  Unit_Popup_Card_Aluno, Unit_Exercicio;
 
 procedure Tform_menu_principal.Rectangle1Click(Sender: TObject);
 begin
   Unit_Cards_Alunos.form_cards_alunos.ShowModal;
+end;
+
+procedure Tform_menu_principal.Rectangle2Click(Sender: TObject);
+begin
+  Unit_Cliente.form_aluno.ShowModal;
+end;
+
+procedure Tform_menu_principal.Rectangle3Click(Sender: TObject);
+begin
+  Unit_Exercicio.form_exercicios.ShowModal;
 end;
 
 end.

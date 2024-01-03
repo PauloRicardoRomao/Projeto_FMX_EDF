@@ -295,6 +295,22 @@
             <Form>form_menu_principal</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Unit_Monta_Treino.pas">
+            <Form>form_monta_treino</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Unit_Info_Basica_Treino.pas">
+            <Form>form_info_bsc_treino</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Unit_Historico_Treinos_Aluno.pas">
+            <Form>form_hist_treinos_aluno</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Unit_Exercicio.pas">
+            <Form>form_exercicios</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
