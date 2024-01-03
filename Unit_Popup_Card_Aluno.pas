@@ -14,6 +14,10 @@ type
     lbl_btn_inf_aluno_ppp: TLabel;
     btn_cad_ficha_aluno_ppp: TRectangle;
     lbl_btn_cad_ficha_aluno_ppp: TLabel;
+    btn_cad_treino_aluno_ppp: TRectangle;
+    lbl_cad_treino_aluno_ppp: TLabel;
+    btn_hist_treino_aluno_ppp: TRectangle;
+    lbl_btn_hist_treino_aluno_ppp: TLabel;
     procedure btn_cad_ficha_aluno_pppMouseEnter(Sender: TObject);
     procedure btn_cad_ficha_aluno_pppMouseLeave(Sender: TObject);
     procedure btn_inf_aluno_pppMouseLeave(Sender: TObject);
@@ -21,6 +25,12 @@ type
     procedure btn_inf_aluno_pppClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_cad_ficha_aluno_pppClick(Sender: TObject);
+    procedure btn_cad_treino_aluno_pppMouseLeave(Sender: TObject);
+    procedure btn_cad_treino_aluno_pppMouseEnter(Sender: TObject);
+    procedure btn_cad_treino_aluno_pppClick(Sender: TObject);
+    procedure btn_hist_treino_aluno_pppMouseLeave(Sender: TObject);
+    procedure btn_hist_treino_aluno_pppMouseEnter(Sender: TObject);
+    procedure btn_hist_treino_aluno_pppClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,7 +44,8 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_Cards_Alunos, Unit_Cliente, Unit_Ficha_Consulta;
+uses Unit_Cards_Alunos, Unit_Cliente, Unit_Ficha_Consulta,
+  Unit_Info_Basica_Treino, Unit_Historico_Treinos_Aluno;
 
 
 procedure Tform_popup_card_aluno.btn_cad_ficha_aluno_pppMouseEnter(
@@ -49,6 +60,46 @@ procedure Tform_popup_card_aluno.btn_cad_ficha_aluno_pppMouseLeave(
 begin
   btn_cad_ficha_aluno_ppp.Fill.Color := $FF03223F;
   lbl_btn_cad_ficha_aluno_ppp.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_popup_card_aluno.btn_cad_treino_aluno_pppClick(Sender: TObject);
+begin
+  Unit_Info_Basica_Treino.form_info_bsc_treino.ShowModal;
+end;
+
+procedure Tform_popup_card_aluno.btn_cad_treino_aluno_pppMouseEnter(
+  Sender: TObject);
+begin
+  btn_cad_treino_aluno_ppp.Fill.Color := $FF214358;
+  lbl_cad_treino_aluno_ppp.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_popup_card_aluno.btn_cad_treino_aluno_pppMouseLeave(
+  Sender: TObject);
+begin
+  btn_cad_treino_aluno_ppp.Fill.Color := $FF03223F;
+  lbl_cad_treino_aluno_ppp.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_popup_card_aluno.btn_hist_treino_aluno_pppClick(
+  Sender: TObject);
+begin
+  Unit_Historico_Treinos_Aluno.form_hist_treinos_aluno.ShowModal;
+
+end;
+
+procedure Tform_popup_card_aluno.btn_hist_treino_aluno_pppMouseEnter(
+  Sender: TObject);
+begin
+  btn_hist_treino_aluno_ppp.Fill.Color := $FF214358;
+  lbl_btn_hist_treino_aluno_ppp.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_popup_card_aluno.btn_hist_treino_aluno_pppMouseLeave(
+  Sender: TObject);
+begin
+  btn_hist_treino_aluno_ppp.Fill.Color := $FF03223F;
+  lbl_btn_hist_treino_aluno_ppp.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
 procedure Tform_popup_card_aluno.btn_inf_aluno_pppMouseEnter(Sender: TObject);

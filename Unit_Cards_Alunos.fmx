@@ -11,6 +11,7 @@ object form_cards_alunos: Tform_cards_alunos
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
+  OnClose = FormClose
   DesignerMasterStyle = 0
   object pnl_fundo: TRectangle
     Align = Client
