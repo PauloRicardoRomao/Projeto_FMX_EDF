@@ -2,65 +2,41 @@ object form_monta_treino: Tform_monta_treino
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  BorderStyle = Single
-  Caption = 'form_monta_treino'
-  ClientHeight = 683
-  ClientWidth = 1300
+  ClientHeight = 889
+  ClientWidth = 1316
   Position = DesktopCenter
   StyleBook = StyleBook1
   WindowState = wsMaximized
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
   OnClose = FormClose
   DesignerMasterStyle = 0
   object pnl_fundo: TRectangle
     Align = Client
     Fill.Color = xFFC0D1C2
-    Size.Width = 1300.000000000000000000
-    Size.Height = 683.000000000000000000
+    Size.Width = 1316.000000000000000000
+    Size.Height = 889.000000000000000000
     Size.PlatformDefault = False
     object scr_box_fundo: TScrollBox
       Align = Client
-      Size.Width = 1300.000000000000000000
-      Size.Height = 683.000000000000000000
+      Size.Width = 1316.000000000000000000
+      Size.Height = 889.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      Viewport.Width = 1284.000000000000000000
-      Viewport.Height = 683.000000000000000000
+      Viewport.Width = 1316.000000000000000000
+      Viewport.Height = 889.000000000000000000
       object pnl_info: TRectangle
         Align = MostTop
         Fill.Color = xFF2E4347
-        Size.Width = 1284.000000000000000000
+        Size.Width = 1316.000000000000000000
         Size.Height = 233.000000000000000000
         Size.PlatformDefault = False
-        object lbl_mdl_treino: TLabel
-          StyledSettings = [Family, Size]
-          Position.X = 182.000000000000000000
-          Position.Y = 72.000000000000000000
-          Size.Width = 171.000000000000000000
-          Size.Height = 17.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'lbl_style'
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
-          TextSettings.FontColor = claAliceblue
-          Text = 'Modelo Treino:'
-          TabOrder = 1
-        end
-        object lbl_fco_treino: TLabel
-          StyledSettings = [Family, Size]
-          Position.X = 566.000000000000000000
-          Position.Y = 72.000000000000000000
-          StyleLookup = 'lbl_style'
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
-          TextSettings.FontColor = claAliceblue
-          Text = 'Foco Treino:'
-          TabOrder = 0
-        end
         object MenuBar1: TMenuBar
           Align = MostBottom
           Position.Y = 184.000000000000000000
-          Size.Width = 1284.000000000000000000
+          Size.Width = 1316.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'MenuBar1Style1'
@@ -79,6 +55,7 @@ object form_monta_treino: Tform_monta_treino
             Size.Width = 120.000000000000000000
             Size.Height = 43.000000000000000000
             Size.PlatformDefault = False
+            Visible = False
             OnMouseEnter = btn_menu_add_ficha_aMouseEnter
             OnMouseLeave = btn_menu_add_ficha_aMouseLeave
             object lbl_btn_menu_add_ficha_a: TLabel
@@ -96,6 +73,7 @@ object form_monta_treino: Tform_monta_treino
               TextSettings.Font.Size = 18.000000000000000000
               TextSettings.HorzAlign = Center
               Text = 'Ficha A'
+              Visible = False
               TabOrder = 0
             end
           end
@@ -105,7 +83,7 @@ object form_monta_treino: Tform_monta_treino
             Margins.Top = 10.000000000000000000
             Margins.Right = 10.000000000000000000
             Margins.Bottom = 10.000000000000000000
-            Position.X = 1021.000000000000000000
+            Position.X = 1053.000000000000000000
             Position.Y = 10.000000000000000000
             Size.Width = 253.000000000000000000
             Size.Height = 29.000000000000000000
@@ -119,193 +97,254 @@ object form_monta_treino: Tform_monta_treino
             TabOrder = 0
           end
         end
+        object lbl_tit_fun_cad_treino: TLabel
+          Align = MostTop
+          StyledSettings = []
+          Margins.Top = 10.000000000000000000
+          Margins.Bottom = 10.000000000000000000
+          Position.Y = 10.000000000000000000
+          Size.Width = 1316.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Arial'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claBlanchedalmond
+          TextSettings.HorzAlign = Center
+          Text = 'Montagem de Treino'
+          TabOrder = 6
+        end
+        object lbl_fco_treino: TLabel
+          Align = Center
+          StyledSettings = [Family, Size]
+          Margins.Left = 500.000000000000000000
+          Size.Width = 371.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'lbl_style'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claAliceblue
+          Text = 'Foco Treino:'
+          TabOrder = 0
+        end
+        object lbl_mdl_treino: TLabel
+          Align = Center
+          StyledSettings = [Family, Size]
+          Margins.Left = -400.000000000000000000
+          Size.Width = 451.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'lbl_style'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claAliceblue
+          Text = 'Modelo Treino:'
+          TabOrder = 1
+        end
       end
       object scr_box: TScrollBox
         Align = Top
         Position.Y = 233.000000000000000000
-        Size.Width = 1284.000000000000000000
+        Size.Width = 1316.000000000000000000
         Size.Height = 554.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        Viewport.Width = 1268.000000000000000000
+        Viewport.Width = 1300.000000000000000000
         Viewport.Height = 554.000000000000000000
-        object pnl_fundo_info_basic: TRectangle
+        object pnl_fundo_treino_dia: TRectangle
           Align = MostTop
           Fill.Color = xFFC0D1C2
-          Size.Width = 1268.000000000000000000
-          Size.Height = 600.000000000000000000
+          Size.Width = 1300.000000000000000000
+          Size.Height = 625.000000000000000000
           Size.PlatformDefault = False
-          object lbl_repeticoes: TLabel
-            Position.X = 636.000000000000000000
-            Position.Y = 200.000000000000000000
-            Size.Width = 120.000000000000000000
-            Size.Height = 23.000000000000000000
+          object pnl_fundo_exercicios: TRectangle
+            Align = Left
+            Fill.Color = xFF2E4347
+            Size.Width = 500.000000000000000000
+            Size.Height = 625.000000000000000000
             Size.PlatformDefault = False
-            StyleLookup = 'lbl_style'
-            Text = 'Repeti'#231#245'es:'
-            TabOrder = 5
-            object edt_repeticoes: TEdit
-              Touch.InteractiveGestures = [LongTap, DoubleTap]
-              StyleLookup = 'edt_style'
-              TabOrder = 4
-              TextSettings.Font.Family = 'Arial'
-              TextSettings.Font.Size = 18.000000000000000000
-              Position.X = 108.000000000000000000
-              Size.Width = 100.000000000000000000
-              Size.Height = 28.000000000000000000
+            object pnl_grup_muscular: TRectangle
+              Align = Top
+              Fill.Color = xFF2E4347
+              Size.Width = 500.000000000000000000
+              Size.Height = 105.000000000000000000
               Size.PlatformDefault = False
-              StyledSettings = [Family, Style, FontColor]
+              object lbl_cbx_grup_muscular: TLabel
+                Align = Fit
+                StyledSettings = [Family, Size, Style]
+                Margins.Left = 20.000000000000000000
+                Size.Width = 480.000000000000000000
+                Size.Height = 43.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'lbl_style'
+                TextSettings.FontColor = claAliceblue
+                Text = 'Grupo Muscular:'
+                TabOrder = 6
+                object cbx_grup_muscular: TComboBox
+                  Position.X = 150.000000000000000000
+                  Position.Y = 8.000000000000000000
+                  Size.Width = 307.000000000000000000
+                  Size.Height = 28.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 4
+                end
+              end
             end
           end
-          object lbl_exercicio: TLabel
-            Position.X = 324.000000000000000000
-            Position.Y = 136.000000000000000000
-            Size.Width = 200.000000000000000000
-            Size.Height = 23.000000000000000000
+          object pnl_fun_ficha_treino: TRectangle
+            Align = MostRight
+            Fill.Color = xFFC0D1C2
+            Position.X = 800.000000000000000000
+            Size.Width = 500.000000000000000000
+            Size.Height = 625.000000000000000000
             Size.PlatformDefault = False
-            StyleLookup = 'lbl_style'
-            Text = 'Exerc'#237'cio:'
-            TabOrder = 4
-            object cbx_exercicio: TComboBox
-              Position.X = 88.000000000000000000
-              Position.Y = 1.000000000000000000
-              Size.Width = 553.000000000000000000
-              Size.Height = 24.000000000000000000
+            object tit_fund_ficha: TLabel
+              Align = MostTop
+              StyledSettings = []
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 10.000000000000000000
+              Size.Width = 480.000000000000000000
+              Size.Height = 39.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 4
+              TextSettings.Font.Family = 'Bahnschrift'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              TextSettings.FontColor = xFF2E4347
+              TextSettings.HorzAlign = Center
+              Text = 'Ficha A'
+              TabOrder = 0
+            end
+            object pnl_fund_menu_ficha: TRectangle
+              Align = Bottom
+              Fill.Color = xFFC0D1C2
+              Position.Y = 525.000000000000000000
+              Size.Width = 500.000000000000000000
+              Size.Height = 100.000000000000000000
+              Size.PlatformDefault = False
+              object btn_alt_ord_exe: TRectangle
+                Align = Center
+                Cursor = crHandPoint
+                Fill.Color = xFF03223F
+                Margins.Left = 250.000000000000000000
+                Size.Width = 223.000000000000000000
+                Size.Height = 55.000000000000000000
+                Size.PlatformDefault = False
+                Stroke.Color = claBlanchedalmond
+                XRadius = 10.000000000000000000
+                YRadius = 10.000000000000000000
+                OnClick = btn_grava_inf_bscClick
+                OnMouseEnter = btn_rem_fichaMouseEnter
+                OnMouseLeave = btn_rem_fichaMouseLeave
+                object lbl_btn_alt_ord_exe: TLabel
+                  Align = Client
+                  StyledSettings = [Style]
+                  Margins.Left = 5.000000000000000000
+                  Margins.Top = 3.000000000000000000
+                  Margins.Right = 5.000000000000000000
+                  Margins.Bottom = 3.000000000000000000
+                  Size.Width = 213.000000000000000000
+                  Size.Height = 49.000000000000000000
+                  Size.PlatformDefault = False
+                  TextSettings.Font.Family = 'Arial'
+                  TextSettings.Font.Size = 20.000000000000000000
+                  TextSettings.FontColor = claBlanchedalmond
+                  TextSettings.HorzAlign = Center
+                  Text = 'Alterar Ordem'
+                  TabOrder = 0
+                end
+              end
+              object btn_rem_ficha: TRectangle
+                Align = Center
+                Cursor = crHandPoint
+                Fill.Color = xFF03223F
+                Margins.Left = -250.000000000000000000
+                Size.Width = 223.000000000000000000
+                Size.Height = 55.000000000000000000
+                Size.PlatformDefault = False
+                Stroke.Color = claBlanchedalmond
+                XRadius = 10.000000000000000000
+                YRadius = 10.000000000000000000
+                OnClick = btn_grava_inf_bscClick
+                OnMouseEnter = btn_rem_fichaMouseEnter
+                OnMouseLeave = btn_rem_fichaMouseLeave
+                object lbl_btn_rem_ficha: TLabel
+                  Align = Client
+                  StyledSettings = [Style]
+                  Margins.Left = 5.000000000000000000
+                  Margins.Top = 3.000000000000000000
+                  Margins.Right = 5.000000000000000000
+                  Margins.Bottom = 3.000000000000000000
+                  Size.Width = 213.000000000000000000
+                  Size.Height = 49.000000000000000000
+                  Size.PlatformDefault = False
+                  TextSettings.Font.Family = 'Arial'
+                  TextSettings.Font.Size = 20.000000000000000000
+                  TextSettings.FontColor = claBlanchedalmond
+                  TextSettings.HorzAlign = Center
+                  Text = #8592' Remover da Ficha'
+                  TabOrder = 0
+                end
+              end
             end
           end
-          object lbl_grup_muscular: TLabel
-            Position.X = 324.000000000000000000
-            Position.Y = 80.000000000000000000
-            Size.Width = 261.000000000000000000
-            Size.Height = 23.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'lbl_style'
-            Text = 'Grupo Muscular:'
-            TabOrder = 6
-            object cbx_grup_muscular: TComboBox
-              Position.X = 145.000000000000000000
-              Position.Y = 2.000000000000000000
-              Size.Width = 248.000000000000000000
-              Size.Height = 24.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 4
-            end
-          end
-          object lbl_carga: TLabel
-            Position.X = 682.000000000000000000
-            Position.Y = 264.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 23.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'lbl_style'
-            Text = 'Carga:'
-            TabOrder = 3
-            object edt_carga: TEdit
-              Touch.InteractiveGestures = [LongTap, DoubleTap]
-              StyleLookup = 'edt_style'
-              TabOrder = 4
-              TextSettings.Font.Family = 'Arial'
-              TextSettings.Font.Size = 18.000000000000000000
-              Position.X = 62.000000000000000000
-              Size.Width = 100.000000000000000000
-              Size.Height = 28.000000000000000000
-              Size.PlatformDefault = False
-              StyledSettings = [Family, Style, FontColor]
-            end
-          end
-          object lbl_obs: TLabel
-            Position.X = 324.000000000000000000
-            Position.Y = 320.000000000000000000
-            Size.Width = 120.000000000000000000
-            Size.Height = 23.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'lbl_style'
-            Text = 'Observa'#231#245'es:'
-            TabOrder = 2
-            object mmo_obs: TMemo
-              Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-              DataDetectorTypes = []
-              StyledSettings = [Style, FontColor]
-              TextSettings.Font.Family = 'Arial'
-              TextSettings.Font.Size = 18.000000000000000000
-              Position.Y = 26.000000000000000000
-              Size.Width = 641.000000000000000000
-              Size.Height = 95.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 4
-              Viewport.Width = 637.000000000000000000
-              Viewport.Height = 91.000000000000000000
-            end
-          end
-          object lbl_tempo: TLabel
-            Position.X = 324.000000000000000000
-            Position.Y = 264.000000000000000000
-            Size.Width = 120.000000000000000000
-            Size.Height = 23.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'lbl_style'
-            Text = 'Tempo:'
-            TabOrder = 1
-            object edt_tempo: TEdit
-              Touch.InteractiveGestures = [LongTap, DoubleTap]
-              StyleLookup = 'edt_style'
-              TabOrder = 4
-              TextSettings.Font.Family = 'Arial'
-              TextSettings.Font.Size = 18.000000000000000000
-              Position.X = 66.000000000000000000
-              Size.Width = 119.000000000000000000
-              Size.Height = 28.000000000000000000
-              Size.PlatformDefault = False
-              StyledSettings = [Family, Style, FontColor]
-            end
-          end
-          object lbl_series: TLabel
-            Position.X = 324.000000000000000000
-            Position.Y = 200.000000000000000000
-            Size.Width = 120.000000000000000000
-            Size.Height = 23.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'lbl_style'
-            Text = 'N'#186' S'#233'ries:'
-            TabOrder = 0
-            object edt_series: TEdit
-              Touch.InteractiveGestures = [LongTap, DoubleTap]
-              StyleLookup = 'edt_style'
-              TabOrder = 4
-              TextSettings.Font.Family = 'Arial'
-              TextSettings.Font.Size = 18.000000000000000000
-              Position.X = 89.000000000000000000
-              Position.Y = 1.000000000000000000
-              Size.Width = 119.000000000000000000
-              Size.Height = 28.000000000000000000
-              Size.PlatformDefault = False
-              StyledSettings = [Family, Style, FontColor]
-            end
-          end
-          object btn_grava_inf_bsc: TRectangle
+          object btn_ins_ficha: TRectangle
+            Align = Center
             Cursor = crHandPoint
             Fill.Color = xFF03223F
-            Position.X = 345.000000000000000000
-            Position.Y = 471.000000000000000000
-            Size.Width = 145.000000000000000000
+            Size.Width = 223.000000000000000000
             Size.Height = 55.000000000000000000
             Size.PlatformDefault = False
             Stroke.Color = claBlanchedalmond
             XRadius = 10.000000000000000000
             YRadius = 10.000000000000000000
             OnClick = btn_grava_inf_bscClick
-            OnMouseEnter = btn_grava_inf_bscMouseEnter
-            OnMouseLeave = btn_grava_inf_bscMouseLeave
-            object lbl_btn_grava_inf_bsc: TLabel
+            OnMouseEnter = btn_ins_fichaMouseEnter
+            OnMouseLeave = btn_ins_fichaMouseLeave
+            object lbl_btn_ins_ficha: TLabel
               Align = Client
               StyledSettings = [Style]
               Margins.Left = 5.000000000000000000
               Margins.Top = 3.000000000000000000
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 3.000000000000000000
-              Size.Width = 135.000000000000000000
+              Size.Width = 213.000000000000000000
+              Size.Height = 49.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Arial'
+              TextSettings.Font.Size = 20.000000000000000000
+              TextSettings.FontColor = claBlanchedalmond
+              TextSettings.HorzAlign = Center
+              Text = 'Inserir na Ficha '#8594
+              TabOrder = 0
+            end
+          end
+          object btn_gravar: TRectangle
+            Align = Center
+            Cursor = crHandPoint
+            Fill.Color = xFF03223F
+            Margins.Left = 36.000000000000000000
+            Margins.Top = 200.000000000000000000
+            Margins.Right = 36.000000000000000000
+            Size.Width = 223.000000000000000000
+            Size.Height = 55.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Color = claBlanchedalmond
+            XRadius = 10.000000000000000000
+            YRadius = 10.000000000000000000
+            OnClick = btn_grava_inf_bscClick
+            OnMouseEnter = btn_gravarMouseEnter
+            OnMouseLeave = btn_gravarMouseLeave
+            object lbl_btn_gravar: TLabel
+              Align = Client
+              StyledSettings = [Style]
+              Margins.Left = 5.000000000000000000
+              Margins.Top = 3.000000000000000000
+              Margins.Right = 5.000000000000000000
+              Margins.Bottom = 3.000000000000000000
+              Size.Width = 213.000000000000000000
               Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Family = 'Arial'
@@ -316,85 +355,37 @@ object form_monta_treino: Tform_monta_treino
               TabOrder = 0
             end
           end
-          object btn_lmp_inf_bsc: TRectangle
+          object btn_ficha_p_cad: TRectangle
+            Align = Center
             Cursor = crHandPoint
             Fill.Color = xFF03223F
-            Position.X = 776.000000000000000000
-            Position.Y = 471.000000000000000000
-            Size.Width = 189.000000000000000000
-            Size.Height = 55.000000000000000000
+            Margins.Left = 36.000000000000000000
+            Margins.Top = -450.000000000000000000
+            Margins.Right = 36.000000000000000000
+            Size.Width = 287.000000000000000000
+            Size.Height = 60.000000000000000000
             Size.PlatformDefault = False
             Stroke.Color = claBlanchedalmond
             XRadius = 10.000000000000000000
             YRadius = 10.000000000000000000
-            OnMouseEnter = btn_lmp_inf_bscMouseEnter
-            OnMouseLeave = btn_lmp_inf_bscMouseLeave
-            object lbl_btn_lmp_inf_bsc: TLabel
+            OnClick = btn_grava_inf_bscClick
+            OnMouseEnter = btn_ficha_p_cadMouseEnter
+            OnMouseLeave = btn_ficha_p_cadMouseLeave
+            object lbl_btn_ficha_p_cad: TLabel
               Align = Client
               StyledSettings = [Style]
               Margins.Left = 5.000000000000000000
               Margins.Top = 3.000000000000000000
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 3.000000000000000000
-              Size.Width = 179.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Width = 277.000000000000000000
+              Size.Height = 54.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Family = 'Arial'
-              TextSettings.Font.Size = 20.000000000000000000
+              TextSettings.Font.Size = 18.000000000000000000
               TextSettings.FontColor = claBlanchedalmond
               TextSettings.HorzAlign = Center
-              Text = 'Limpar Formul'#225'rio'
-              TabOrder = 0
-            end
-          end
-          object lbl_tit_fun_ficha_treino: TLabel
-            Align = MostTop
-            StyledSettings = []
-            Margins.Left = 10.000000000000000000
-            Margins.Top = 10.000000000000000000
-            Margins.Right = 10.000000000000000000
-            Margins.Bottom = 10.000000000000000000
-            Position.X = 10.000000000000000000
-            Position.Y = 10.000000000000000000
-            Size.Width = 1248.000000000000000000
-            Size.Height = 41.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Family = 'Arial'
-            TextSettings.Font.Size = 30.000000000000000000
-            TextSettings.Font.StyleExt = {00070000000000000004000000}
-            TextSettings.FontColor = xFF406E63
-            TextSettings.HorzAlign = Center
-            Text = 'Ficha de Treino'
-            TabOrder = 8
-          end
-          object Rectangle1: TRectangle
-            Cursor = crHandPoint
-            Fill.Color = xFF03223F
-            Position.X = 513.000000000000000000
-            Position.Y = 471.000000000000000000
-            Size.Width = 204.000000000000000000
-            Size.Height = 55.000000000000000000
-            Size.PlatformDefault = False
-            Stroke.Color = claBlanchedalmond
-            XRadius = 10.000000000000000000
-            YRadius = 10.000000000000000000
-            OnMouseEnter = btn_grava_inf_bscMouseEnter
-            OnMouseLeave = btn_grava_inf_bscMouseLeave
-            object Label1: TLabel
-              Align = Client
-              StyledSettings = [Style]
-              Margins.Left = 5.000000000000000000
-              Margins.Top = 3.000000000000000000
-              Margins.Right = 5.000000000000000000
-              Margins.Bottom = 3.000000000000000000
-              Size.Width = 194.000000000000000000
-              Size.Height = 49.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Family = 'Arial'
-              TextSettings.Font.Size = 20.000000000000000000
-              TextSettings.FontColor = claBlanchedalmond
-              TextSettings.HorzAlign = Center
-              Text = 'Gravar e Finalizar'
+              Text = 'Utilizar Ficha de Outro Treino'
               TabOrder = 0
             end
           end
