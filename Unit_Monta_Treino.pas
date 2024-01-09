@@ -55,11 +55,13 @@ type
     procedure btn_ficha_p_cadMouseEnter(Sender: TObject);
     procedure btn_ficha_p_cadMouseLeave(Sender: TObject);
   private
-    { Private declarations }
+    { Private declarations}
+    SelectedButton : TRectangle;
+    FSelectedButton : TRectangle;
     procedure Criabtn_menu;
     procedure btn_menuMouseEnter(Sender: TObject);
     procedure btn_menuMouseLeave(Sender: TObject);
-    //procedure btn_menuClick(Sender: TObject);
+    procedure btn_menuClick(Sender: TObject);
   public
     { Public declarations }
     Nr_Fichas : integer;
@@ -78,6 +80,31 @@ uses Unit_Exercicio_Ficha_Treino, Unit_Info_Basica_Treino;
 Function Tform_monta_treino.DefinirNrFichas(Valor: Integer) : Integer;
 begin
   Nr_Fichas := Valor;
+end;
+
+procedure Tform_monta_treino.btn_menuClick(Sender: TObject);
+begin
+  FSelectedButton := TRectangle(Sender);
+
+  if Assigned(SelectedButton) then
+  begin
+    SelectedButton.Fill.Color := $FFFFFFFF;
+  end;
+
+  SelectedButton := TRectangle(Sender);
+  TRectangle(Sender).Fill.Color := $FF9FB1F5;
+end;
+
+procedure Tform_monta_treino.btn_menuMouseEnter(Sender: TObject);
+begin
+  if Sender <> FSelectedButton then
+    TRectangle(Sender).Fill.Color := $FFE0EEF8;
+end;
+
+procedure Tform_monta_treino.btn_menuMouseLeave(Sender: TObject);
+begin
+  if Sender <> FSelectedButton then
+    TRectangle(Sender).Fill.Color := $FFFFFFFF;
 end;
 
 procedure Tform_monta_treino.Criabtn_menu;
@@ -123,11 +150,19 @@ begin
         lbl_btn_menu.StyleLookup :=  'lbl_btn_menu_add_ficha_style';
         lbl_btn_menu.Text := 'Ficha '+letra;
 
+
         btn_menu.OnMouseEnter := btn_menuMouseEnter;
         btn_menu.OnMouseLeave := btn_menuMouseLeave;
-        //btn_menu.OnClick := btn_menuClick;
-                    // Atribuir os manipuladores de evento aos rects do form_monta_treino
+        btn_menu.OnClick := btn_menuClick;
+
+        if letra = 'A' then
+        begin
+          SelectedButton := btn_menu;
+          SelectedButton.Fill.Color := $FF9FB1F5;
+          btn_menuClick(SelectedButton);
+        end;
       end;
+
 end;
 
 procedure Tform_monta_treino.btn_ficha_p_cadMouseEnter(Sender: TObject);
@@ -172,14 +207,12 @@ begin
 
   form_exercicio_ficha_treino := Tform_exercicio_ficha_treino.Create(Application);
   try
-    // Faça algo com o formMontaTreino, como exibir ou mostrar modal
     with Unit_Exercicio_Ficha_Treino.form_exercicio_ficha_treino do
     begin
       edt_exercicio.Text := exercicio;
       ShowModal;
     end;
     finally
-    // Certifique-se de liberar a memória quando não precisar mais do formulário
       form_exercicio_ficha_treino.Free;
   end;
 
@@ -187,10 +220,8 @@ end;
 
 procedure Tform_monta_treino.btn_menu_add_ficha_aMouseEnter(Sender: TObject);
 begin
-  //btn_menu_add_ficha_a.Fill.Color := $3498dbFF;
   btn_menu_add_ficha_a.Fill.Color := $FFE0EEF8;
   lbl_btn_menu_add_ficha_a.TextSettings.FontColor := $00000080;
-  //$FFFFFF80;
 end;
 
 procedure Tform_monta_treino.btn_menu_add_ficha_aMouseLeave(Sender: TObject);
@@ -211,28 +242,10 @@ begin
   lbl_btn_rem_ficha.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
-procedure Tform_monta_treino.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  form_monta_treino := nil;
-  form_monta_treino.Free;
-end;
-
 procedure Tform_monta_treino.FormCreate(Sender: TObject);
 begin
   Criabtn_menu;
-  //btn_gravar.Position.X := btn_ins_ficha.Position.X;
   btn_ficha_p_cad.Visible := False;
-end;
-
-procedure Tform_monta_treino.btn_menuMouseEnter(Sender: TObject);
-begin
-  TRectangle(Sender).Fill.Color := $FFE0EEF8;
-end;
-
-procedure Tform_monta_treino.btn_menuMouseLeave(Sender: TObject);
-begin
-  TRectangle(Sender).Fill.Color := $FFFFFFFF;
 end;
 
 procedure Tform_monta_treino.btn_ins_fichaMouseEnter(Sender: TObject);
@@ -246,5 +259,13 @@ begin
   btn_ins_ficha.Fill.Color := $FF03223F;
   lbl_btn_ins_ficha.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
+
+procedure Tform_monta_treino.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  form_monta_treino := nil;
+  form_monta_treino.Free;
+end;
+
 
 end.

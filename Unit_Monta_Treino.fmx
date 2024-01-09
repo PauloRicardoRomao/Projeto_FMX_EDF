@@ -185,7 +185,7 @@ object form_monta_treino: Tform_monta_treino
                   Size.Width = 307.000000000000000000
                   Size.Height = 28.000000000000000000
                   Size.PlatformDefault = False
-                  TabOrder = 4
+                  TabOrder = 3
                 end
               end
             end
