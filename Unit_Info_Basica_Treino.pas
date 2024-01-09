@@ -46,7 +46,6 @@ uses Unit_Monta_Treino;
 
 procedure Tform_info_bsc_treino.btn_grava_inf_bscClick(Sender: TObject);
 var
- // i : integer;
  formMontaTreino: Tform_monta_treino;
 begin
   if (cbx_fco_treino.ItemIndex = -1) or (cbx_mdl_treino.ItemIndex = -1) then
@@ -61,7 +60,6 @@ begin
 
     form_monta_treino := Tform_monta_treino.Create(Application);
     try
-      // Faça algo com o formMontaTreino, como exibir ou mostrar modal
       with Unit_Monta_Treino.form_monta_treino do
       begin
         lbl_mdl_treino.Text := lbl_mdl_treino.Text + ' ' + cbx_mdl_treino.Selected.Text;
@@ -70,16 +68,8 @@ begin
         ShowModal;
       end;
       finally
-      // Certifique-se de liberar a memória quando não precisar mais do formulário
         form_monta_treino.Free;
     end;
-    {with Unit_Monta_Treino.form_monta_treino do
-    begin
-      lbl_mdl_treino.Text := lbl_mdl_treino.Text + ' ' + cbx_mdl_treino.Selected.Text;
-      lbl_fco_treino.Text := lbl_fco_treino.Text + ' ' + cbx_fco_treino.Selected.Text;
-      DefinirNrFichas(i);
-      ShowModal;
-    end;}
 
     form_info_bsc_treino.Close;
   end;
