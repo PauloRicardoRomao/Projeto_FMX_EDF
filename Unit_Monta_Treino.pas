@@ -15,50 +15,55 @@ type
     scr_box_fundo: TScrollBox;
     pnl_info: TRectangle;
     scr_box: TScrollBox;
-    pnl_fundo_info_basic: TRectangle;
-    lbl_repeticoes: TLabel;
-    edt_repeticoes: TEdit;
-    lbl_exercicio: TLabel;
-    lbl_grup_muscular: TLabel;
-    lbl_carga: TLabel;
-    lbl_obs: TLabel;
-    mmo_obs: TMemo;
-    lbl_tempo: TLabel;
-    edt_tempo: TEdit;
-    lbl_series: TLabel;
-    btn_grava_inf_bsc: TRectangle;
-    lbl_btn_grava_inf_bsc: TLabel;
-    btn_lmp_inf_bsc: TRectangle;
-    lbl_btn_lmp_inf_bsc: TLabel;
-    lbl_tit_fun_ficha_treino: TLabel;
-    cbx_grup_muscular: TComboBox;
-    cbx_exercicio: TComboBox;
-    edt_carga: TEdit;
-    edt_series: TEdit;
     lbl_mdl_treino: TLabel;
     lbl_fco_treino: TLabel;
     MenuBar1: TMenuBar;
     btn_menu_add_ficha_a: TRectangle;
     lbl_dsc_menu: TLabel;
     lbl_btn_menu_add_ficha_a: TLabel;
-    Rectangle1: TRectangle;
-    Label1: TLabel;
     StyleBook1: TStyleBook;
-    procedure btn_grava_inf_bscMouseEnter(Sender: TObject);
-    procedure btn_grava_inf_bscMouseLeave(Sender: TObject);
-    procedure btn_lmp_inf_bscMouseLeave(Sender: TObject);
-    procedure btn_lmp_inf_bscMouseEnter(Sender: TObject);
+    pnl_fundo_treino_dia: TRectangle;
+    lbl_cbx_grup_muscular: TLabel;
+    cbx_grup_muscular: TComboBox;
+    pnl_grup_muscular: TRectangle;
+    pnl_fundo_exercicios: TRectangle;
+    pnl_fun_ficha_treino: TRectangle;
+    btn_ins_ficha: TRectangle;
+    lbl_btn_ins_ficha: TLabel;
+    tit_fund_ficha: TLabel;
+    btn_rem_ficha: TRectangle;
+    lbl_btn_rem_ficha: TLabel;
+    btn_gravar: TRectangle;
+    lbl_btn_gravar: TLabel;
+    btn_ficha_p_cad: TRectangle;
+    lbl_btn_ficha_p_cad: TLabel;
+    btn_alt_ord_exe: TRectangle;
+    lbl_btn_alt_ord_exe: TLabel;
+    pnl_fund_menu_ficha: TRectangle;
+    lbl_tit_fun_cad_treino: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_menu_add_ficha_aMouseEnter(Sender: TObject);
     procedure btn_menu_add_ficha_aMouseLeave(Sender: TObject);
     procedure btn_grava_inf_bscClick(Sender: TObject);
+    procedure btn_ins_fichaMouseEnter(Sender: TObject);
+    procedure btn_ins_fichaMouseLeave(Sender: TObject);
+    procedure btn_rem_fichaMouseEnter(Sender: TObject);
+    procedure btn_rem_fichaMouseLeave(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btn_gravarMouseEnter(Sender: TObject);
+    procedure btn_gravarMouseLeave(Sender: TObject);
+    procedure btn_ficha_p_cadMouseEnter(Sender: TObject);
+    procedure btn_ficha_p_cadMouseLeave(Sender: TObject);
   private
     { Private declarations }
-    procedure CardMouseEnter(Sender: TObject);
-    procedure CardMouseLeave(Sender: TObject);
-    procedure CardClick(Sender: TObject);
+    procedure Criabtn_menu;
+    procedure btn_menuMouseEnter(Sender: TObject);
+    procedure btn_menuMouseLeave(Sender: TObject);
+    //procedure btn_menuClick(Sender: TObject);
   public
     { Public declarations }
+    Nr_Fichas : integer;
+    Function DefinirNrFichas(Valor: Integer) : Integer;
   end;
 
 var
@@ -68,79 +73,116 @@ implementation
 
 {$R *.fmx}
 
+uses Unit_Exercicio_Ficha_Treino, Unit_Info_Basica_Treino;
+
+Function Tform_monta_treino.DefinirNrFichas(Valor: Integer) : Integer;
+begin
+  Nr_Fichas := Valor;
+end;
+
+procedure Tform_monta_treino.Criabtn_menu;
+var
+  i : integer;
+  btn_menu : TRectangle;
+  lbl_btn_menu : TLabel;
+  letra : string;
+begin
+  Nr_Fichas := Unit_Info_Basica_Treino.form_info_bsc_treino.i;
+  for i := 0 to Nr_Fichas do
+      begin
+        btn_menu := TRectangle.Create(Self);
+        btn_menu.Parent := MenuBar1;
+        btn_menu.Align := TAlignLayout.FitLeft;
+        btn_menu.Height := 43;
+        btn_menu.Width := 120;
+        btn_menu.Margins.Top := 3;
+        btn_menu.Margins.Left := 10;
+        btn_menu.Margins.Right := 10;
+        btn_menu.Margins.Bottom := 3;
+        btn_menu.Fill.Color := $FFFFFFFF;
+        btn_menu.Stroke.Color := TAlphaColors.Null;
+        btn_menu.Stroke.Thickness := 0;
+        btn_menu.Cursor := crHandPoint;
+
+        letra := Char(Ord('A') + i);
+
+        lbl_btn_menu := TLabel.Create(Self);
+        lbl_btn_menu.Parent := btn_menu;
+        lbl_btn_menu.Align := TAlignLayout.Client;
+        lbl_btn_menu.Size.Height := 20;
+        lbl_btn_menu.Margins.Top := 3;
+        lbl_btn_menu.Margins.Bottom := 3;
+        lbl_btn_menu.Margins.Left := 3;
+        lbl_btn_menu.Margins.Right := 3;
+        lbl_btn_menu.TextSettings.HorzAlign := TTextAlign.Center;
+        lbl_btn_menu.TextSettings.VertAlign := TTextAlign.Center;
+        lbl_btn_menu.TextSettings.WordWrap := True;
+        lbl_btn_menu.TextSettings.Trimming := TTextTrimming.None;
+
+
+        lbl_btn_menu.StyleLookup :=  'lbl_btn_menu_add_ficha_style';
+        lbl_btn_menu.Text := 'Ficha '+letra;
+
+        btn_menu.OnMouseEnter := btn_menuMouseEnter;
+        btn_menu.OnMouseLeave := btn_menuMouseLeave;
+        //btn_menu.OnClick := btn_menuClick;
+                    // Atribuir os manipuladores de evento aos rects do form_monta_treino
+      end;
+end;
+
+procedure Tform_monta_treino.btn_ficha_p_cadMouseEnter(Sender: TObject);
+begin
+  btn_ficha_p_cad.Fill.Color := $FF214358;
+  lbl_btn_ficha_p_cad.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_monta_treino.btn_ficha_p_cadMouseLeave(Sender: TObject);
+begin
+  btn_ficha_p_cad.Fill.Color := $FF03223F;
+  lbl_btn_ficha_p_cad.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_monta_treino.btn_gravarMouseEnter(Sender: TObject);
+begin
+  btn_gravar.Fill.Color := $FF214358;
+  lbl_btn_gravar.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_monta_treino.btn_gravarMouseLeave(Sender: TObject);
+begin
+  btn_gravar.Fill.Color := $FF03223F;
+  lbl_btn_gravar.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
 procedure Tform_monta_treino.btn_grava_inf_bscClick(Sender: TObject);
 var
-  letra: Char;
-  i : integer;
-  Card : TRectangle;
-  lbl_card : TLabel;
+  exercicio : string;
 begin
-  for letra := 'A' to 'Z' do
+  //substituir depois
+
+  {exercicio := 'Supino Reto';
+
+  with form_exercicio_ficha_treino do
   begin
-    Card := TRectangle.Create(Self);
-    Card.Parent := MenuBar1;
-    Card.Align := TAlignLayout.Left;
-    Card.Height := 43;
-    Card.Width := 120;
-    Card.Margins.Top := 3;
-    Card.Margins.Left := 10;
-    Card.Margins.Right := 10;
-    Card.Margins.Bottom := 3;
-    Card.Fill.DefaultColor := TAlphaColors.White;
-    Card.Stroke.Color := TAlphaColors.Null;
-    Card.Stroke.Thickness := 0;
+    edt_exercicio.Text := exercicio;
+    ShowModal;
+  end;}
 
-    Card.OnMouseEnter := CardMouseEnter;
-    Card.OnMouseLeave := CardMouseLeave;
-    Card.OnClick := CardClick;
+  exercicio := 'Supino Reto';
 
-    lbl_card := TLabel.Create(Self);
-    lbl_card.Parent := Card;
-    lbl_card.Align := TAlignLayout.Client;
-    lbl_card.Size.Height := 20;
-    lbl_card.AutoSize := False;
-    lbl_card.TextSettings.Font.Size := 18;
-    lbl_card.Margins.Top := 3;
-    lbl_card.Margins.Bottom := 3;
-    lbl_card.Margins.Left := 3;
-    lbl_card.Margins.Right := 3;
-
-
-    lbl_card.TextSettings.HorzAlign := TTextAlign.Leading;
-    lbl_card.TextSettings.VertAlign := TTextAlign.Center;
-    lbl_card.TextSettings.WordWrap := True;
-    lbl_card.TextSettings.Trimming := TTextTrimming.None;
-
-    //letra := Chr(i);
-    lbl_card.StyleLookup :=  'lbl_btn_menu_add_ficha_style';
-
-    lbl_card.Text := 'Ficha '+letra;
+  form_exercicio_ficha_treino := Tform_exercicio_ficha_treino.Create(Application);
+  try
+    // Faça algo com o formMontaTreino, como exibir ou mostrar modal
+    with Unit_Exercicio_Ficha_Treino.form_exercicio_ficha_treino do
+    begin
+      edt_exercicio.Text := exercicio;
+      ShowModal;
+    end;
+    finally
+    // Certifique-se de liberar a memória quando não precisar mais do formulário
+      form_exercicio_ficha_treino.Free;
   end;
 
-end;
-
-procedure Tform_monta_treino.btn_grava_inf_bscMouseEnter(Sender: TObject);
-begin
-  btn_grava_inf_bsc.Fill.Color := $FF214358;
-  lbl_btn_grava_inf_bsc.TextSettings.FontColor := $FFFFFFFF;
-end;
-
-procedure Tform_monta_treino.btn_grava_inf_bscMouseLeave(Sender: TObject);
-begin
-  btn_grava_inf_bsc.Fill.Color := $FF03223F;
-  lbl_btn_grava_inf_bsc.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
-end;
-
-procedure Tform_monta_treino.btn_lmp_inf_bscMouseEnter(Sender: TObject);
-begin
-  btn_lmp_inf_bsc.Fill.Color := $FF214358;
-  lbl_btn_lmp_inf_bsc.TextSettings.FontColor := $FFFFFFFF;
-end;
-
-procedure Tform_monta_treino.btn_lmp_inf_bscMouseLeave(Sender: TObject);
-begin
-  btn_lmp_inf_bsc.Fill.Color := $FF03223F;
-  lbl_btn_lmp_inf_bsc.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
 procedure Tform_monta_treino.btn_menu_add_ficha_aMouseEnter(Sender: TObject);
@@ -157,6 +199,18 @@ begin
   lbl_btn_menu_add_ficha_a.TextSettings.FontColor := $00000080;
 end;
 
+procedure Tform_monta_treino.btn_rem_fichaMouseEnter(Sender: TObject);
+begin
+  btn_rem_ficha.Fill.Color := $FF214358;
+  lbl_btn_rem_ficha.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_monta_treino.btn_rem_fichaMouseLeave(Sender: TObject);
+begin
+  btn_rem_ficha.Fill.Color := $FF03223F;
+  lbl_btn_rem_ficha.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
 procedure Tform_monta_treino.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -164,22 +218,33 @@ begin
   form_monta_treino.Free;
 end;
 
-procedure Tform_monta_treino.CardMouseEnter(Sender: TObject);
+procedure Tform_monta_treino.FormCreate(Sender: TObject);
+begin
+  Criabtn_menu;
+  //btn_gravar.Position.X := btn_ins_ficha.Position.X;
+  btn_ficha_p_cad.Visible := False;
+end;
+
+procedure Tform_monta_treino.btn_menuMouseEnter(Sender: TObject);
 begin
   TRectangle(Sender).Fill.Color := $FFE0EEF8;
-  TLabel(Sender).TextSettings.FontColor := $00000080;
 end;
 
-procedure Tform_monta_treino.CardMouseLeave(Sender: TObject);
+procedure Tform_monta_treino.btn_menuMouseLeave(Sender: TObject);
 begin
   TRectangle(Sender).Fill.Color := $FFFFFFFF;
-  TLabel(Sender).TextSettings.FontColor := $00000080;
 end;
 
-procedure Tform_monta_treino.CardClick(Sender: TObject);
+procedure Tform_monta_treino.btn_ins_fichaMouseEnter(Sender: TObject);
 begin
-
+  btn_ins_ficha.Fill.Color := $FF214358;
+  lbl_btn_ins_ficha.TextSettings.FontColor := $FFFFFFFF;
 end;
 
+procedure Tform_monta_treino.btn_ins_fichaMouseLeave(Sender: TObject);
+begin
+  btn_ins_ficha.Fill.Color := $FF03223F;
+  lbl_btn_ins_ficha.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
 
 end.
