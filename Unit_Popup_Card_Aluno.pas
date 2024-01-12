@@ -64,6 +64,7 @@ end;
 
 procedure Tform_popup_card_aluno.btn_cad_treino_aluno_pppClick(Sender: TObject);
 begin
+  form_info_bsc_treino := Tform_info_bsc_treino.Create(Application);
   Unit_Info_Basica_Treino.form_info_bsc_treino.ShowModal;
 end;
 
@@ -84,8 +85,8 @@ end;
 procedure Tform_popup_card_aluno.btn_hist_treino_aluno_pppClick(
   Sender: TObject);
 begin
+  form_hist_treinos_aluno := Tform_hist_treinos_aluno.Create(Application);
   Unit_Historico_Treinos_Aluno.form_hist_treinos_aluno.ShowModal;
-
 end;
 
 procedure Tform_popup_card_aluno.btn_hist_treino_aluno_pppMouseEnter(
@@ -116,12 +117,14 @@ end;
 
 procedure Tform_popup_card_aluno.btn_inf_aluno_pppClick(Sender: TObject);
 begin
+  form_aluno := Tform_aluno.Create(Application);
   Unit_Cliente.form_aluno.ShowModal;
   //form_popup_card_aluno.Close;
 end;
 
 procedure Tform_popup_card_aluno.btn_cad_ficha_aluno_pppClick(Sender: TObject);
 begin
+  form_ficha_consulta := Tform_ficha_consulta.Create(Application);
   Unit_Ficha_Consulta.form_ficha_consulta.ShowModal;
   //form_popup_card_aluno.Close;
 end;

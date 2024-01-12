@@ -1,7 +1,6 @@
 object form_cadastro_usuario: Tform_cadastro_usuario
   Left = 0
   Top = 0
-  Caption = 'Form2'
   ClientHeight = 480
   ClientWidth = 640
   Fill.Color = xFF89A09A
@@ -10,6 +9,7 @@ object form_cadastro_usuario: Tform_cadastro_usuario
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnClose = FormClose
   DesignerMasterStyle = 0
   object pnl_fun_cad_treino: TRectangle
     Align = Client
@@ -536,6 +536,7 @@ object form_cadastro_usuario: Tform_cadastro_usuario
       Stroke.Color = claBlanchedalmond
       XRadius = 10.000000000000000000
       YRadius = 10.000000000000000000
+      OnClick = btn_gravarClick
       OnMouseEnter = btn_gravarMouseEnter
       OnMouseLeave = btn_gravarMouseLeave
       object lbl_btn_gravar: TLabel

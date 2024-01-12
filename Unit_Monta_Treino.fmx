@@ -145,15 +145,15 @@ object form_monta_treino: Tform_monta_treino
         Align = Top
         Position.Y = 233.000000000000000000
         Size.Width = 1316.000000000000000000
-        Size.Height = 554.000000000000000000
+        Size.Height = 650.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        Viewport.Width = 1300.000000000000000000
-        Viewport.Height = 554.000000000000000000
+        Viewport.Width = 1316.000000000000000000
+        Viewport.Height = 650.000000000000000000
         object pnl_fundo_treino_dia: TRectangle
           Align = MostTop
           Fill.Color = xFFC0D1C2
-          Size.Width = 1300.000000000000000000
+          Size.Width = 1316.000000000000000000
           Size.Height = 625.000000000000000000
           Size.PlatformDefault = False
           object pnl_fundo_exercicios: TRectangle
@@ -185,7 +185,7 @@ object form_monta_treino: Tform_monta_treino
                   Size.Width = 307.000000000000000000
                   Size.Height = 28.000000000000000000
                   Size.PlatformDefault = False
-                  TabOrder = 3
+                  TabOrder = 4
                 end
               end
             end
@@ -193,7 +193,7 @@ object form_monta_treino: Tform_monta_treino
           object pnl_fun_ficha_treino: TRectangle
             Align = MostRight
             Fill.Color = xFFC0D1C2
-            Position.X = 800.000000000000000000
+            Position.X = 816.000000000000000000
             Size.Width = 500.000000000000000000
             Size.Height = 625.000000000000000000
             Size.PlatformDefault = False

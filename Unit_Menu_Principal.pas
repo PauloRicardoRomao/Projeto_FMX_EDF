@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FireDAC.Phys.MSSQLMeta;
 
 type
   Tform_menu_principal = class(TForm)
@@ -13,18 +13,25 @@ type
     pnl_header: TPanel;
     scr_box: TScrollBox;
     StyleBook1: TStyleBook;
-    Rectangle2: TRectangle;
-    Rectangle1: TRectangle;
-    Rectangle3: TRectangle;
-    Label1: TLabel;
-    Image1: TImage;
-    Label2: TLabel;
-    Label3: TLabel;
-    Image2: TImage;
-    Image3: TImage;
-    procedure Rectangle1Click(Sender: TObject);
-    procedure Rectangle3Click(Sender: TObject);
-    procedure Rectangle2Click(Sender: TObject);
+    btn_novo_aluno: TRectangle;
+    btn_cards_alunos: TRectangle;
+    btn_exercicios: TRectangle;
+    lbl_btn_cards_alunos: TLabel;
+    img_btn_cards_alunos: TImage;
+    lbl_btn_exercicios: TLabel;
+    lbl_btn_novo_aluno: TLabel;
+    img_btn_exercicios: TImage;
+    img_btn_novo_aluno: TImage;
+    procedure btn_cards_alunosClick(Sender: TObject);
+    procedure btn_exerciciosClick(Sender: TObject);
+    procedure btn_novo_alunoClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btn_cards_alunosMouseEnter(Sender: TObject);
+    procedure btn_cards_alunosMouseLeave(Sender: TObject);
+    procedure btn_exerciciosMouseLeave(Sender: TObject);
+    procedure btn_exerciciosMouseEnter(Sender: TObject);
+    procedure btn_novo_alunoMouseEnter(Sender: TObject);
+    procedure btn_novo_alunoMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,19 +48,60 @@ implementation
 uses Unit_Cards_Alunos, Unit_Cliente, Unit_Ficha_Consulta,
   Unit_Popup_Card_Aluno, Unit_Exercicio;
 
-procedure Tform_menu_principal.Rectangle1Click(Sender: TObject);
+
+procedure Tform_menu_principal.btn_cards_alunosMouseEnter(Sender: TObject);
 begin
+  btn_cards_alunos.Fill.Color := $FF942222;
+end;
+
+procedure Tform_menu_principal.btn_cards_alunosMouseLeave(Sender: TObject);
+begin
+  btn_cards_alunos.Fill.Color := $FF2E4347;
+end;
+
+procedure Tform_menu_principal.btn_novo_alunoMouseEnter(Sender: TObject);
+begin
+  btn_novo_aluno.Fill.Color := $FF942222;
+end;
+
+procedure Tform_menu_principal.btn_novo_alunoMouseLeave(Sender: TObject);
+begin
+  btn_novo_aluno.Fill.Color := $FF2E4347;
+end;
+
+procedure Tform_menu_principal.btn_exerciciosMouseEnter(Sender: TObject);
+begin
+  btn_exercicios.Fill.Color := $FF942222;
+end;
+
+procedure Tform_menu_principal.btn_exerciciosMouseLeave(Sender: TObject);
+begin
+  btn_exercicios.Fill.Color := $FF2E4347;
+end;
+
+procedure Tform_menu_principal.btn_cards_alunosClick(Sender: TObject);
+begin
+  form_cards_alunos := Tform_cards_alunos.Create(Application);
   Unit_Cards_Alunos.form_cards_alunos.ShowModal;
 end;
 
-procedure Tform_menu_principal.Rectangle2Click(Sender: TObject);
+procedure Tform_menu_principal.btn_novo_alunoClick(Sender: TObject);
 begin
+  form_aluno := Tform_aluno.Create(Application);
   Unit_Cliente.form_aluno.ShowModal;
 end;
 
-procedure Tform_menu_principal.Rectangle3Click(Sender: TObject);
+procedure Tform_menu_principal.btn_exerciciosClick(Sender: TObject);
 begin
+  form_exercicios := Tform_exercicios.Create(Application);
   Unit_Exercicio.form_exercicios.ShowModal;
+end;
+
+procedure Tform_menu_principal.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  form_menu_principal := nil;
+  form_menu_principal.Free;
 end;
 
 end.

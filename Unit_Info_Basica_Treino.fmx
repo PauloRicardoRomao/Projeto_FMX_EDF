@@ -3,7 +3,6 @@ object form_info_bsc_treino: Tform_info_bsc_treino
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = Single
-  Caption = 'Form1'
   ClientHeight = 531
   ClientWidth = 640
   Fill.Color = xFF89A09A
@@ -40,7 +39,7 @@ object form_info_bsc_treino: Tform_info_bsc_treino
         Size.Height = 28.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'cbx_style'
-        TabOrder = 3
+        TabOrder = 4
       end
     end
     object lbl_mdl_treino: TLabel
@@ -63,7 +62,7 @@ object form_info_bsc_treino: Tform_info_bsc_treino
         Size.Height = 28.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'cbx_style'
-        TabOrder = 3
+        TabOrder = 4
       end
     end
     object Label3: TLabel
@@ -82,9 +81,9 @@ object form_info_bsc_treino: Tform_info_bsc_treino
         Size.Width = 465.000000000000000000
         Size.Height = 89.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 3
-        Viewport.Width = 465.000000000000000000
-        Viewport.Height = 89.000000000000000000
+        TabOrder = 4
+        Viewport.Width = 461.000000000000000000
+        Viewport.Height = 85.000000000000000000
       end
     end
     object StyleBook1: TStyleBook
@@ -547,7 +546,7 @@ object form_info_bsc_treino: Tform_info_bsc_treino
       object edt_nr_treino: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 3
+        TabOrder = 4
         Position.X = 92.000000000000000000
         Enabled = False
         Size.Width = 100.000000000000000000

@@ -3,7 +3,6 @@ object form_exercicios: Tform_exercicios
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = Single
-  Caption = 'Form1'
   ClientHeight = 545
   ClientWidth = 640
   Fill.Color = xFF89A09A
@@ -576,6 +575,7 @@ object form_exercicios: Tform_exercicios
       Stroke.Color = claBlanchedalmond
       XRadius = 10.000000000000000000
       YRadius = 10.000000000000000000
+      OnClick = btn_lmp_inf_bscClick
       OnMouseEnter = btn_lmp_inf_bscMouseEnter
       OnMouseLeave = btn_lmp_inf_bscMouseLeave
       object lbl_btn_lmp_inf_bsc: TLabel

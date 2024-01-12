@@ -28,6 +28,7 @@ type
     procedure CardMouseEnter(Sender: TObject);
     procedure CardMouseLeave(Sender: TObject);
     procedure CardClick(Sender: TObject);
+    procedure img_cardClick(Sender: TObject);
   public
     { Public declarations }
   end;
@@ -39,7 +40,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_Cliente, Unit_Popup_Card_Aluno;
+uses Unit_Cliente, Unit_Popup_Card_Aluno, Unit_Menu_Principal;
 
 
 procedure Tform_cards_alunos.btn_filtroMouseEnter(Sender: TObject);
@@ -68,6 +69,7 @@ begin
   begin
     Card := TRectangle.Create(Self);
     Card.Parent := scr_box;
+    //////VER DEPOIS PROVAVELMENTE VAI GERAR O ULTIMO COMO PRIMEIRO DA LISTA
     Card.Align := TAlignLayout.Top;
     Card.Height := 200;
     Card.Margins.Top := 15;
@@ -85,6 +87,8 @@ begin
     img_card.Margins.Top := 3;
     img_card.Margins.Left := 10;
     img_card.Margins.Bottom := 3;
+
+    img_card.OnClick := img_cardClick;
 
     ImageFilePath := 'C:\Users\ADM\Desktop\Imagens TESTE WP\iconegg.png';
     Bitmap := TBitmap.Create;
@@ -125,6 +129,13 @@ end;
 
 procedure Tform_cards_alunos.CardClick(Sender: TObject);
 begin
+  form_popup_card_aluno := Tform_popup_card_aluno.Create(Application);
+  Unit_Popup_Card_Aluno.form_popup_card_aluno.ShowModal;
+end;
+
+procedure Tform_cards_alunos.img_cardClick(Sender: TObject);
+begin
+  form_popup_card_aluno := Tform_popup_card_aluno.Create(Application);
   Unit_Popup_Card_Aluno.form_popup_card_aluno.ShowModal;
 end;
 

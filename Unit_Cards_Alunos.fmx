@@ -1,7 +1,6 @@
 object form_cards_alunos: Tform_cards_alunos
   Left = 0
   Top = 0
-  Caption = 'Form1'
   ClientHeight = 597
   ClientWidth = 637
   Position = DesktopCenter

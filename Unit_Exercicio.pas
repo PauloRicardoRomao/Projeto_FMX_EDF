@@ -28,6 +28,7 @@ type
     procedure btn_lmp_inf_bscMouseEnter(Sender: TObject);
     procedure btn_lmp_inf_bscMouseLeave(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btn_lmp_inf_bscClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,6 +42,25 @@ implementation
 
 {$R *.fmx}
 
+procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
+var
+  i, j: Integer;
+begin
+  for i := 0 to Rectangle.ChildrenCount - 1 do
+  begin
+    if Rectangle.Children[i] is TLabel then
+    begin
+      for j := 0 to TLabel(Rectangle.Children[i]).ChildrenCount - 1 do
+      begin
+        if TLabel(Rectangle.Children[i]).Children[j] is TEdit then
+          TEdit(TLabel(Rectangle.Children[i]).Children[j]).Text := ''
+        else if TLabel(Rectangle.Children[i]).Children[j] is TMemo then
+          TMemo(TLabel(Rectangle.Children[i]).Children[j]).Lines.Clear;
+      end;
+    end;
+  end;
+end;
+
 procedure Tform_exercicios.btn_grava_inf_bscMouseEnter(Sender: TObject);
 begin
   btn_grava_inf_bsc.Fill.Color := $FF214358;
@@ -51,6 +71,11 @@ procedure Tform_exercicios.btn_grava_inf_bscMouseLeave(Sender: TObject);
 begin
   btn_grava_inf_bsc.Fill.Color := $FF03223F;
   lbl_btn_grava_inf_bsc.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_exercicios.btn_lmp_inf_bscClick(Sender: TObject);
+begin
+  LimparControlesDentroDoRectangle(pnl_fun_cad_treino);
 end;
 
 procedure Tform_exercicios.btn_lmp_inf_bscMouseEnter(Sender: TObject);

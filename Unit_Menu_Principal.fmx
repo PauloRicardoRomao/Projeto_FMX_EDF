@@ -1,7 +1,7 @@
 object form_menu_principal: Tform_menu_principal
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'Menu Principal'
   ClientHeight = 707
   ClientWidth = 1064
   Position = DesktopCenter
@@ -10,6 +10,7 @@ object form_menu_principal: Tform_menu_principal
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnClose = FormClose
   DesignerMasterStyle = 0
   object pnl_fundo: TRectangle
     Align = Client
@@ -33,7 +34,7 @@ object form_menu_principal: Tform_menu_principal
       TabOrder = 2
       Viewport.Width = 1064.000000000000000000
       Viewport.Height = 594.000000000000000000
-      object Rectangle2: TRectangle
+      object btn_novo_aluno: TRectangle
         Fill.Color = xFF2E4347
         Margins.Left = 15.000000000000000000
         Margins.Top = 15.000000000000000000
@@ -47,8 +48,10 @@ object form_menu_principal: Tform_menu_principal
         Stroke.Color = claBlanchedalmond
         XRadius = 15.000000000000000000
         YRadius = 15.000000000000000000
-        OnClick = Rectangle2Click
-        object Label3: TLabel
+        OnClick = btn_novo_alunoClick
+        OnMouseEnter = btn_novo_alunoMouseEnter
+        OnMouseLeave = btn_novo_alunoMouseLeave
+        object lbl_btn_novo_aluno: TLabel
           Align = Top
           StyledSettings = []
           Margins.Left = 10.000000000000000000
@@ -68,7 +71,7 @@ object form_menu_principal: Tform_menu_principal
           Text = 'NOVO ALUNO'
           TabOrder = 0
         end
-        object Image3: TImage
+        object img_btn_novo_aluno: TImage
           MultiResBitmap = <
             item
             end>
@@ -82,9 +85,12 @@ object form_menu_principal: Tform_menu_principal
           Size.Width = 280.000000000000000000
           Size.Height = 150.000000000000000000
           Size.PlatformDefault = False
+          OnClick = btn_novo_alunoClick
+          OnMouseEnter = btn_novo_alunoMouseEnter
+          OnMouseLeave = btn_novo_alunoMouseLeave
         end
       end
-      object Rectangle1: TRectangle
+      object btn_cards_alunos: TRectangle
         Align = MostLeft
         Fill.Color = xFF2E4347
         Margins.Left = 15.000000000000000000
@@ -99,8 +105,10 @@ object form_menu_principal: Tform_menu_principal
         Stroke.Color = claBlanchedalmond
         XRadius = 15.000000000000000000
         YRadius = 15.000000000000000000
-        OnClick = Rectangle1Click
-        object Label1: TLabel
+        OnClick = btn_cards_alunosClick
+        OnMouseEnter = btn_cards_alunosMouseEnter
+        OnMouseLeave = btn_cards_alunosMouseLeave
+        object lbl_btn_cards_alunos: TLabel
           Align = Top
           StyledSettings = []
           Margins.Left = 10.000000000000000000
@@ -120,7 +128,7 @@ object form_menu_principal: Tform_menu_principal
           Text = 'ALUNOS'
           TabOrder = 0
         end
-        object Image1: TImage
+        object img_btn_cards_alunos: TImage
           MultiResBitmap = <
             item
             end>
@@ -134,10 +142,12 @@ object form_menu_principal: Tform_menu_principal
           Size.Width = 380.000000000000000000
           Size.Height = 351.000000000000000000
           Size.PlatformDefault = False
-          OnClick = Rectangle1Click
+          OnClick = btn_cards_alunosClick
+          OnMouseEnter = btn_cards_alunosMouseEnter
+          OnMouseLeave = btn_cards_alunosMouseLeave
         end
       end
-      object Rectangle3: TRectangle
+      object btn_exercicios: TRectangle
         Fill.Color = xFF2E4347
         Margins.Left = 15.000000000000000000
         Margins.Top = 15.000000000000000000
@@ -151,8 +161,10 @@ object form_menu_principal: Tform_menu_principal
         Stroke.Color = claBlanchedalmond
         XRadius = 15.000000000000000000
         YRadius = 15.000000000000000000
-        OnClick = Rectangle3Click
-        object Label2: TLabel
+        OnClick = btn_exerciciosClick
+        OnMouseEnter = btn_exerciciosMouseEnter
+        OnMouseLeave = btn_exerciciosMouseLeave
+        object lbl_btn_exercicios: TLabel
           Align = Top
           StyledSettings = []
           Margins.Left = 10.000000000000000000
@@ -172,7 +184,7 @@ object form_menu_principal: Tform_menu_principal
           Text = 'EXERC'#205'CIOS'
           TabOrder = 0
         end
-        object Image2: TImage
+        object img_btn_exercicios: TImage
           MultiResBitmap = <
             item
             end>
@@ -186,7 +198,9 @@ object form_menu_principal: Tform_menu_principal
           Size.Width = 280.000000000000000000
           Size.Height = 150.000000000000000000
           Size.PlatformDefault = False
-          OnClick = Rectangle3Click
+          OnClick = btn_exerciciosClick
+          OnMouseEnter = btn_exerciciosMouseEnter
+          OnMouseLeave = btn_exerciciosMouseLeave
         end
       end
     end

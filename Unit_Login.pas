@@ -27,6 +27,8 @@ type
     procedure btn_entrarMouseLeave(Sender: TObject);
     procedure btn_entrarClick(Sender: TObject);
     procedure btn_menu_prim_acessoClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,7 +43,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_Cadastro_Usuario;
+uses Unit_Cadastro_Usuario, Unit_Menu_Principal;
 
 procedure Tform_login.btn_entrarClick(Sender: TObject);
 begin
@@ -59,7 +61,9 @@ begin
 
     //sql
 
-
+    form_menu_principal := Tform_menu_principal.Create(Application);
+    form_menu_principal.ShowModal;
+    form_login.Close;
 
   end;
 end;
@@ -80,6 +84,19 @@ procedure Tform_login.btn_menu_prim_acessoClick(Sender: TObject);
 begin
   form_cadastro_usuario := Tform_cadastro_usuario.Create(Application);
   form_cadastro_usuario.ShowModal;
+  form_login.Close;
+end;
+
+procedure Tform_login.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  form_login := nil;
+  form_login.Free;
+end;
+
+procedure Tform_login.FormCreate(Sender: TObject);
+begin
+  edt_usuario.Text := 'Paulo';
+  edt_senha.Text := '123456';
 end;
 
 end.
