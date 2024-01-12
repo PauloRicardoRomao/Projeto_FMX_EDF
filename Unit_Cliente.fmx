@@ -192,7 +192,7 @@ object form_aluno: Tform_aluno
         Size.Height = 554.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        Viewport.Width = 1268.000000000000000000
+        Viewport.Width = 1252.000000000000000000
         Viewport.Height = 554.000000000000000000
         object pnl_fundo_info_basic: TRectangle
           Align = MostTop
@@ -200,7 +200,6 @@ object form_aluno: Tform_aluno
           Size.Width = 1252.000000000000000000
           Size.Height = 600.000000000000000000
           Size.PlatformDefault = False
-          Visible = False
           object lbl_altura: TLabel
             Position.X = 324.000000000000000000
             Position.Y = 184.000000000000000000
@@ -358,6 +357,7 @@ object form_aluno: Tform_aluno
             Stroke.Color = claBlanchedalmond
             XRadius = 10.000000000000000000
             YRadius = 10.000000000000000000
+            OnClick = btn_grava_inf_bscClick
             OnMouseEnter = btn_grava_inf_bscMouseEnter
             OnMouseLeave = btn_grava_inf_bscMouseLeave
             object lbl_btn_grava_inf_bsc: TLabel
