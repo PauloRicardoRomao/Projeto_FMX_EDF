@@ -56,7 +56,7 @@ type
     pnl_fundo_med_corp: TRectangle;
     lbl_cir_bra_esq: TLabel;
     lbl_cir_alt: TLabel;
-    DateEdit1: TDateEdit;
+    edt_data_cir: TDateEdit;
     lbl_cir_data: TLabel;
     lbl_cir_per_esq: TLabel;
     lbl_cir_abd: TLabel;
@@ -148,6 +148,10 @@ type
     procedure btn_lmp_db_cutMouseLeave(Sender: TObject);
     procedure btn_lmp_db_cutMouseEnter(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btn_lmp_anm_medClick(Sender: TObject);
+    procedure btn_lmp_inf_bscClick(Sender: TObject);
+    procedure btn_lmp_med_cirClick(Sender: TObject);
+    procedure btn_lmp_db_cutClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -161,6 +165,27 @@ implementation
 
 {$R *.fmx}
 
+
+procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
+var
+  i, j: Integer;
+begin
+  for i := 0 to Rectangle.ChildrenCount - 1 do
+  begin
+    if Rectangle.Children[i] is TLabel then
+    begin
+      for j := 0 to TLabel(Rectangle.Children[i]).ChildrenCount - 1 do
+      begin
+        if TLabel(Rectangle.Children[i]).Children[j] is TEdit then
+          TEdit(TLabel(Rectangle.Children[i]).Children[j]).Text := ''
+        else if TLabel(Rectangle.Children[i]).Children[j] is TMemo then
+          TMemo(TLabel(Rectangle.Children[i]).Children[j]).Lines.Clear
+        else if TLabel(Rectangle.Children[i]).Children[j] is TComboBox then
+          TComboBox(TLabel(Rectangle.Children[i]).Children[j]).ItemIndex := -1;
+      end;
+    end;
+  end;
+end;
 
 procedure Tform_aluno.menu_info_basicClick(Sender: TObject);
 begin
@@ -222,6 +247,11 @@ begin
   lbl_btn_grava_med_cir.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
+procedure Tform_aluno.btn_lmp_anm_medClick(Sender: TObject);
+begin
+  LimparControlesDentroDoRectangle(pnl_fundo_anamnese);
+end;
+
 procedure Tform_aluno.btn_lmp_anm_medMouseEnter(Sender: TObject);
 begin
   btn_lmp_anm_med.Fill.Color := $FF214358;
@@ -232,6 +262,12 @@ procedure Tform_aluno.btn_lmp_anm_medMouseLeave(Sender: TObject);
 begin
   btn_lmp_anm_med.Fill.Color := $FF03223F;
   lbl_btn_lmp_anm_med.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_aluno.btn_lmp_db_cutClick(Sender: TObject);
+begin
+  LimparControlesDentroDoRectangle(pnl_fundo_med_dob_cut);
+  edt_data_med_dob_cut.Date := Now;
 end;
 
 procedure Tform_aluno.btn_lmp_db_cutMouseEnter(Sender: TObject);
@@ -246,6 +282,12 @@ begin
   lbl_btn_lmp_db_cut.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
+procedure Tform_aluno.btn_lmp_inf_bscClick(Sender: TObject);
+begin
+  LimparControlesDentroDoRectangle(pnl_fundo_info_basic);
+  edt_data_nasc.Date := Now;
+end;
+
 procedure Tform_aluno.btn_lmp_inf_bscMouseEnter(Sender: TObject);
 begin
   btn_lmp_inf_bsc.Fill.Color := $FF214358;
@@ -256,6 +298,12 @@ procedure Tform_aluno.btn_lmp_inf_bscMouseLeave(Sender: TObject);
 begin
   btn_lmp_inf_bsc.Fill.Color := $FF03223F;
   lbl_btn_lmp_inf_bsc.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_aluno.btn_lmp_med_cirClick(Sender: TObject);
+begin
+  LimparControlesDentroDoRectangle(pnl_fundo_med_cir);
+  edt_data_cir.Date := Now;
 end;
 
 procedure Tform_aluno.btn_lmp_med_cirMouseEnter(Sender: TObject);

@@ -1,7 +1,6 @@
 object form_ficha_consulta: Tform_ficha_consulta
   Left = 0
   Top = 0
-  Caption = 'Form1'
   ClientHeight = 599
   ClientWidth = 979
   Position = DesktopCenter
@@ -33,7 +32,6 @@ object form_ficha_consulta: Tform_ficha_consulta
         Size.Width = 963.000000000000000000
         Size.Height = 889.000000000000000000
         Size.PlatformDefault = False
-        Visible = False
         object lbl_cic_pei: TLabel
           Position.X = 280.000000000000000000
           Position.Y = 244.000000000000000000
@@ -45,7 +43,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 11
           object edt_cir_pei: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 192.000000000000000000
@@ -66,7 +64,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 10
           object edt_cir_abd: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 213.000000000000000000
@@ -87,7 +85,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 12
           object edt_cir_alt: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 60.000000000000000000
@@ -108,7 +106,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 1
           object edt_cir_bra_dir: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 205.000000000000000000
@@ -129,7 +127,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 14
           object edt_cir_bra_esq: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 213.000000000000000000
@@ -150,7 +148,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 9
           object edt_cir_cin: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 189.000000000000000000
@@ -169,14 +167,14 @@ object form_ficha_consulta: Tform_ficha_consulta
           StyleLookup = 'lbl_style'
           Text = 'Data:'
           TabOrder = 13
-          object DateEdit1: TDateEdit
+          object edt_data_med_cir: TDateEdit
             Date = 45285.000000000000000000
             Position.X = 48.000000000000000000
             Size.Width = 149.000000000000000000
             Size.Height = 28.000000000000000000
             Size.PlatformDefault = False
             StyledSettings = [Style, FontColor]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
           end
@@ -200,9 +198,9 @@ object form_ficha_consulta: Tform_ficha_consulta
             Size.Width = 801.000000000000000000
             Size.Height = 121.000000000000000000
             Size.PlatformDefault = False
-            TabOrder = 4
-            Viewport.Width = 797.000000000000000000
-            Viewport.Height = 117.000000000000000000
+            TabOrder = 3
+            Viewport.Width = 801.000000000000000000
+            Viewport.Height = 121.000000000000000000
           end
         end
         object lbl_cir_pan_dir: TLabel
@@ -216,7 +214,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 6
           object edt_cir_pan_dir: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 245.000000000000000000
@@ -237,7 +235,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 7
           object edt_cir_pan_esq: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 253.000000000000000000
@@ -258,7 +256,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 5
           object edt_cir_per_dir: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 205.000000000000000000
@@ -279,7 +277,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 4
           object edt_cir_per_esq: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 213.000000000000000000
@@ -300,7 +298,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 0
           object edt_cir_peso: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 52.000000000000000000
@@ -321,7 +319,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 2
           object edt_cir_qua: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 189.000000000000000000
@@ -332,6 +330,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           end
         end
         object btn_grava_med_cir: TRectangle
+          Cursor = crHandPoint
           Fill.Color = xFF03223F
           Position.X = 488.000000000000000000
           Position.Y = 739.000000000000000000
@@ -362,6 +361,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           end
         end
         object btn_lmp_med_cir: TRectangle
+          Cursor = crHandPoint
           Fill.Color = xFF03223F
           Position.X = 735.000000000000000000
           Position.Y = 739.000000000000000000
@@ -371,6 +371,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           Stroke.Color = claBlanchedalmond
           XRadius = 10.000000000000000000
           YRadius = 10.000000000000000000
+          OnClick = btn_lmp_med_cirClick
           OnMouseEnter = btn_lmp_med_cirMouseEnter
           OnMouseLeave = btn_lmp_med_cirMouseLeave
           object lbl_btn_lmp_med_cir: TLabel
@@ -394,6 +395,9 @@ object form_ficha_consulta: Tform_ficha_consulta
         object lbl_tit_fun_med_cir: TLabel
           Align = MostTop
           StyledSettings = []
+          Margins.Top = 10.000000000000000000
+          Margins.Bottom = 10.000000000000000000
+          Position.Y = 10.000000000000000000
           Size.Width = 963.000000000000000000
           Size.Height = 41.000000000000000000
           Size.PlatformDefault = False
@@ -412,6 +416,7 @@ object form_ficha_consulta: Tform_ficha_consulta
         Size.Width = 963.000000000000000000
         Size.Height = 889.000000000000000000
         Size.PlatformDefault = False
+        Visible = False
         object lbl_db_sub_med_dob_cut: TLabel
           Position.X = 352.000000000000000000
           Position.Y = 244.000000000000000000
@@ -486,7 +491,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 9
           object edt_db_pnm_med_dob_cut: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 117.000000000000000000
@@ -507,7 +512,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 4
           object edt_db_axl_med_dob_cut: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 61.000000000000000000
@@ -557,9 +562,9 @@ object form_ficha_consulta: Tform_ficha_consulta
             Size.Width = 617.000000000000000000
             Size.Height = 121.000000000000000000
             Size.PlatformDefault = False
-            TabOrder = 4
-            Viewport.Width = 613.000000000000000000
-            Viewport.Height = 117.000000000000000000
+            TabOrder = 3
+            Viewport.Width = 617.000000000000000000
+            Viewport.Height = 121.000000000000000000
           end
         end
         object lbl_db_bcp_med_dob_cut: TLabel
@@ -594,7 +599,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           TabOrder = 1
           object edt_db_abd_med_dob_cut: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
+            TabOrder = 3
             TextSettings.Font.Family = 'Arial'
             TextSettings.Font.Size = 18.000000000000000000
             Position.X = 93.000000000000000000
@@ -646,6 +651,7 @@ object form_ficha_consulta: Tform_ficha_consulta
           Stroke.Color = claBlanchedalmond
           XRadius = 10.000000000000000000
           YRadius = 10.000000000000000000
+          OnClick = btn_lmp_db_cutClick
           OnMouseEnter = btn_lmp_db_cutMouseEnter
           OnMouseLeave = btn_lmp_db_cutMouseLeave
           object lbl_btn_lmp_db_cut: TLabel

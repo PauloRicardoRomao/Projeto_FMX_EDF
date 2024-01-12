@@ -11,6 +11,8 @@ object form_login: Tform_login
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
   DesignerMasterStyle = 0
   object pnl_fun_cad_treino: TRectangle
     Align = Client

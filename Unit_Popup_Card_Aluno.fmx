@@ -3,7 +3,6 @@ object form_popup_card_aluno: Tform_popup_card_aluno
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = Single
-  Caption = 'Form1'
   ClientHeight = 405
   ClientWidth = 464
   Fill.Color = xFF89A09A

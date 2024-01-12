@@ -22,6 +22,8 @@ type
     edt_chave_acesso: TEdit;
     procedure btn_gravarMouseEnter(Sender: TObject);
     procedure btn_gravarMouseLeave(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btn_gravarClick(Sender: TObject);
   private
     { Private declarations }
     const
@@ -30,6 +32,7 @@ type
     class function ChaveValida(const Chave: string): Boolean;
   public
     { Public declarations }
+    usuario, senha, chave_acesso : string;
     class function GerarChaveAcesso: string;
     class function VerificarChaveAcesso(const Chave: string): Boolean;
   end;
@@ -41,7 +44,9 @@ implementation
 
 {$R *.fmx}
 
-class function TGeradorChaveAcesso.GerarCaractereUnico: Char;
+uses Unit_Login;
+
+class function Tform_cadastro_usuario.GerarCaractereUnico: Char;
 var
   Caractere: Char;
 begin
@@ -51,7 +56,7 @@ begin
   Result := Caractere;
 end;
 
-class function TGeradorChaveAcesso.ChaveValida(const Chave: string): Boolean;
+class function Tform_cadastro_usuario.ChaveValida(const Chave: string): Boolean;
 var
   // Implemente aqui a lógica para verificar a validade da chave no servidor local
   // Pode ser uma consulta em um banco de dados local ou outro método de verificação
@@ -66,7 +71,7 @@ begin
   Result := Chave = ServerChave;
 end;
 
-class function TGeradorChaveAcesso.GerarChaveAcesso: string;
+class function Tform_cadastro_usuario.GerarChaveAcesso: string;
 var
   i: Integer;
   Caractere: Char;
@@ -79,10 +84,29 @@ begin
   end;
 end;
 
-class function TGeradorChaveAcesso.VerificarChaveAcesso(const Chave: string): Boolean;
+class function Tform_cadastro_usuario.VerificarChaveAcesso(const Chave: string): Boolean;
 begin
   // Chama o método ChaveValida para verificar a validade da chave no servidor local
   Result := ChaveValida(Chave);
+end;
+
+procedure Tform_cadastro_usuario.btn_gravarClick(Sender: TObject);
+begin
+  if (edt_usuario.Text <> '') and (edt_senha.Text <> '') and (edt_chave_acesso.Text <> '') then
+  begin
+    usuario := edt_usuario.Text;
+    senha := edt_senha.Text;
+    chave_acesso := edt_chave_acesso.Text;
+
+    form_login := Tform_login.Create(Application);
+    form_login.ShowModal;
+    form_cadastro_usuario.Close;
+  end
+  else
+  begin
+    ShowMessage('É necessário preencher todos os campos!');
+    Exit;
+  end;
 end;
 
 procedure Tform_cadastro_usuario.btn_gravarMouseEnter(Sender: TObject);
@@ -95,6 +119,13 @@ procedure Tform_cadastro_usuario.btn_gravarMouseLeave(Sender: TObject);
 begin
   btn_gravar.Fill.Color := $FF03223F;
   lbl_btn_gravar.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_cadastro_usuario.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  form_cadastro_usuario := nil;
+  form_cadastro_usuario.Free;
 end;
 
 end.

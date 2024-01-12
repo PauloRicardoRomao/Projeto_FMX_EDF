@@ -2,7 +2,6 @@ object form_aluno: Tform_aluno
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  Caption = 'Form1'
   ClientHeight = 819
   ClientWidth = 1284
   Position = DesktopCenter
@@ -193,7 +192,7 @@ object form_aluno: Tform_aluno
         Size.Height = 554.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        Viewport.Width = 1252.000000000000000000
+        Viewport.Width = 1268.000000000000000000
         Viewport.Height = 554.000000000000000000
         object pnl_fundo_info_basic: TRectangle
           Align = MostTop
@@ -212,7 +211,6 @@ object form_aluno: Tform_aluno
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               StyleLookup = 'edt_style'
               TabOrder = 4
-              Text = 'edt_style'
               TextSettings.Font.Family = 'Arial'
               TextSettings.Font.Size = 18.000000000000000000
               Position.X = 60.000000000000000000
@@ -255,7 +253,6 @@ object form_aluno: Tform_aluno
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               StyleLookup = 'edt_style'
               TabOrder = 4
-              Text = 'edt_style'
               TextSettings.Font.Family = 'Arial'
               TextSettings.Font.Size = 18.000000000000000000
               Position.X = 62.000000000000000000
@@ -276,6 +273,10 @@ object form_aluno: Tform_aluno
             Text = 'N'#237'vel de Atividade:'
             TabOrder = 3
             object cbx_nvl_ativ: TComboBox
+              Items.Strings = (
+                'Sedent'#225'rio'
+                'Moderadamento Ativo'
+                'Ativo')
               Position.X = 160.000000000000000000
               Position.Y = -4.000000000000000000
               Size.Width = 189.000000000000000000
@@ -316,7 +317,6 @@ object form_aluno: Tform_aluno
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               StyleLookup = 'edt_style'
               TabOrder = 4
-              Text = 'edt_style'
               TextSettings.Font.Family = 'Arial'
               TextSettings.Font.Size = 18.000000000000000000
               Position.X = 98.000000000000000000
@@ -389,6 +389,7 @@ object form_aluno: Tform_aluno
             Stroke.Color = claBlanchedalmond
             XRadius = 10.000000000000000000
             YRadius = 10.000000000000000000
+            OnClick = btn_lmp_inf_bscClick
             OnMouseEnter = btn_lmp_inf_bscMouseEnter
             OnMouseLeave = btn_lmp_inf_bscMouseLeave
             object lbl_btn_lmp_inf_bsc: TLabel
@@ -412,6 +413,9 @@ object form_aluno: Tform_aluno
           object lbl_tit_fun_inf_bsc: TLabel
             Align = MostTop
             StyledSettings = []
+            Margins.Top = 10.000000000000000000
+            Margins.Bottom = 10.000000000000000000
+            Position.Y = 10.000000000000000000
             Size.Width = 1252.000000000000000000
             Size.Height = 41.000000000000000000
             Size.PlatformDefault = False
@@ -449,11 +453,11 @@ object form_aluno: Tform_aluno
               Position.X = 200.000000000000000000
               Position.Y = -1.000000000000000000
               Size.Width = 353.000000000000000000
-              Size.Height = 57.000000000000000000
+              Size.Height = 82.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 4
               Viewport.Width = 349.000000000000000000
-              Viewport.Height = 53.000000000000000000
+              Viewport.Height = 78.000000000000000000
             end
           end
           object lbl_medicamentos: TLabel
@@ -473,11 +477,11 @@ object form_aluno: Tform_aluno
               TextSettings.Font.Size = 18.000000000000000000
               Position.X = 135.000000000000000000
               Size.Width = 353.000000000000000000
-              Size.Height = 57.000000000000000000
+              Size.Height = 73.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 4
               Viewport.Width = 349.000000000000000000
-              Viewport.Height = 53.000000000000000000
+              Viewport.Height = 69.000000000000000000
             end
           end
           object lbl_condic_med: TLabel
@@ -497,11 +501,11 @@ object form_aluno: Tform_aluno
               TextSettings.Font.Size = 18.000000000000000000
               Position.X = 176.000000000000000000
               Size.Width = 353.000000000000000000
-              Size.Height = 57.000000000000000000
+              Size.Height = 73.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 4
               Viewport.Width = 349.000000000000000000
-              Viewport.Height = 53.000000000000000000
+              Viewport.Height = 69.000000000000000000
             end
           end
           object lbl_pressao_art: TLabel
@@ -590,16 +594,19 @@ object form_aluno: Tform_aluno
               TextSettings.Font.Size = 18.000000000000000000
               Position.X = 200.000000000000000000
               Size.Width = 353.000000000000000000
-              Size.Height = 57.000000000000000000
+              Size.Height = 81.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 4
               Viewport.Width = 349.000000000000000000
-              Viewport.Height = 53.000000000000000000
+              Viewport.Height = 77.000000000000000000
             end
           end
           object lbl_tit_fun_anm_med: TLabel
             Align = MostTop
             StyledSettings = []
+            Margins.Top = 10.000000000000000000
+            Margins.Bottom = 10.000000000000000000
+            Position.Y = 10.000000000000000000
             Size.Width = 1252.000000000000000000
             Size.Height = 41.000000000000000000
             Size.PlatformDefault = False
@@ -653,6 +660,7 @@ object form_aluno: Tform_aluno
             Stroke.Color = claBlanchedalmond
             XRadius = 10.000000000000000000
             YRadius = 10.000000000000000000
+            OnClick = btn_lmp_anm_medClick
             OnMouseEnter = btn_lmp_anm_medMouseEnter
             OnMouseLeave = btn_lmp_anm_medMouseLeave
             object lbl_btn_lmp_anm_med: TLabel
@@ -680,6 +688,7 @@ object form_aluno: Tform_aluno
           Size.Width = 1252.000000000000000000
           Size.Height = 889.000000000000000000
           Size.PlatformDefault = False
+          Visible = False
           object pnl_fundo_med_cir: TRectangle
             Align = MostTop
             Fill.Color = xFFC0D1C2
@@ -822,7 +831,7 @@ object form_aluno: Tform_aluno
               StyleLookup = 'lbl_style'
               Text = 'Data:'
               TabOrder = 13
-              object DateEdit1: TDateEdit
+              object edt_data_cir: TDateEdit
                 Date = 45285.000000000000000000
                 Position.X = 48.000000000000000000
                 Size.Width = 149.000000000000000000
@@ -1026,6 +1035,7 @@ object form_aluno: Tform_aluno
               Stroke.Color = claBlanchedalmond
               XRadius = 10.000000000000000000
               YRadius = 10.000000000000000000
+              OnClick = btn_lmp_med_cirClick
               OnMouseEnter = btn_lmp_med_cirMouseEnter
               OnMouseLeave = btn_lmp_med_cirMouseLeave
               object lbl_btn_lmp_med_cir: TLabel
@@ -1049,6 +1059,9 @@ object form_aluno: Tform_aluno
             object lbl_tit_fun_med_cir: TLabel
               Align = MostTop
               StyledSettings = []
+              Margins.Top = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Position.Y = 10.000000000000000000
               Size.Width = 1252.000000000000000000
               Size.Height = 41.000000000000000000
               Size.PlatformDefault = False
@@ -1067,6 +1080,7 @@ object form_aluno: Tform_aluno
             Size.Width = 1252.000000000000000000
             Size.Height = 889.000000000000000000
             Size.PlatformDefault = False
+            Visible = False
             object lbl_db_sub_med_dob_cut: TLabel
               Position.X = 352.000000000000000000
               Position.Y = 244.000000000000000000
@@ -1213,8 +1227,8 @@ object form_aluno: Tform_aluno
                 Size.Height = 121.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 4
-                Viewport.Width = 617.000000000000000000
-                Viewport.Height = 121.000000000000000000
+                Viewport.Width = 613.000000000000000000
+                Viewport.Height = 117.000000000000000000
               end
             end
             object lbl_db_bcp_med_dob_cut: TLabel
@@ -1301,6 +1315,7 @@ object form_aluno: Tform_aluno
               Stroke.Color = claBlanchedalmond
               XRadius = 10.000000000000000000
               YRadius = 10.000000000000000000
+              OnClick = btn_lmp_db_cutClick
               OnMouseEnter = btn_lmp_db_cutMouseEnter
               OnMouseLeave = btn_lmp_db_cutMouseLeave
               object lbl_btn_lmp_db_cut: TLabel
@@ -1324,6 +1339,9 @@ object form_aluno: Tform_aluno
             object lbl_tit_fun_med_dob_cut: TLabel
               Align = MostTop
               StyledSettings = []
+              Margins.Top = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Position.Y = 10.000000000000000000
               Size.Width = 1252.000000000000000000
               Size.Height = 41.000000000000000000
               Size.PlatformDefault = False
