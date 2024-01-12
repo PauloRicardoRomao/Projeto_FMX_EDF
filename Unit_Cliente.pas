@@ -1,3 +1,83 @@
+{$A8,B-,C+,D+,E-,F-,G+,H+,I+,J-,K-,L+,M-,N-,O+,P+,Q-,R-,S-,T-,U-,V+,W-,X+,Y+,Z1}
+{$MINSTACKSIZE $00004000}
+{$MAXSTACKSIZE $00100000}
+{$IMAGEBASE $00400000}
+{$APPTYPE GUI}
+{$WARN SYMBOL_DEPRECATED ON}
+{$WARN SYMBOL_LIBRARY ON}
+{$WARN SYMBOL_PLATFORM ON}
+{$WARN SYMBOL_EXPERIMENTAL ON}
+{$WARN UNIT_LIBRARY ON}
+{$WARN UNIT_PLATFORM ON}
+{$WARN UNIT_DEPRECATED ON}
+{$WARN UNIT_EXPERIMENTAL ON}
+{$WARN HRESULT_COMPAT ON}
+{$WARN HIDING_MEMBER ON}
+{$WARN HIDDEN_VIRTUAL ON}
+{$WARN GARBAGE ON}
+{$WARN BOUNDS_ERROR ON}
+{$WARN ZERO_NIL_COMPAT ON}
+{$WARN STRING_CONST_TRUNCED ON}
+{$WARN FOR_LOOP_VAR_VARPAR ON}
+{$WARN TYPED_CONST_VARPAR ON}
+{$WARN ASG_TO_TYPED_CONST ON}
+{$WARN CASE_LABEL_RANGE ON}
+{$WARN FOR_VARIABLE ON}
+{$WARN CONSTRUCTING_ABSTRACT ON}
+{$WARN COMPARISON_FALSE ON}
+{$WARN COMPARISON_TRUE ON}
+{$WARN COMPARING_SIGNED_UNSIGNED ON}
+{$WARN COMBINING_SIGNED_UNSIGNED ON}
+{$WARN UNSUPPORTED_CONSTRUCT ON}
+{$WARN FILE_OPEN ON}
+{$WARN FILE_OPEN_UNITSRC ON}
+{$WARN BAD_GLOBAL_SYMBOL ON}
+{$WARN DUPLICATE_CTOR_DTOR ON}
+{$WARN INVALID_DIRECTIVE ON}
+{$WARN PACKAGE_NO_LINK ON}
+{$WARN PACKAGED_THREADVAR ON}
+{$WARN IMPLICIT_IMPORT ON}
+{$WARN HPPEMIT_IGNORED ON}
+{$WARN NO_RETVAL ON}
+{$WARN USE_BEFORE_DEF ON}
+{$WARN FOR_LOOP_VAR_UNDEF ON}
+{$WARN UNIT_NAME_MISMATCH ON}
+{$WARN NO_CFG_FILE_FOUND ON}
+{$WARN IMPLICIT_VARIANTS ON}
+{$WARN UNICODE_TO_LOCALE ON}
+{$WARN LOCALE_TO_UNICODE ON}
+{$WARN IMAGEBASE_MULTIPLE ON}
+{$WARN SUSPICIOUS_TYPECAST ON}
+{$WARN PRIVATE_PROPACCESSOR ON}
+{$WARN UNSAFE_TYPE OFF}
+{$WARN UNSAFE_CODE OFF}
+{$WARN UNSAFE_CAST OFF}
+{$WARN OPTION_TRUNCATED ON}
+{$WARN WIDECHAR_REDUCED ON}
+{$WARN DUPLICATES_IGNORED ON}
+{$WARN UNIT_INIT_SEQ ON}
+{$WARN LOCAL_PINVOKE ON}
+{$WARN MESSAGE_DIRECTIVE ON}
+{$WARN TYPEINFO_IMPLICITLY_ADDED ON}
+{$WARN RLINK_WARNING ON}
+{$WARN IMPLICIT_STRING_CAST ON}
+{$WARN IMPLICIT_STRING_CAST_LOSS ON}
+{$WARN EXPLICIT_STRING_CAST OFF}
+{$WARN EXPLICIT_STRING_CAST_LOSS OFF}
+{$WARN CVT_WCHAR_TO_ACHAR ON}
+{$WARN CVT_NARROWING_STRING_LOST ON}
+{$WARN CVT_ACHAR_TO_WCHAR ON}
+{$WARN CVT_WIDENING_STRING_LOST ON}
+{$WARN NON_PORTABLE_TYPECAST ON}
+{$WARN XML_WHITESPACE_NOT_ALLOWED ON}
+{$WARN XML_UNKNOWN_ENTITY ON}
+{$WARN XML_INVALID_NAME_START ON}
+{$WARN XML_INVALID_NAME ON}
+{$WARN XML_EXPECTED_CHARACTER ON}
+{$WARN XML_CREF_NO_RESOLVE ON}
+{$WARN XML_NO_PARM ON}
+{$WARN XML_NO_MATCHING_PARM ON}
+{$WARN IMMUTABLE_STRINGS OFF}
 unit Unit_Cliente;
 
 interface
@@ -20,6 +100,7 @@ type
     menu_med_corp: TMenuItem;
     StyleBook1: TStyleBook;
     lbl_nome: TLabel;
+    edt_nome: TEdit;
     lbl_data_nasc: TLabel;
     lbl_sexo: TLabel;
     lbl_altura: TLabel;
@@ -152,6 +233,7 @@ type
     procedure btn_lmp_inf_bscClick(Sender: TObject);
     procedure btn_lmp_med_cirClick(Sender: TObject);
     procedure btn_lmp_db_cutClick(Sender: TObject);
+    procedure btn_grava_inf_bscClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -164,6 +246,8 @@ var
 implementation
 
 {$R *.fmx}
+
+uses Unit_DM_Principal;
 
 
 procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
@@ -221,6 +305,54 @@ procedure Tform_aluno.btn_grava_db_cutMouseLeave(Sender: TObject);
 begin
   btn_grava_db_cut.Fill.Color := $FF03223F;
   lbl_btn_grava_db_cut.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_aluno.btn_grava_inf_bscClick(Sender: TObject);
+var
+  nome, sexo, data_nascimento, objetivo, nivel_atividade, foto :  string;
+  //data_nascimento : Tdate;
+  altura, peso : currency;
+begin
+
+  if edt_nome.Text = '' then
+  begin
+    ShowMessage('Necessário preencher o campo NOME!');
+    edt_nome.SetFocus;
+    Exit;
+  end;
+
+
+  //nome := edt_nome.Text;
+  data_nascimento := edt_data_nasc.Text;
+  sexo := cbx_sexo.Selected.Text;
+  altura := StrToCurr(edt_altura.Text);
+  peso := StrToCurr(edt_peso_base.Text);
+  objetivo := mmo_obj.Lines.Text;
+  nivel_atividade := cbx_nvl_ativ.Selected.Text;
+  //foto :=
+
+  if edt_nome.Text <> '' then
+  begin
+    Try
+      with dm_principal do
+      begin
+        with ado_proc_cad_aluno_info_basic.Parameters do
+        begin
+          ParamByName('@NOME_ALUNO').Value := nome;
+          ParamByName('@DATA_NASCIMENTO_ALUNO').Value := data_nascimento;
+          ParamByName('@SEXO_ALUNO').Value := sexo;
+          ParamByName('@ALTURA_ALUNO').Value := altura;
+          ParamByName('@PESO_ALUNO').Value := peso;
+          ParamByName('@OBJETIVO_ALUNO').Value := objetivo;
+          ParamByName('@NIVEL_ATIVIDADE_ALUNO').Value := nivel_atividade;
+          ParamByName('@FOTO_ALUNO').Value := null;
+          ado_proc_cad_aluno_info_basic.ExecProc;
+        end;
+      end;
+    Except
+      ShowMessage('Erro não especificado!'); //TROCAR DEPOIS
+    End;
+  end;
 end;
 
 procedure Tform_aluno.btn_grava_inf_bscMouseEnter(Sender: TObject);
