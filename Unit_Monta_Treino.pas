@@ -64,7 +64,7 @@ type
     procedure btn_menuClick(Sender: TObject);
   public
     { Public declarations }
-    Nr_Fichas : integer;
+    id_aluno, Nr_Fichas, id_treino : integer;
     Function DefinirNrFichas(Valor: Integer) : Integer;
   end;
 
@@ -244,6 +244,7 @@ end;
 
 procedure Tform_monta_treino.FormCreate(Sender: TObject);
 begin
+  id_treino := form_info_bsc_treino.id_treino;
   Criabtn_menu;
   btn_ficha_p_cad.Visible := False;
 end;

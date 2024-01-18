@@ -3,7 +3,7 @@ object form_popup_card_aluno: Tform_popup_card_aluno
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = Single
-  ClientHeight = 405
+  ClientHeight = 497
   ClientWidth = 464
   Fill.Color = xFF89A09A
   Fill.Kind = Solid
@@ -17,7 +17,7 @@ object form_popup_card_aluno: Tform_popup_card_aluno
     Align = Client
     Fill.Color = xFF89A09A
     Size.Width = 464.000000000000000000
-    Size.Height = 405.000000000000000000
+    Size.Height = 497.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
     XRadius = 15.000000000000000000
@@ -175,6 +175,44 @@ object form_popup_card_aluno: Tform_popup_card_aluno
         TextSettings.FontColor = claBlanchedalmond
         TextSettings.HorzAlign = Center
         Text = 'Hist'#243'rico de Treinos'
+        TabOrder = 0
+      end
+    end
+    object btn_hist_fichas_consultas_aluno_ppp: TRectangle
+      StyleName = 'btn_menu_cards_style'
+      Align = Top
+      Cursor = crHandPoint
+      Fill.Color = xFF03223F
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 410.000000000000000000
+      Size.Width = 454.000000000000000000
+      Size.Height = 80.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claBlanchedalmond
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      OnMouseEnter = btn_hist_fichas_consultas_aluno_pppMouseEnter
+      OnMouseLeave = btn_hist_fichas_consultas_aluno_pppMouseLeave
+      object lbl_btn_hist_fichas_consultas_aluno_ppp: TLabel
+        Align = Client
+        StyledSettings = []
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 3.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 3.000000000000000000
+        Size.Width = 444.000000000000000000
+        Size.Height = 74.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Arial'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claBlanchedalmond
+        TextSettings.HorzAlign = Center
+        Text = 'Hist'#243'rico de Fichas de Consulta'
         TabOrder = 0
       end
     end
