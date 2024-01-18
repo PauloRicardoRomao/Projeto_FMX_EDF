@@ -78,6 +78,86 @@
 {$WARN XML_NO_PARM ON}
 {$WARN XML_NO_MATCHING_PARM ON}
 {$WARN IMMUTABLE_STRINGS OFF}
+{$A8,B-,C+,D+,E-,F-,G+,H+,I+,J-,K-,L+,M-,N-,O+,P+,Q-,R-,S-,T-,U-,V+,W-,X+,Y+,Z1}
+{$MINSTACKSIZE $00004000}
+{$MAXSTACKSIZE $00100000}
+{$IMAGEBASE $00400000}
+{$APPTYPE GUI}
+{$WARN SYMBOL_DEPRECATED ON}
+{$WARN SYMBOL_LIBRARY ON}
+{$WARN SYMBOL_PLATFORM ON}
+{$WARN SYMBOL_EXPERIMENTAL ON}
+{$WARN UNIT_LIBRARY ON}
+{$WARN UNIT_PLATFORM ON}
+{$WARN UNIT_DEPRECATED ON}
+{$WARN UNIT_EXPERIMENTAL ON}
+{$WARN HRESULT_COMPAT ON}
+{$WARN HIDING_MEMBER ON}
+{$WARN HIDDEN_VIRTUAL ON}
+{$WARN GARBAGE ON}
+{$WARN BOUNDS_ERROR ON}
+{$WARN ZERO_NIL_COMPAT ON}
+{$WARN STRING_CONST_TRUNCED ON}
+{$WARN FOR_LOOP_VAR_VARPAR ON}
+{$WARN TYPED_CONST_VARPAR ON}
+{$WARN ASG_TO_TYPED_CONST ON}
+{$WARN CASE_LABEL_RANGE ON}
+{$WARN FOR_VARIABLE ON}
+{$WARN CONSTRUCTING_ABSTRACT ON}
+{$WARN COMPARISON_FALSE ON}
+{$WARN COMPARISON_TRUE ON}
+{$WARN COMPARING_SIGNED_UNSIGNED ON}
+{$WARN COMBINING_SIGNED_UNSIGNED ON}
+{$WARN UNSUPPORTED_CONSTRUCT ON}
+{$WARN FILE_OPEN ON}
+{$WARN FILE_OPEN_UNITSRC ON}
+{$WARN BAD_GLOBAL_SYMBOL ON}
+{$WARN DUPLICATE_CTOR_DTOR ON}
+{$WARN INVALID_DIRECTIVE ON}
+{$WARN PACKAGE_NO_LINK ON}
+{$WARN PACKAGED_THREADVAR ON}
+{$WARN IMPLICIT_IMPORT ON}
+{$WARN HPPEMIT_IGNORED ON}
+{$WARN NO_RETVAL ON}
+{$WARN USE_BEFORE_DEF ON}
+{$WARN FOR_LOOP_VAR_UNDEF ON}
+{$WARN UNIT_NAME_MISMATCH ON}
+{$WARN NO_CFG_FILE_FOUND ON}
+{$WARN IMPLICIT_VARIANTS ON}
+{$WARN UNICODE_TO_LOCALE ON}
+{$WARN LOCALE_TO_UNICODE ON}
+{$WARN IMAGEBASE_MULTIPLE ON}
+{$WARN SUSPICIOUS_TYPECAST ON}
+{$WARN PRIVATE_PROPACCESSOR ON}
+{$WARN UNSAFE_TYPE OFF}
+{$WARN UNSAFE_CODE OFF}
+{$WARN UNSAFE_CAST OFF}
+{$WARN OPTION_TRUNCATED ON}
+{$WARN WIDECHAR_REDUCED ON}
+{$WARN DUPLICATES_IGNORED ON}
+{$WARN UNIT_INIT_SEQ ON}
+{$WARN LOCAL_PINVOKE ON}
+{$WARN MESSAGE_DIRECTIVE ON}
+{$WARN TYPEINFO_IMPLICITLY_ADDED ON}
+{$WARN RLINK_WARNING ON}
+{$WARN IMPLICIT_STRING_CAST ON}
+{$WARN IMPLICIT_STRING_CAST_LOSS ON}
+{$WARN EXPLICIT_STRING_CAST OFF}
+{$WARN EXPLICIT_STRING_CAST_LOSS OFF}
+{$WARN CVT_WCHAR_TO_ACHAR ON}
+{$WARN CVT_NARROWING_STRING_LOST ON}
+{$WARN CVT_ACHAR_TO_WCHAR ON}
+{$WARN CVT_WIDENING_STRING_LOST ON}
+{$WARN NON_PORTABLE_TYPECAST ON}
+{$WARN XML_WHITESPACE_NOT_ALLOWED ON}
+{$WARN XML_UNKNOWN_ENTITY ON}
+{$WARN XML_INVALID_NAME_START ON}
+{$WARN XML_INVALID_NAME ON}
+{$WARN XML_EXPECTED_CHARACTER ON}
+{$WARN XML_CREF_NO_RESOLVE ON}
+{$WARN XML_NO_PARM ON}
+{$WARN XML_NO_MATCHING_PARM ON}
+{$WARN IMMUTABLE_STRINGS OFF}
 unit Unit_Cliente;
 
 interface
@@ -86,7 +166,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.Objects, FMX.Menus, FMX.Edit, FMX.Controls.Presentation, FMX.StdCtrls,
-  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, FMX.ListBox, FMX.DateTimeCtrls;
+  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, FMX.ListBox, FMX.DateTimeCtrls, FMX.DialogService,
+  FMX.MediaLibrary.Actions;
 
 type
   Tform_aluno = class(TForm)
@@ -115,7 +196,7 @@ type
     cbx_nvl_ativ: TComboBox;
     pnl_foto: TRectangle;
     img_cad: TImage;
-    Label1: TLabel;
+    lbl_img_cad: TLabel;
     pnl_fundo_info_basic: TRectangle;
     pnl_fundo_anamnese: TRectangle;
     lbl_rest_alim: TLabel;
@@ -123,13 +204,13 @@ type
     lbl_condic_med: TLabel;
     lbl_pressao_art: TLabel;
     lbl_obs: TLabel;
-    Memo1: TMemo;
+    mmo_obs: TMemo;
     lbl_freq_card_base: TLabel;
     lbl_hist_exerc: TLabel;
-    Memo2: TMemo;
-    Memo3: TMemo;
-    Memo4: TMemo;
-    Memo5: TMemo;
+    mmo_condic_med: TMemo;
+    mmo_medicamentos: TMemo;
+    mmo_rest_alim: TMemo;
+    mmo_hist_exerc: TMemo;
     btn_gravar: TRectangle;
     lbl_btn_gravar: TLabel;
     btn_limpar_form: TRectangle;
@@ -234,10 +315,17 @@ type
     procedure btn_lmp_med_cirClick(Sender: TObject);
     procedure btn_lmp_db_cutClick(Sender: TObject);
     procedure btn_grava_inf_bscClick(Sender: TObject);
+    procedure pnl_fotoClick(Sender: TObject);
+    procedure btn_grava_anm_medClick(Sender: TObject);
+    procedure btn_grava_med_cirClick(Sender: TObject);
+    procedure btn_grava_db_cutClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    foto : string;
+    id_aluno, id_anamnese : integer;
   end;
 
 var
@@ -247,8 +335,129 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_DM_Principal;
+uses Unit_DM_Principal, Unit_Popup_Card_Aluno, Unit_Menu_Principal;
 
+
+procedure Tform_aluno.FormCreate(Sender: TObject);
+var
+  dia, mes, ano : string;
+begin
+  id_aluno := 0;
+  {if form_popup_card_aluno.id_aluno <> 0 then
+      id_aluno := form_popup_card_aluno.id_aluno;
+      }
+  if Assigned(form_popup_card_aluno) then
+    id_aluno := form_popup_card_aluno.id_aluno; 
+      
+  if id_aluno > 0 then
+  begin
+    with dm_principal do
+    begin
+
+      ////////////////////
+      ///  INFOS BASICAS
+
+      ado_query_consulta_aluno.Close;
+      ado_query_consulta_aluno.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+      ado_query_consulta_aluno.Open;
+
+      edt_nome.Text := ado_query_consulta_alunoNOME_ALUNO.AsString;
+      dia := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 9,2);
+      mes := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 6,2);
+      ano := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 1,4);
+      edt_data_nasc.Text :=  dia+'/'+mes+'/'+ano;
+      if ado_query_consulta_alunoSEXO_ALUNO.AsString = 'Masculino' then
+        cbx_sexo.Index := 0
+      else if ado_query_consulta_alunoSEXO_ALUNO.AsString = 'Feminino' then
+        cbx_sexo.Index := 1
+      else
+        cbx_sexo.Index := 2;
+      edt_altura.Text := CurrToStr(ado_query_consulta_alunoALTURA_ALUNO.AsCurrency);
+      edt_peso_base.Text := CurrToStr(ado_query_consulta_alunoPESO_ALUNO.AsCurrency);
+      mmo_obj.Lines.Text :=  ado_query_consulta_alunoOBJETIVO_ALUNO.AsString;
+      if ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO.AsString = 'Sedentário' then
+        cbx_sexo.Index := 0
+      else if ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO.AsString = 'Moderadamente Ativo' then
+        cbx_sexo.Index := 1
+      else
+        cbx_sexo.Index := 2;
+
+      ////////////////////
+      ///  ANAMNESE
+
+      ado_query_consulta_anamnese.Close;
+      ado_query_consulta_anamnese.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+      ado_query_consulta_anamnese.Open;
+
+      if ado_query_consulta_anamnese.RecordCount > 0 then
+      begin
+        mmo_condic_med.Lines.Text := ado_query_consulta_anamneseCONDICOES_MEDICAS_ALUNO.AsString;
+        mmo_medicamentos.Lines.Text := ado_query_consulta_anamneseMEDICAMENTOS_ALUNO.AsString;
+        mmo_rest_alim.Lines.Text := ado_query_consulta_anamneseRESTRICOES_ALIMENTARES_ALUNO.AsString;
+        mmo_hist_exerc.Lines.Text := ado_query_consulta_anamneseHISTORICO_EXERCICIOS_ALUNO.AsString;
+        edt_frq_cdc_base.Text := IntToStr(ado_query_consulta_anamneseFREQUENCIA_CARDIACA_REPOUSO_ALUNO.AsInteger);
+        edt_prs_art_base.Text := ado_query_consulta_anamnesePRESSAO_ARTERIAL_ALUNO.AsString;
+        mmo_obs.Lines.Text := ado_query_consulta_anamneseOUTRAS_OBSERVACOES_ALUNO.AsString;
+      end;
+
+      ////////////////////
+      ///  MEDIDAS CIRCUNFERENCIAS
+
+      ado_query_dim_circunferencias.Close;
+      ado_query_dim_circunferencias.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+      ado_query_dim_circunferencias.Open;
+
+      if ado_query_dim_circunferencias.RecordCount > 0 then
+      begin
+        dia := Copy(ado_query_dim_circunferenciasDATA_MEDICAO_DIMENSOES_CORPORAIS.AsString, 9,2);
+        mes := Copy(ado_query_dim_circunferenciasDATA_MEDICAO_DIMENSOES_CORPORAIS.AsString, 6,2);
+        ano := Copy(ado_query_dim_circunferenciasDATA_MEDICAO_DIMENSOES_CORPORAIS.AsString, 1,4);
+        edt_data_cir.Text :=  dia+'/'+mes+'/'+ano;
+
+        edt_cir_alt.Text := CurrToStr(ado_query_dim_circunferenciasALTURA_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_peso.Text := CurrToStr(ado_query_dim_circunferenciasPESO_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_bra_esq.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_BRACO_ESQ_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_bra_dir.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_BRACO_DIR_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_per_esq.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PERNA_ESQ_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_per_dir.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PERNA_DIR_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_pan_esq.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PANTURRILHA_ESQ_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_pan_dir.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PANTURRILHA_DIR_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_abd.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_ABDOMINAL_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_cin.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_CINTURA_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_qua.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_QUADRIL_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_cir_pei.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PEITORAL_DIMENSOES_CORPORAIS.AsCurrency);
+        mmo_cir_out_med.Lines.Text := ado_query_dim_circunferenciasOUTRAS_MEDICOES_DIMENSOES_CORPORAIS.AsString;
+      end;
+
+      ////////////////////
+      ///  MEDIDAS DOBRAS
+
+      ado_query_dim_dobras.Close;
+      ado_query_dim_dobras.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+      ado_query_dim_dobras.Open;
+
+      if ado_query_dim_dobras.RecordCount > 0 then
+      begin
+        dia := Copy(ado_query_dim_dobrasDATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString, 9,2);
+        mes := Copy(ado_query_dim_dobrasDATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString, 6,2);
+        ano := Copy(ado_query_dim_dobrasDATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString, 1,4);
+        edt_data_med_dob_cut.Text :=  dia+'/'+mes+'/'+ano;
+
+        edt_db_trc_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_TRICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_db_bcp_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_BICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_db_sub_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_SUBESCAPULAR_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_db_sup_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_SUPRAILIACA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_db_abd_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_ABDOMEN_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_db_axl_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+        edt_db_pnm_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+        mmo_out_med_dob_cut.Lines.Text := ado_query_dim_dobrasOUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString;
+      end;
+
+    end;
+  end;
+
+  menu_info_basicClick(Self);
+end;
 
 procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
 var
@@ -283,6 +492,48 @@ begin
     pnl_fundo_info_basic.Visible := False;
 end;
 
+procedure Tform_aluno.btn_grava_anm_medClick(Sender: TObject);
+var
+  cond_medicas, medicamentos, rest_alimentar, hist_exercicios,
+  press_art_base, obs : string;
+  freq_card_base : integer;
+begin
+  cond_medicas := mmo_condic_med.Lines.Text;
+  medicamentos := mmo_medicamentos.Lines.Text;
+  rest_alimentar := mmo_rest_alim.Lines.Text;
+  hist_exercicios := mmo_hist_exerc.Lines.Text;
+  freq_card_base := StrToInt(edt_frq_cdc_base.Text);
+  press_art_base := edt_prs_art_base.Text;
+  obs := mmo_obs.Lines.Text;
+  id_anamnese := dm_principal. ado_query_consulta_anamneseID_ANAMNESE_MEDICA.AsInteger;
+
+  try
+    with dm_principal do
+    begin
+      with ado_proc_cad_aluno_anamnese.Parameters do
+      begin
+        ParamByName('@ID_ANAMNESE_MEDICA').Value := id_anamnese;
+        ParamByName('@ID_ALUNO').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
+        ParamByName('@CONDICOES_MEDICAS_ALUNO').Value := cond_medicas;
+        ParamByName('@MEDICAMENTOS_ALUNO').Value := medicamentos;
+        ParamByName('@RESTRICOES_ALIMENTARES_ALUNO').Value := rest_alimentar;
+        ParamByName('@HISTORICO_EXERCICIOS_ALUNO').Value := hist_exercicios;
+        ParamByName('@FREQUENCIA_CARDIACA_REPOUSO_ALUNO').Value := freq_card_base;
+        ParamByName('@PRESSAO_ARTERIAL_ALUNO').Value := press_art_base;
+        ParamByName('@OUTRAS_OBSERVACOES_ALUNO').Value := obs;
+        ado_proc_cad_aluno_anamnese.ExecProc;
+      end;
+    end;
+    ShowMessage('Ficha de anamnese cadastrada com sucesso!');
+
+    except
+    on E: Exception do
+    begin
+      ShowMessage('Erro: ' + E.Message);
+    end;
+  end;
+end;
+
 procedure Tform_aluno.btn_grava_anm_medMouseEnter(Sender: TObject);
 begin
   btn_grava_anm_med.Fill.Color := $FF214358;
@@ -293,6 +544,52 @@ procedure Tform_aluno.btn_grava_anm_medMouseLeave(Sender: TObject);
 begin
   btn_grava_anm_med.Fill.Color := $FF03223F;
   lbl_btn_grava_anm_med.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_aluno.btn_grava_db_cutClick(Sender: TObject);
+var
+  data : TDate;
+  triceps, biceps, subescapular, suprailiaca, abdominal, axilar, perna : currency;
+  outras_medicoes : string;
+begin
+
+  data := edt_data_med_dob_cut.Date;
+  triceps := StrToCurr(edt_db_trc_med_dob_cut.Text);
+  biceps := StrToCurr(edt_db_bcp_med_dob_cut.Text);
+  subescapular := StrToCurr(edt_db_sub_med_dob_cut.Text);
+  suprailiaca := StrToCurr(edt_db_sup_med_dob_cut.Text);
+  abdominal := StrToCurr(edt_db_abd_med_dob_cut.Text);
+  axilar := StrToCurr(edt_db_axl_med_dob_cut.Text);
+  perna := StrToCurr(edt_db_pnm_med_dob_cut.Text);
+  outras_medicoes := mmo_out_med_dob_cut.Lines.Text;
+
+  try
+    with dm_principal do
+    begin
+      with ado_proc_cad_aluno_db_cut_corp.Parameters do
+      begin
+        ParamByName('@ALUNO_ID_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
+        ParamByName('@DATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := data;
+        ParamByName('@DOBRA_TRICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := triceps;
+        ParamByName('@DOBRA_BICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := biceps;
+        ParamByName('@DOBRA_SUBESCAPULAR_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := subescapular;
+        ParamByName('@DOBRA_SUPRAILIACA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := suprailiaca;
+        ParamByName('@DOBRA_ABDOMEN_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := abdominal;
+        ParamByName('@DOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := axilar;
+        ParamByName('@DOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := perna;
+        ParamByName('@OUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := outras_medicoes;
+        ado_proc_cad_aluno_db_cut_corp.ExecProc;
+      end;
+    end;
+    ShowMessage('Medidas cadastrada com sucesso!');
+
+    except
+    on E: Exception do
+    begin
+      ShowMessage('Erro: ' + E.Message);
+    end;
+  end;
+
 end;
 
 procedure Tform_aluno.btn_grava_db_cutMouseEnter(Sender: TObject);
@@ -307,10 +604,31 @@ begin
   lbl_btn_grava_db_cut.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
+procedure Tform_aluno.pnl_fotoClick(Sender: TObject);
+var
+  OpenDialog: TOpenDialog;
+begin
+  OpenDialog := TOpenDialog.Create(Self);
+  try
+    OpenDialog.Title := 'Selecionar Foto';
+    OpenDialog.Filter := 'Arquivos de Imagem|*.bmp;*.jpg;*.jpeg;*.png;*.gif';
+
+    if OpenDialog.Execute then
+    begin
+      // O caminho do arquivo selecionado está em OpenDialog.FileName
+      // Você pode usar esse caminho para carregar a imagem em um componente TImage, por exemplo
+      foto := OpenDialog.FileName;
+      img_cad.Bitmap.LoadFromFile(foto);
+      //img_cad.Bitmap.LoadFromFile(OpenDialog.FileName);
+    end;
+  finally
+    OpenDialog.Free;
+  end;
+end;
+
 procedure Tform_aluno.btn_grava_inf_bscClick(Sender: TObject);
 var
-  nome, sexo, data_nascimento, objetivo, nivel_atividade, foto :  string;
-  //data_nascimento : Tdate;
+  nome, sexo, data_nascimento, objetivo, nivel_atividade :  string;
   altura, peso : currency;
 begin
 
@@ -322,22 +640,24 @@ begin
   end;
 
 
-  //nome := edt_nome.Text;
+  nome := edt_nome.Text;
   data_nascimento := edt_data_nasc.Text;
   sexo := cbx_sexo.Selected.Text;
   altura := StrToCurr(edt_altura.Text);
   peso := StrToCurr(edt_peso_base.Text);
   objetivo := mmo_obj.Lines.Text;
   nivel_atividade := cbx_nvl_ativ.Selected.Text;
+
   //foto :=
 
-  if edt_nome.Text <> '' then
-  begin
-    Try
+  try
+    if edt_nome.Text <> '' then
+    begin
       with dm_principal do
       begin
         with ado_proc_cad_aluno_info_basic.Parameters do
         begin
+          ParamByName('@ID_ALUNO').Value := id_aluno;
           ParamByName('@NOME_ALUNO').Value := nome;
           ParamByName('@DATA_NASCIMENTO_ALUNO').Value := data_nascimento;
           ParamByName('@SEXO_ALUNO').Value := sexo;
@@ -345,13 +665,22 @@ begin
           ParamByName('@PESO_ALUNO').Value := peso;
           ParamByName('@OBJETIVO_ALUNO').Value := objetivo;
           ParamByName('@NIVEL_ATIVIDADE_ALUNO').Value := nivel_atividade;
-          ParamByName('@FOTO_ALUNO').Value := null;
+          if foto <> '' then
+            ParamByName('@FOTO_ALUNO').Value := foto
+          else
+            ParamByName('@FOTO_ALUNO').Value := null;
+
           ado_proc_cad_aluno_info_basic.ExecProc;
         end;
       end;
-    Except
-      ShowMessage('Erro não especificado!'); //TROCAR DEPOIS
-    End;
+      ShowMessage('Informações básicas cadastradas com sucesso!');
+    end;
+
+    except
+    on E: Exception do
+    begin
+      ShowMessage('Erro: ' + E.Message);
+    end;
   end;
 end;
 
@@ -365,6 +694,62 @@ procedure Tform_aluno.btn_grava_inf_bscMouseLeave(Sender: TObject);
 begin
   btn_grava_inf_bsc.Fill.Color := $FF03223F;
   lbl_btn_grava_inf_bsc.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_aluno.btn_grava_med_cirClick(Sender: TObject);
+var
+  data : TDate;
+  altura, peso, bra_esq, bra_dir, per_esq, per_dir, pant_esq, pant_dir,
+  cir_abd, cir_cint, cir_quad, cir_peit : currency;
+  outras_medicoes : string;
+begin
+  data := edt_data_cir.Date;
+  altura := StrToCurr(edt_cir_alt.Text);
+  peso := StrToCurr(edt_cir_peso.Text);
+  bra_esq := StrToCurr(edt_cir_bra_esq.Text);
+  bra_dir := StrToCurr(edt_cir_bra_dir.Text);
+  per_esq := StrToCurr(edt_cir_per_esq.Text);
+  per_dir := StrToCurr(edt_cir_per_dir.Text);
+  pant_esq := StrToCurr(edt_cir_pan_esq.Text);
+  pant_dir := StrToCurr(edt_cir_pan_dir.Text);
+  cir_abd := StrToCurr(edt_cir_abd.Text);
+  cir_cint := StrToCurr(edt_cir_cin.Text);
+  cir_quad := StrToCurr(edt_cir_qua.Text);
+  cir_peit := StrToCurr(edt_cir_pei.Text);
+  outras_medicoes := mmo_cir_out_med.Lines.Text;
+
+  try
+    with dm_principal do
+    begin
+      with ado_proc_cad_aluno_info_circ.Parameters do
+        begin
+          ParamByName('@ALUNO_ID_DIMENSOES_CORPORAIS').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
+          ParamByName('@DATA_MEDICAO_DIMENSOES_CORPORAIS').Value := data;
+          ParamByName('@ALTURA_DIMENSOES_CORPORAIS').Value := altura;
+          ParamByName('@PESO_DIMENSOES_CORPORAIS').Value := peso;
+          ParamByName('@CIRCUNFERENCIA_BRACO_ESQ_DIMENSOES_CORPORAIS').Value := bra_esq;
+          ParamByName('@CIRCUNFERENCIA_BRACO_DIR_DIMENSOES_CORPORAIS').Value := bra_dir;
+          ParamByName('@CIRCUNFERENCIA_PERNA_ESQ_DIMENSOES_CORPORAIS').Value := per_esq;
+          ParamByName('@CIRCUNFERENCIA_PERNA_DIR_DIMENSOES_CORPORAIS').Value := per_dir;
+          ParamByName('@CIRCUNFERENCIA_PANTURRILHA_ESQ_DIMENSOES_CORPORAIS').Value := pant_esq;
+          ParamByName('@CIRCUNFERENCIA_PANTURRILHA_DIR_DIMENSOES_CORPORAIS').Value := pant_dir;
+          ParamByName('@CIRCUNFERENCIA_ABDOMINAL_DIMENSOES_CORPORAIS').Value := cir_abd;
+          ParamByName('@CIRCUNFERENCIA_CINTURA_DIMENSOES_CORPORAIS').Value := cir_cint;
+          ParamByName('@CIRCUNFERENCIA_QUADRIL_DIMENSOES_CORPORAIS').Value := cir_quad;
+          ParamByName('@CIRCUNFERENCIA_PEITORAL_DIMENSOES_CORPORAIS').Value := cir_peit;
+          ParamByName('@OUTRAS_MEDICOES_DIMENSOES_CORPORAIS').Value := outras_medicoes;
+          ado_proc_cad_aluno_info_circ.ExecProc;
+        end;
+    end;
+    ShowMessage('Medições cadastradas com sucesso!');
+
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Erro: ' + E.Message);
+    end;
+  end;
+
 end;
 
 procedure Tform_aluno.btn_grava_med_cirMouseEnter(Sender: TObject);
@@ -488,9 +873,14 @@ end;
 
 procedure Tform_aluno.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  btn_lmp_inf_bscClick(Self);
+  btn_lmp_anm_medClick(Self);
+  btn_lmp_med_cirClick(Self);
+  btn_lmp_db_cutClick(Self);
+  id_aluno := 0;
+
   form_aluno := nil;
   form_aluno.Free;
 end;
-
 
 end.

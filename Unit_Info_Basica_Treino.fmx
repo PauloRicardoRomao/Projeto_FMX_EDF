@@ -11,6 +11,7 @@ object form_info_bsc_treino: Tform_info_bsc_treino
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
   OnClose = FormClose
   DesignerMasterStyle = 0
   object pnl_fun_cad_treino: TRectangle

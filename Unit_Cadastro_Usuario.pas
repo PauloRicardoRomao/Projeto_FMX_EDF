@@ -44,7 +44,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_Login;
+uses Unit_Login, Unit_DM_Principal;
 
 class function Tform_cadastro_usuario.GerarCaractereUnico: Char;
 var
@@ -98,6 +98,16 @@ begin
     senha := edt_senha.Text;
     chave_acesso := edt_chave_acesso.Text;
 
+
+    with dm_principal do
+    begin
+      ado_proc_cad_usuario.Parameters.ParamByName('@NOME_USUARIO').Value := usuario;
+      ado_proc_cad_usuario.Parameters.ParamByName('@SENHA_USUARIO').Value := senha;
+      ado_proc_cad_usuario.Parameters.ParamByName('@CHAVE_USUARIO').Value := chave_acesso;
+      ado_proc_cad_usuario.ExecProc;
+    end;
+    ShowMessage('Usuário cadastrado com sucesso! Voltando a tela de login.');
+
     form_login := Tform_login.Create(Application);
     form_login.ShowModal;
     form_cadastro_usuario.Close;
@@ -124,6 +134,9 @@ end;
 procedure Tform_cadastro_usuario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  edt_usuario.Text := '';
+  edt_senha.Text := '';
+  edt_chave_acesso.Text := '';
   form_cadastro_usuario := nil;
   form_cadastro_usuario.Free;
 end;

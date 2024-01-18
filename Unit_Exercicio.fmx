@@ -544,6 +544,7 @@ object form_exercicios: Tform_exercicios
       Stroke.Color = claBlanchedalmond
       XRadius = 10.000000000000000000
       YRadius = 10.000000000000000000
+      OnClick = btn_grava_inf_bscClick
       OnMouseEnter = btn_grava_inf_bscMouseEnter
       OnMouseLeave = btn_grava_inf_bscMouseLeave
       object lbl_btn_grava_inf_bsc: TLabel

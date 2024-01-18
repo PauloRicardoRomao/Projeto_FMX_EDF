@@ -29,6 +29,7 @@ type
     procedure btn_lmp_inf_bscMouseLeave(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_lmp_inf_bscClick(Sender: TObject);
+    procedure btn_grava_inf_bscClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,6 +42,8 @@ var
 implementation
 
 {$R *.fmx}
+
+uses Unit_DM_Principal;
 
 procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
 var
@@ -59,6 +62,24 @@ begin
       end;
     end;
   end;
+end;
+
+procedure Tform_exercicios.btn_grava_inf_bscClick(Sender: TObject);
+var
+  exercicio, descricao, musculo : string;
+begin
+  exercicio := edt_nme_exercicio.Text;
+  descricao := mmo_desc_exercicio.Lines.Text;
+  musculo := cbx_grup_muscular.Selected.Text;
+  with dm_principal.ado_proc_cad_exercicio do
+  begin
+    Parameters.ParamByName('@NOME_EXERCICIO').Value := exercicio;
+    Parameters.ParamByName('@DESCRICAO_EXERCICIO').Value := descricao;
+    Parameters.ParamByName('@GRUPO_MUSCULAR').Value := musculo;
+    ExecProc;
+  end;
+  ShowMessage('Exercício gravado com sucesso!');
+  LimparControlesDentroDoRectangle(pnl_fun_cad_treino);
 end;
 
 procedure Tform_exercicios.btn_grava_inf_bscMouseEnter(Sender: TObject);
