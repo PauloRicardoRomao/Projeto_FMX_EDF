@@ -28,6 +28,29 @@ type
     ado_query_hist_fich_treino: TADOQuery;
     ado_query_hist_fich_treinoTREINO_TREINO_DIA: TIntegerField;
     ado_query_hist_fich_treinoGRUPO_MUSCULAR_TREINO_DIA: TStringField;
+    ado_query_consulta_grup_musc: TADOQuery;
+    ado_query_consulta_grup_muscID_GRUPO_MUSCULAR: TAutoIncField;
+    ado_query_consulta_grup_muscNOME_GRUPO_MUSCULAR: TStringField;
+    ado_query_lista_exer_grup_musc: TADOQuery;
+    ado_query_lista_exer_grup_muscID_EXERCICIO: TAutoIncField;
+    ado_query_lista_exer_grup_muscNOME_EXERCICIO: TStringField;
+    ado_query_lista_exer_grup_muscDESCRICAO_EXERCICIO: TMemoField;
+    ado_query_lista_exer_grup_muscGRUPO_MUSCULAR: TIntegerField;
+    dt_source_consulta_grup_musc: TDataSource;
+    ado_proc_add_exec_ficha_treino: TADOStoredProc;
+    ado_proc_cad_treino_dia: TADOStoredProc;
+    ado_proc_grup_treino_dia: TADOStoredProc;
+    ado_query_ficha_treino: TADOQuery;
+    ado_query_ficha_treinoID_EXERCICIO_TREINO: TAutoIncField;
+    ado_query_ficha_treinoTREINO_EXERCICIO_TREINO: TIntegerField;
+    ado_query_ficha_treinoTREINO_DIA_EXERCICIO_TREINO: TIntegerField;
+    ado_query_ficha_treinoEXERCICIO_EXERCICIO_TREINO: TIntegerField;
+    ado_query_ficha_treinoSERIES_EXERCICIO_TREINO: TIntegerField;
+    ado_query_ficha_treinoREPETICOES_EXERCICIO_TREINO: TStringField;
+    ado_query_ficha_treinoTEMPO_EXERCICIO_TREINO: TBCDField;
+    ado_query_ficha_treinoCARGA_EXERCICIO_TREINO: TBCDField;
+    ado_query_ficha_treinoOBS_EXERCICIO_TREINO: TMemoField;
+    ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA: TStringField;
   private
     { Private declarations }
   public

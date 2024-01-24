@@ -31,10 +31,12 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_gravarMouseEnter(Sender: TObject);
     procedure btn_gravarMouseLeave(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    treino, treino_dia, exercicio : integer;
   end;
 
 var
@@ -43,6 +45,8 @@ var
 implementation
 
 {$R *.fmx}
+
+uses Unit_DM_Treino, Unit_Monta_Treino;
 
 procedure Tform_exercicio_ficha_treino.btn_gravarClick(Sender: TObject);
 var
@@ -74,6 +78,19 @@ begin
     temp := StrToCurr(edt_tempo.Text);
     obs := mmo_obs.Lines.Text;
 
+    with dm_treino.ado_proc_add_exec_ficha_treino do
+    begin
+      Parameters.ParamByName('@TREINO_EXERCICIO_TREINO').Value := treino;
+      Parameters.ParamByName('@TREINO_DIA_EXERCICIO_TREINO').Value := treino_dia;
+      Parameters.ParamByName('@EXERCICIO_EXERCICIO_TREINO').Value := exercicio;
+      Parameters.ParamByName('@SERIES_EXERCICIO_TREINO').Value := series;
+      Parameters.ParamByName('@REPETICOES_EXERCICIO_TREINO').Value := rep;
+      Parameters.ParamByName('@TEMP_EXERCICIO_TREINO').Value := temp;
+      Parameters.ParamByName('@CARGA_EXERCICIO_TREINO').Value := carga;
+      Parameters.ParamByName('@OBS_EXERCICIO_TREINO').Value := obs;
+      ExecProc;
+    end;
+
     form_exercicio_ficha_treino.Close;
   end;
 
@@ -96,6 +113,14 @@ procedure Tform_exercicio_ficha_treino.FormClose(Sender: TObject;
 begin
   form_exercicio_ficha_treino := nil;
   form_exercicio_ficha_treino.Free;
+end;
+
+procedure Tform_exercicio_ficha_treino.FormCreate(Sender: TObject);
+begin
+    treino := form_monta_treino.id_treino;
+    //    treino_dia := ; }
+    exercicio := form_monta_treino.exercicio_i;
+    edt_exercicio.Text := form_monta_treino.nome_exercicio;
 end;
 
 end.
