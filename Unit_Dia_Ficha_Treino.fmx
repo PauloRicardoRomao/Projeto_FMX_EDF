@@ -1,10 +1,11 @@
-object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
+object form_dia_ficha_treino: Tform_dia_ficha_treino
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = Single
-  ClientHeight = 543
-  ClientWidth = 655
+  Caption = 'Form2'
+  ClientHeight = 291
+  ClientWidth = 607
   Fill.Color = xFF89A09A
   Fill.Kind = Solid
   Position = DesktopCenter
@@ -17,8 +18,8 @@ object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
   object pnl_fun_cad_treino: TRectangle
     Align = Client
     Fill.Color = xFF89A09A
-    Size.Width = 655.000000000000000000
-    Size.Height = 543.000000000000000000
+    Size.Width = 607.000000000000000000
+    Size.Height = 291.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
     XRadius = 15.000000000000000000
@@ -463,7 +464,7 @@ object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
       StyledSettings = []
       Margins.Top = 10.000000000000000000
       Position.Y = 10.000000000000000000
-      Size.Width = 655.000000000000000000
+      Size.Width = 607.000000000000000000
       Size.Height = 41.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Family = 'Arial'
@@ -471,150 +472,37 @@ object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
       TextSettings.Font.StyleExt = {00070000000000000004000000}
       TextSettings.FontColor = claBlanchedalmond
       TextSettings.HorzAlign = Center
-      Text = 'Exerc'#237'cio Ficha de Treino'
-      TabOrder = 6
+      Text = 'Especifica'#231#227'o Treino Dia'
+      TabOrder = 1
     end
-    object lbl_carga: TLabel
-      Position.X = 302.000000000000000000
-      Position.Y = 251.000000000000000000
-      Size.Width = 170.000000000000000000
-      Size.Height = 23.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'lbl_style'
-      Text = 'Carga:'
-      TabOrder = 3
-      object edt_carga: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        StyleLookup = 'edt_style'
-        TabOrder = 3
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 18.000000000000000000
-        Position.X = 62.000000000000000000
-        Size.Width = 100.000000000000000000
-        Size.Height = 28.000000000000000000
-        Size.PlatformDefault = False
-        StyledSettings = [Family, Style, FontColor]
-      end
-    end
-    object lbl_exercicio: TLabel
-      Position.X = 76.000000000000000000
+    object lbl_edt_espc_grup: TLabel
+      Position.X = 28.000000000000000000
       Position.Y = 123.000000000000000000
-      Size.Width = 200.000000000000000000
+      Size.Width = 229.000000000000000000
       Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'lbl_style'
-      Text = 'Exerc'#237'cio:'
-      TabOrder = 4
-      object edt_exercicio: TEdit
+      Text = 'Especifica'#231#227'o do Treino:'
+      TabOrder = 0
+      object edt_espc_grup: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 3
+        TabOrder = 4
         ReadOnly = True
         TextSettings.Font.Family = 'Arial'
         TextSettings.Font.Size = 18.000000000000000000
-        Position.X = 88.000000000000000000
-        Size.Width = 417.000000000000000000
-        Size.Height = 28.000000000000000000
-        Size.PlatformDefault = False
-        StyledSettings = [Family, Style, FontColor]
-      end
-    end
-    object lbl_obs: TLabel
-      Position.X = 76.000000000000000000
-      Position.Y = 307.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 23.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'lbl_style'
-      Text = 'Observa'#231#245'es:'
-      TabOrder = 2
-      object mmo_obs: TMemo
-        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-        DataDetectorTypes = []
-        StyledSettings = [Style, FontColor]
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 18.000000000000000000
-        Position.Y = 26.000000000000000000
-        Size.Width = 505.000000000000000000
-        Size.Height = 95.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 3
-        Viewport.Width = 505.000000000000000000
-        Viewport.Height = 95.000000000000000000
-      end
-    end
-    object lbl_repeticoes: TLabel
-      Position.X = 312.000000000000000000
-      Position.Y = 187.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 23.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'lbl_style'
-      Text = 'Repeti'#231#245'es:'
-      TabOrder = 5
-      object edt_repeticoes: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        StyleLookup = 'edt_style'
-        TabOrder = 3
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 18.000000000000000000
-        Position.X = 108.000000000000000000
-        Size.Width = 100.000000000000000000
-        Size.Height = 28.000000000000000000
-        Size.PlatformDefault = False
-        StyledSettings = [Family, Style, FontColor]
-      end
-    end
-    object lbl_series: TLabel
-      Position.X = 76.000000000000000000
-      Position.Y = 187.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 23.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'lbl_style'
-      Text = 'N'#186' S'#233'ries:'
-      TabOrder = 0
-      object edt_series: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        StyleLookup = 'edt_style'
-        TabOrder = 3
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 18.000000000000000000
-        Position.X = 89.000000000000000000
-        Position.Y = 1.000000000000000000
-        Size.Width = 119.000000000000000000
-        Size.Height = 28.000000000000000000
-        Size.PlatformDefault = False
-        StyledSettings = [Family, Style, FontColor]
-      end
-    end
-    object lbl_tempo: TLabel
-      Position.X = 76.000000000000000000
-      Position.Y = 251.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 23.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'lbl_style'
-      Text = 'Tempo:'
-      TabOrder = 1
-      object edt_tempo: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        StyleLookup = 'edt_style'
-        TabOrder = 3
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 18.000000000000000000
-        Position.X = 66.000000000000000000
-        Size.Width = 119.000000000000000000
+        Position.X = 208.000000000000000000
+        Size.Width = 337.000000000000000000
         Size.Height = 28.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Family, Style, FontColor]
       end
     end
     object btn_gravar: TRectangle
+      Align = Center
       Cursor = crHandPoint
       Fill.Color = xFF03223F
-      Position.X = 241.000000000000000000
-      Position.Y = 460.000000000000000000
+      Margins.Top = 120.000000000000000000
       Size.Width = 145.000000000000000000
       Size.Height = 55.000000000000000000
       Size.PlatformDefault = False
