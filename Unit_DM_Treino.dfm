@@ -392,18 +392,21 @@ object dm_treino: Tdm_treino
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@TREINO_TREINO_DIA'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@GRUPO_MUSCULAR_TREINO_DIA'
         Attributes = [paNullable]
         DataType = ftString
         Size = 255
+        Value = Null
       end>
     Left = 424
     Top = 128
@@ -417,18 +420,21 @@ object dm_treino: Tdm_treino
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ID_TREINO_DIA'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@GRUPO_MUSCULAR_TREINO_DIA'
         Attributes = [paNullable]
         DataType = ftString
         Size = 255
+        Value = Null
       end>
     Left = 576
     Top = 128
@@ -457,13 +463,19 @@ object dm_treino: Tdm_treino
       '    ET.TEMPO_EXERCICIO_TREINO,'
       '    ET.CARGA_EXERCICIO_TREINO,'
       '    ET.OBS_EXERCICIO_TREINO,'
-      '  TD.GRUPO_MUSCULAR_TREINO_DIA'
+      #9'TD.GRUPO_MUSCULAR_TREINO_DIA,'
+      #9'EX.NOME_EXERCICIO,'
+      #9'EX.DESCRICAO_EXERCICIO,'
+      #9'EX.GRUPO_MUSCULAR'
       'FROM'
       '    TB_EXERCICIO_TREINO ET'
-      'INNER JOIN'
       
-        '    TB_TREINO_DIA TD ON ET.TREINO_DIA_EXERCICIO_TREINO = TD.ID_T' +
-        'REINO_DIA'
+        'INNER JOIN TB_TREINO_DIA TD ON ET.TREINO_DIA_EXERCICIO_TREINO = ' +
+        'TD.ID_TREINO_DIA'
+      
+        'INNER JOIN TB_EXERCICIO EX ON ET.EXERCICIO_EXERCICIO_TREINO = ID' +
+        '_EXERCICIO'
+      ''
       'WHERE ID_TREINO_DIA = :TREINO_DIA')
     Left = 1200
     Top = 296
@@ -505,5 +517,21 @@ object dm_treino: Tdm_treino
       FieldName = 'GRUPO_MUSCULAR_TREINO_DIA'
       Size = 255
     end
+    object ado_query_ficha_treinoNOME_EXERCICIO: TStringField
+      FieldName = 'NOME_EXERCICIO'
+      Size = 100
+    end
+    object ado_query_ficha_treinoDESCRICAO_EXERCICIO: TMemoField
+      FieldName = 'DESCRICAO_EXERCICIO'
+      BlobType = ftMemo
+    end
+    object ado_query_ficha_treinoGRUPO_MUSCULAR: TIntegerField
+      FieldName = 'GRUPO_MUSCULAR'
+    end
+  end
+  object dt_source_ficha_treino: TDataSource
+    DataSet = ado_query_ficha_treino
+    Left = 1200
+    Top = 400
   end
 end

@@ -48,6 +48,15 @@ implementation
 
 uses Unit_DM_Treino, Unit_Monta_Treino;
 
+
+procedure Tform_exercicio_ficha_treino.FormCreate(Sender: TObject);
+begin
+    treino := form_monta_treino.id_treino;
+    //    treino_dia := ; }
+    exercicio := form_monta_treino.exercicio_i;
+    edt_exercicio.Text := form_monta_treino.nome_exercicio;
+end;
+
 procedure Tform_exercicio_ficha_treino.btn_gravarClick(Sender: TObject);
 var
   series, rep : integer;
@@ -78,22 +87,47 @@ begin
     temp := StrToCurr(edt_tempo.Text);
     obs := mmo_obs.Lines.Text;
 
-    with dm_treino.ado_proc_add_exec_ficha_treino do
-    begin
-      Parameters.ParamByName('@TREINO_EXERCICIO_TREINO').Value := treino;
-      Parameters.ParamByName('@TREINO_DIA_EXERCICIO_TREINO').Value := treino_dia;
-      Parameters.ParamByName('@EXERCICIO_EXERCICIO_TREINO').Value := exercicio;
-      Parameters.ParamByName('@SERIES_EXERCICIO_TREINO').Value := series;
-      Parameters.ParamByName('@REPETICOES_EXERCICIO_TREINO').Value := rep;
-      Parameters.ParamByName('@TEMP_EXERCICIO_TREINO').Value := temp;
-      Parameters.ParamByName('@CARGA_EXERCICIO_TREINO').Value := carga;
-      Parameters.ParamByName('@OBS_EXERCICIO_TREINO').Value := obs;
-      ExecProc;
-    end;
+    Try
+      with dm_treino.ado_proc_add_exec_ficha_treino do
+      begin
+        Parameters.ParamByName('@TREINO_EXERCICIO_TREINO').Value := treino;
+        Parameters.ParamByName('@TREINO_DIA_EXERCICIO_TREINO').Value := treino_dia;
+        Parameters.ParamByName('@EXERCICIO_EXERCICIO_TREINO').Value := exercicio;
+        Parameters.ParamByName('@SERIES_EXERCICIO_TREINO').Value := series;
+        Parameters.ParamByName('@REPETICOES_EXERCICIO_TREINO').Value := rep;
+        Parameters.ParamByName('@TEMP_EXERCICIO_TREINO').Value := temp;
+        Parameters.ParamByName('@CARGA_EXERCICIO_TREINO').Value := carga;
+        Parameters.ParamByName('@OBS_EXERCICIO_TREINO').Value := obs;
+        ExecProc;
+      end;
 
-    form_exercicio_ficha_treino.Close;
+      form_exercicio_ficha_treino.Close;
+
+    except
+      on E: Exception do
+        ShowMessage('Erro: ' + E.Message + ' Inserção de Exercício na Ficha de Treino.');
+    end;
   end;
 
+end;
+
+procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
+var
+  i, j: Integer;
+begin
+  for i := 0 to Rectangle.ChildrenCount - 1 do
+  begin
+    if Rectangle.Children[i] is TLabel then
+    begin
+      for j := 0 to TLabel(Rectangle.Children[i]).ChildrenCount - 1 do
+      begin
+        if TLabel(Rectangle.Children[i]).Children[j] is TEdit then
+          TEdit(TLabel(Rectangle.Children[i]).Children[j]).Text := ''
+        else if TLabel(Rectangle.Children[i]).Children[j] is TMemo then
+          TMemo(TLabel(Rectangle.Children[i]).Children[j]).Lines.Clear;
+      end;
+    end;
+  end;
 end;
 
 procedure Tform_exercicio_ficha_treino.btn_gravarMouseEnter(Sender: TObject);
@@ -111,16 +145,9 @@ end;
 procedure Tform_exercicio_ficha_treino.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  LimparControlesDentroDoRectangle(pnl_fun_cad_treino);
   form_exercicio_ficha_treino := nil;
   form_exercicio_ficha_treino.Free;
-end;
-
-procedure Tform_exercicio_ficha_treino.FormCreate(Sender: TObject);
-begin
-    treino := form_monta_treino.id_treino;
-    //    treino_dia := ; }
-    exercicio := form_monta_treino.exercicio_i;
-    edt_exercicio.Text := form_monta_treino.nome_exercicio;
 end;
 
 end.

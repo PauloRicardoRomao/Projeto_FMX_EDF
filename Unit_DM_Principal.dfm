@@ -1,6 +1,6 @@
 object dm_principal: Tdm_principal
   Height = 584
-  Width = 1042
+  Width = 1364
   object ado_connection: TADOConnection
     Connected = True
     ConnectionString = 
@@ -756,5 +756,61 @@ object dm_principal: Tdm_principal
     Parameters = <>
     Left = 152
     Top = 288
+  end
+  object ado_query_consulta_agendamentos: TADOQuery
+    Active = True
+    Connection = ado_connection
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'DATA_CONSULTA_AGENDAMENTO'
+        DataType = ftDateTime
+        NumericScale = 3
+        Precision = 23
+        Size = 16
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT'
+      '    A.ID_AGENDAMENTO,'
+      '    DPA.NOME_ALUNO,'
+      '    A.DATA_HORA_CONSULTA_AGENDAMENTO,'
+      '    A.OBS_CONSULTA_AGENDAMENTO'
+      'FROM'
+      '    TB_AGENDAMENTOS A'
+      'INNER JOIN'
+      '    TB_DADOS_PESSOAIS_ALUNO DPA ON A.ID_ALUNO = DPA.ID_ALUNO'
+      
+        'WHERE A.DATA_HORA_CONSULTA_AGENDAMENTO = :DATA_CONSULTA_AGENDAME' +
+        'NTO')
+    Left = 1056
+    Top = 440
+    object ado_query_consulta_agendamentosID_AGENDAMENTO: TAutoIncField
+      FieldName = 'ID_AGENDAMENTO'
+      ReadOnly = True
+    end
+    object ado_query_consulta_agendamentosNOME_ALUNO: TStringField
+      FieldName = 'NOME_ALUNO'
+      Size = 255
+    end
+    object ado_query_consulta_agendamentosDATA_HORA_CONSULTA_AGENDAMENTO: TDateTimeField
+      FieldName = 'DATA_HORA_CONSULTA_AGENDAMENTO'
+    end
+    object ado_query_consulta_agendamentosOBS_CONSULTA_AGENDAMENTO: TMemoField
+      FieldName = 'OBS_CONSULTA_AGENDAMENTO'
+      BlobType = ftMemo
+    end
+  end
+  object dt_consulta_agendamentos: TDataSource
+    DataSet = ado_query_consulta_agendamentos
+    Left = 1056
+    Top = 512
+  end
+  object ado_proc_cad_agendamento: TADOStoredProc
+    Connection = ado_connection
+    ProcedureName = 'SP_GRAVA_AGENDAMENTO;1'
+    Parameters = <>
+    Left = 664
+    Top = 280
   end
 end

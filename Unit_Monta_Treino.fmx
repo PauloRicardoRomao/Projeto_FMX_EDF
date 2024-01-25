@@ -150,7 +150,7 @@ object form_monta_treino: Tform_monta_treino
         TabOrder = 1
         Viewport.Width = 1316.000000000000000000
         Viewport.Height = 650.000000000000000000
-        object pnl_fundo_treino_dia: TRectangle
+        object S: TRectangle
           Align = MostTop
           Fill.Color = xFFC0D1C2
           Size.Width = 1316.000000000000000000
@@ -186,7 +186,7 @@ object form_monta_treino: Tform_monta_treino
                   Size.Width = 313.000000000000000000
                   Size.Height = 28.000000000000000000
                   Size.PlatformDefault = False
-                  TabOrder = 4
+                  TabOrder = 3
                   OnClick = cbx_grup_muscularClick
                 end
               end
@@ -204,7 +204,7 @@ object form_monta_treino: Tform_monta_treino
                 TabOrder = 6
                 object edt_grup_dia: TEdit
                   Touch.InteractiveGestures = [LongTap, DoubleTap]
-                  TabOrder = 4
+                  TabOrder = 3
                   ReadOnly = True
                   TextSettings.Font.Family = 'Arial'
                   TextSettings.Font.Size = 18.000000000000000000
@@ -217,7 +217,7 @@ object form_monta_treino: Tform_monta_treino
                   StyledSettings = [Style, FontColor]
                 end
               end
-              object Rectangle1: TRectangle
+              object btn_add_espec_ficha: TRectangle
                 Cursor = crHandPoint
                 Fill.Color = xFF03223F
                 Margins.Left = 36.000000000000000000
@@ -234,7 +234,7 @@ object form_monta_treino: Tform_monta_treino
                 OnClick = btn_grava_inf_bscClick
                 OnMouseEnter = btn_ficha_p_cadMouseEnter
                 OnMouseLeave = btn_ficha_p_cadMouseLeave
-                object Label1: TLabel
+                object lbl_btn_add_espec_ficha: TLabel
                   Align = Client
                   StyledSettings = [Style]
                   Margins.Left = 5.000000000000000000
@@ -269,8 +269,8 @@ object form_monta_treino: Tform_monta_treino
               RowCount = 0
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               OnSelChanged = grid_lista_exerc_muscSelChanged
-              Viewport.Width = 476.000000000000000000
-              Viewport.Height = 361.000000000000000000
+              Viewport.Width = 480.000000000000000000
+              Viewport.Height = 386.000000000000000000
               object NavigatorBindSourceDB1: TBindNavigator
                 Position.X = -16.000000000000000000
                 Position.Y = 40.000000000000000000
@@ -383,6 +383,38 @@ object form_monta_treino: Tform_monta_treino
                 end
               end
             end
+            object grid_ficha_treino: TStringGrid
+              Align = Client
+              CanFocus = True
+              ClipChildren = True
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 15.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 15.000000000000000000
+              Size.Width = 480.000000000000000000
+              Size.Height = 436.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'StringGridBindSourceDB1Style1'
+              TextSettings.Font.Family = 'Arial'
+              TextSettings.Font.Size = 18.000000000000000000
+              StyledSettings = [Style, FontColor]
+              TabOrder = 1
+              RowCount = 0
+              Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
+              Viewport.Width = 480.000000000000000000
+              Viewport.Height = 436.000000000000000000
+              object NavigatorBindSourceDB2: TBindNavigator
+                Position.X = -8.000000000000000000
+                Position.Y = 48.000000000000000000
+                Size.Width = 240.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                DataSource = BindSourceDB2
+                xRadius = 4.000000000000000000
+                yRadius = 4.000000000000000000
+              end
+            end
           end
           object btn_ins_ficha: TRectangle
             Align = Center
@@ -430,8 +462,6 @@ object form_monta_treino: Tform_monta_treino
             XRadius = 10.000000000000000000
             YRadius = 10.000000000000000000
             OnClick = btn_grava_inf_bscClick
-            OnMouseEnter = btn_gravarMouseEnter
-            OnMouseLeave = btn_gravarMouseLeave
             object lbl_btn_gravar: TLabel
               Align = Client
               StyledSettings = [Style]
@@ -1839,5 +1869,81 @@ object form_monta_treino: Tform_monta_treino
           Visible = False
         end>
     end
+    object LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB2
+      GridControl = grid_ficha_treino
+      Columns = <
+        item
+          MemberName = 'NOME_EXERCICIO'
+          Header = 'Exerc'#237'cio'
+          Width = 300
+          ColumnStyle = 'StringColumn'
+        end
+        item
+          MemberName = 'SERIES_EXERCICIO_TREINO'
+          Header = 'S'#233'ries'
+          Width = 100
+          ColumnStyle = 'IntegerColumn'
+        end
+        item
+          MemberName = 'REPETICOES_EXERCICIO_TREINO'
+          Header = 'Repeti'#231#245'es'
+          Width = 130
+          ColumnStyle = 'StringColumn'
+        end
+        item
+          MemberName = 'TEMPO_EXERCICIO_TREINO'
+          Header = 'Tempo'
+          Width = 130
+          ColumnStyle = 'StringColumn'
+        end
+        item
+          MemberName = 'CARGA_EXERCICIO_TREINO'
+          Header = 'Carga'
+          Width = 130
+          ColumnStyle = 'StringColumn'
+        end
+        item
+          MemberName = 'OBS_EXERCICIO_TREINO'
+          Header = 'Observa'#231#245'es'
+          Width = 400
+          ColumnStyle = 'StringColumn'
+        end
+        item
+          MemberName = 'GRUPO_MUSCULAR_TREINO_DIA'
+          Visible = False
+        end
+        item
+          MemberName = 'DESCRICAO_EXERCICIO'
+          Visible = False
+        end
+        item
+          MemberName = 'GRUPO_MUSCULAR'
+          Visible = False
+        end
+        item
+          MemberName = 'ID_EXERCICIO_TREINO'
+          Visible = False
+        end
+        item
+          MemberName = 'TREINO_EXERCICIO_TREINO'
+          Visible = False
+        end
+        item
+          MemberName = 'TREINO_DIA_EXERCICIO_TREINO'
+          Visible = False
+        end
+        item
+          MemberName = 'EXERCICIO_EXERCICIO_TREINO'
+          Visible = False
+        end>
+    end
+  end
+  object BindSourceDB2: TBindSourceDB
+    DataSource = dm_treino.dt_source_ficha_treino
+    ScopeMappings = <>
+    Left = 656
+    Top = 440
   end
 end

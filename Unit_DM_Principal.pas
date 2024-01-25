@@ -115,6 +115,13 @@ type
     ado_query_loginSENHA_USUARIO: TStringField;
     ado_query_loginCHAVE_USUARIO: TStringField;
     ado_proc_cad_usuario: TADOStoredProc;
+    ado_query_consulta_agendamentos: TADOQuery;
+    dt_consulta_agendamentos: TDataSource;
+    ado_query_consulta_agendamentosID_AGENDAMENTO: TAutoIncField;
+    ado_query_consulta_agendamentosNOME_ALUNO: TStringField;
+    ado_query_consulta_agendamentosDATA_HORA_CONSULTA_AGENDAMENTO: TDateTimeField;
+    ado_query_consulta_agendamentosOBS_CONSULTA_AGENDAMENTO: TMemoField;
+    ado_proc_cad_agendamento: TADOStoredProc;
   private
     { Private declarations }
   public
