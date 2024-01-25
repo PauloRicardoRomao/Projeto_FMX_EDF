@@ -51,6 +51,10 @@ type
     ado_query_ficha_treinoCARGA_EXERCICIO_TREINO: TBCDField;
     ado_query_ficha_treinoOBS_EXERCICIO_TREINO: TMemoField;
     ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA: TStringField;
+    dt_source_ficha_treino: TDataSource;
+    ado_query_ficha_treinoNOME_EXERCICIO: TStringField;
+    ado_query_ficha_treinoDESCRICAO_EXERCICIO: TMemoField;
+    ado_query_ficha_treinoGRUPO_MUSCULAR: TIntegerField;
   private
     { Private declarations }
   public

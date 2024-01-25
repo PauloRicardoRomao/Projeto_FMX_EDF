@@ -92,30 +92,35 @@ end;
 
 procedure Tform_cadastro_usuario.btn_gravarClick(Sender: TObject);
 begin
-  if (edt_usuario.Text <> '') and (edt_senha.Text <> '') and (edt_chave_acesso.Text <> '') then
-  begin
-    usuario := edt_usuario.Text;
-    senha := edt_senha.Text;
-    chave_acesso := edt_chave_acesso.Text;
-
-
-    with dm_principal do
+  Try
+    if (edt_usuario.Text <> '') and (edt_senha.Text <> '') and (edt_chave_acesso.Text <> '') then
     begin
-      ado_proc_cad_usuario.Parameters.ParamByName('@NOME_USUARIO').Value := usuario;
-      ado_proc_cad_usuario.Parameters.ParamByName('@SENHA_USUARIO').Value := senha;
-      ado_proc_cad_usuario.Parameters.ParamByName('@CHAVE_USUARIO').Value := chave_acesso;
-      ado_proc_cad_usuario.ExecProc;
-    end;
-    ShowMessage('Usuário cadastrado com sucesso! Voltando a tela de login.');
+      usuario := edt_usuario.Text;
+      senha := edt_senha.Text;
+      chave_acesso := edt_chave_acesso.Text;
 
-    form_login := Tform_login.Create(Application);
-    form_login.ShowModal;
-    form_cadastro_usuario.Close;
-  end
-  else
-  begin
-    ShowMessage('É necessário preencher todos os campos!');
-    Exit;
+
+      with dm_principal do
+      begin
+        ado_proc_cad_usuario.Parameters.ParamByName('@NOME_USUARIO').Value := usuario;
+        ado_proc_cad_usuario.Parameters.ParamByName('@SENHA_USUARIO').Value := senha;
+        ado_proc_cad_usuario.Parameters.ParamByName('@CHAVE_USUARIO').Value := chave_acesso;
+        ado_proc_cad_usuario.ExecProc;
+      end;
+      ShowMessage('Usuário cadastrado com sucesso! Voltando a tela de login.');
+
+      form_login := Tform_login.Create(Application);
+      form_login.ShowModal;
+      form_cadastro_usuario.Close;
+    end
+    else
+    begin
+      ShowMessage('É necessário preencher todos os campos!');
+      Exit;
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
   end;
 end;
 

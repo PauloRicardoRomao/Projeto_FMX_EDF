@@ -60,28 +60,31 @@ begin
     senha := edt_senha.Text;
 
     //sql
-
-    with dm_principal do
-    begin
-      ado_query_login.Close;
-      ado_query_login.Parameters.ParamByName('NOME_USUARIO').Value := usuario;
-      ado_query_login.Parameters.ParamByName('SENHA_USUARIO').Value := senha;
-      ado_query_login.Open;
-      if ado_query_login.RecordCount > 0 then
+    Try
+      with dm_principal do
       begin
-        form_menu_principal := Tform_menu_principal.Create(Application);
-        form_menu_principal.ShowModal;
-        form_login.Close;
-      end
-      else
-      begin
-        ShowMessage('Usuário ou senha INCORRETOS!');
-        edt_usuario.Text := '';
-        edt_senha.Text := '';
-        Exit;
+        ado_query_login.Close;
+        ado_query_login.Parameters.ParamByName('NOME_USUARIO').Value := usuario;
+        ado_query_login.Parameters.ParamByName('SENHA_USUARIO').Value := senha;
+        ado_query_login.Open;
+        if ado_query_login.RecordCount > 0 then
+        begin
+          form_menu_principal := Tform_menu_principal.Create(Application);
+          form_menu_principal.ShowModal;
+          form_login.Close;
+        end
+        else
+        begin
+          ShowMessage('Usuário ou senha INCORRETOS!');
+          edt_usuario.Text := '';
+          edt_senha.Text := '';
+          Exit;
+        end;
       end;
-    end;
-
+    except
+        on E: Exception do
+          ShowMessage('Erro: ' + E.Message + ' Login Usuário.');
+      end;
 
 
   end;

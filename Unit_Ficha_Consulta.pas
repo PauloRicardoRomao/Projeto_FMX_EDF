@@ -174,7 +174,7 @@ begin
       end;
     end;
     ShowMessage('Medidas cadastrada com sucesso!');
-
+    LimparControlesDentroDoRectangle(pnl_fundo_med_dob_cut);
     except
     on E: Exception do
     begin
@@ -242,7 +242,7 @@ begin
         end;
     end;
     ShowMessage('Medições cadastradas com sucesso!');
-
+    LimparControlesDentroDoRectangle(pnl_fundo_med_cir);
   except
     on E: Exception do
     begin
@@ -304,6 +304,8 @@ end;
 procedure Tform_ficha_consulta.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  LimparControlesDentroDoRectangle(pnl_fundo_med_cir);
+  LimparControlesDentroDoRectangle(pnl_fundo_med_dob_cut);
   form_ficha_consulta := nil;
   form_ficha_consulta.Free;
 end;

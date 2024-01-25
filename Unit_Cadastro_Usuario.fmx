@@ -29,7 +29,7 @@ object form_cadastro_usuario: Tform_cadastro_usuario
       object edt_usuario: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 4
+        TabOrder = 3
         Position.X = 79.000000000000000000
         Position.Y = -3.000000000000000000
         Size.Width = 386.000000000000000000
@@ -46,7 +46,7 @@ object form_cadastro_usuario: Tform_cadastro_usuario
       object edt_senha: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 4
+        TabOrder = 3
         Position.X = 67.000000000000000000
         Position.Y = -3.000000000000000000
         Size.Width = 309.000000000000000000
@@ -66,7 +66,7 @@ object form_cadastro_usuario: Tform_cadastro_usuario
       object edt_chave_acesso: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 4
+        TabOrder = 3
         Position.X = 155.000000000000000000
         Position.Y = -4.000000000000000000
         Size.Width = 309.000000000000000000

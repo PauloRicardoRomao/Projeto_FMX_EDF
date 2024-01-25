@@ -356,103 +356,118 @@ begin
 
       ////////////////////
       ///  INFOS BASICAS
+      Try
+        ado_query_consulta_aluno.Close;
+        ado_query_consulta_aluno.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+        ado_query_consulta_aluno.Open;
 
-      ado_query_consulta_aluno.Close;
-      ado_query_consulta_aluno.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
-      ado_query_consulta_aluno.Open;
-
-      edt_nome.Text := ado_query_consulta_alunoNOME_ALUNO.AsString;
-      dia := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 9,2);
-      mes := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 6,2);
-      ano := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 1,4);
-      edt_data_nasc.Text :=  dia+'/'+mes+'/'+ano;
-      if ado_query_consulta_alunoSEXO_ALUNO.AsString = 'Masculino' then
-        cbx_sexo.Index := 0
-      else if ado_query_consulta_alunoSEXO_ALUNO.AsString = 'Feminino' then
-        cbx_sexo.Index := 1
-      else
-        cbx_sexo.Index := 2;
-      edt_altura.Text := CurrToStr(ado_query_consulta_alunoALTURA_ALUNO.AsCurrency);
-      edt_peso_base.Text := CurrToStr(ado_query_consulta_alunoPESO_ALUNO.AsCurrency);
-      mmo_obj.Lines.Text :=  ado_query_consulta_alunoOBJETIVO_ALUNO.AsString;
-      if ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO.AsString = 'Sedentário' then
-        cbx_sexo.Index := 0
-      else if ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO.AsString = 'Moderadamente Ativo' then
-        cbx_sexo.Index := 1
-      else
-        cbx_sexo.Index := 2;
-
+        edt_nome.Text := ado_query_consulta_alunoNOME_ALUNO.AsString;
+        dia := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 9,2);
+        mes := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 6,2);
+        ano := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 1,4);
+        edt_data_nasc.Text :=  dia+'/'+mes+'/'+ano;
+        if ado_query_consulta_alunoSEXO_ALUNO.AsString = 'Masculino' then
+          cbx_sexo.Index := 0
+        else if ado_query_consulta_alunoSEXO_ALUNO.AsString = 'Feminino' then
+          cbx_sexo.Index := 1
+        else
+          cbx_sexo.Index := 2;
+        edt_altura.Text := CurrToStr(ado_query_consulta_alunoALTURA_ALUNO.AsCurrency);
+        edt_peso_base.Text := CurrToStr(ado_query_consulta_alunoPESO_ALUNO.AsCurrency);
+        mmo_obj.Lines.Text :=  ado_query_consulta_alunoOBJETIVO_ALUNO.AsString;
+        if ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO.AsString = 'Sedentário' then
+          cbx_sexo.Index := 0
+        else if ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO.AsString = 'Moderadamente Ativo' then
+          cbx_sexo.Index := 1
+        else
+          cbx_sexo.Index := 2;
+      except
+        on E: Exception do
+          ShowMessage('Erro: ' + E.Message + ' Informações Básicas do Aluno.');
+      end;
       ////////////////////
       ///  ANAMNESE
 
-      ado_query_consulta_anamnese.Close;
-      ado_query_consulta_anamnese.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
-      ado_query_consulta_anamnese.Open;
+      Try
+        ado_query_consulta_anamnese.Close;
+        ado_query_consulta_anamnese.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+        ado_query_consulta_anamnese.Open;
 
-      if ado_query_consulta_anamnese.RecordCount > 0 then
-      begin
-        mmo_condic_med.Lines.Text := ado_query_consulta_anamneseCONDICOES_MEDICAS_ALUNO.AsString;
-        mmo_medicamentos.Lines.Text := ado_query_consulta_anamneseMEDICAMENTOS_ALUNO.AsString;
-        mmo_rest_alim.Lines.Text := ado_query_consulta_anamneseRESTRICOES_ALIMENTARES_ALUNO.AsString;
-        mmo_hist_exerc.Lines.Text := ado_query_consulta_anamneseHISTORICO_EXERCICIOS_ALUNO.AsString;
-        edt_frq_cdc_base.Text := IntToStr(ado_query_consulta_anamneseFREQUENCIA_CARDIACA_REPOUSO_ALUNO.AsInteger);
-        edt_prs_art_base.Text := ado_query_consulta_anamnesePRESSAO_ARTERIAL_ALUNO.AsString;
-        mmo_obs.Lines.Text := ado_query_consulta_anamneseOUTRAS_OBSERVACOES_ALUNO.AsString;
+        if ado_query_consulta_anamnese.RecordCount > 0 then
+        begin
+          mmo_condic_med.Lines.Text := ado_query_consulta_anamneseCONDICOES_MEDICAS_ALUNO.AsString;
+          mmo_medicamentos.Lines.Text := ado_query_consulta_anamneseMEDICAMENTOS_ALUNO.AsString;
+          mmo_rest_alim.Lines.Text := ado_query_consulta_anamneseRESTRICOES_ALIMENTARES_ALUNO.AsString;
+          mmo_hist_exerc.Lines.Text := ado_query_consulta_anamneseHISTORICO_EXERCICIOS_ALUNO.AsString;
+          edt_frq_cdc_base.Text := IntToStr(ado_query_consulta_anamneseFREQUENCIA_CARDIACA_REPOUSO_ALUNO.AsInteger);
+          edt_prs_art_base.Text := ado_query_consulta_anamnesePRESSAO_ARTERIAL_ALUNO.AsString;
+          mmo_obs.Lines.Text := ado_query_consulta_anamneseOUTRAS_OBSERVACOES_ALUNO.AsString;
+        end;
+      except
+        on E: Exception do
+          ShowMessage('Erro: ' + E.Message + ' Ficha de Anamnese.');
       end;
 
       ////////////////////
       ///  MEDIDAS CIRCUNFERENCIAS
+      Try
+        ado_query_dim_circunferencias.Close;
+        ado_query_dim_circunferencias.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+        ado_query_dim_circunferencias.Open;
 
-      ado_query_dim_circunferencias.Close;
-      ado_query_dim_circunferencias.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
-      ado_query_dim_circunferencias.Open;
+        if ado_query_dim_circunferencias.RecordCount > 0 then
+        begin
+          dia := Copy(ado_query_dim_circunferenciasDATA_MEDICAO_DIMENSOES_CORPORAIS.AsString, 9,2);
+          mes := Copy(ado_query_dim_circunferenciasDATA_MEDICAO_DIMENSOES_CORPORAIS.AsString, 6,2);
+          ano := Copy(ado_query_dim_circunferenciasDATA_MEDICAO_DIMENSOES_CORPORAIS.AsString, 1,4);
+          edt_data_cir.Text :=  dia+'/'+mes+'/'+ano;
 
-      if ado_query_dim_circunferencias.RecordCount > 0 then
-      begin
-        dia := Copy(ado_query_dim_circunferenciasDATA_MEDICAO_DIMENSOES_CORPORAIS.AsString, 9,2);
-        mes := Copy(ado_query_dim_circunferenciasDATA_MEDICAO_DIMENSOES_CORPORAIS.AsString, 6,2);
-        ano := Copy(ado_query_dim_circunferenciasDATA_MEDICAO_DIMENSOES_CORPORAIS.AsString, 1,4);
-        edt_data_cir.Text :=  dia+'/'+mes+'/'+ano;
-
-        edt_cir_alt.Text := CurrToStr(ado_query_dim_circunferenciasALTURA_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_peso.Text := CurrToStr(ado_query_dim_circunferenciasPESO_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_bra_esq.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_BRACO_ESQ_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_bra_dir.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_BRACO_DIR_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_per_esq.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PERNA_ESQ_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_per_dir.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PERNA_DIR_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_pan_esq.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PANTURRILHA_ESQ_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_pan_dir.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PANTURRILHA_DIR_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_abd.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_ABDOMINAL_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_cin.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_CINTURA_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_qua.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_QUADRIL_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_cir_pei.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PEITORAL_DIMENSOES_CORPORAIS.AsCurrency);
-        mmo_cir_out_med.Lines.Text := ado_query_dim_circunferenciasOUTRAS_MEDICOES_DIMENSOES_CORPORAIS.AsString;
+          edt_cir_alt.Text := CurrToStr(ado_query_dim_circunferenciasALTURA_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_peso.Text := CurrToStr(ado_query_dim_circunferenciasPESO_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_bra_esq.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_BRACO_ESQ_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_bra_dir.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_BRACO_DIR_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_per_esq.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PERNA_ESQ_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_per_dir.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PERNA_DIR_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_pan_esq.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PANTURRILHA_ESQ_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_pan_dir.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PANTURRILHA_DIR_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_abd.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_ABDOMINAL_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_cin.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_CINTURA_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_qua.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_QUADRIL_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_cir_pei.Text := CurrToStr(ado_query_dim_circunferenciasCIRCUNFERENCIA_PEITORAL_DIMENSOES_CORPORAIS.AsCurrency);
+          mmo_cir_out_med.Lines.Text := ado_query_dim_circunferenciasOUTRAS_MEDICOES_DIMENSOES_CORPORAIS.AsString;
+        end;
+      except
+        on E: Exception do
+          ShowMessage('Erro: ' + E.Message + ' Medidas de Circunferências.');
       end;
-
       ////////////////////
       ///  MEDIDAS DOBRAS
 
-      ado_query_dim_dobras.Close;
-      ado_query_dim_dobras.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
-      ado_query_dim_dobras.Open;
+      Try
+        ado_query_dim_dobras.Close;
+        ado_query_dim_dobras.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+        ado_query_dim_dobras.Open;
 
-      if ado_query_dim_dobras.RecordCount > 0 then
-      begin
-        dia := Copy(ado_query_dim_dobrasDATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString, 9,2);
-        mes := Copy(ado_query_dim_dobrasDATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString, 6,2);
-        ano := Copy(ado_query_dim_dobrasDATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString, 1,4);
-        edt_data_med_dob_cut.Text :=  dia+'/'+mes+'/'+ano;
+        if ado_query_dim_dobras.RecordCount > 0 then
+        begin
+          dia := Copy(ado_query_dim_dobrasDATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString, 9,2);
+          mes := Copy(ado_query_dim_dobrasDATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString, 6,2);
+          ano := Copy(ado_query_dim_dobrasDATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString, 1,4);
+          edt_data_med_dob_cut.Text :=  dia+'/'+mes+'/'+ano;
 
-        edt_db_trc_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_TRICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_db_bcp_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_BICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_db_sub_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_SUBESCAPULAR_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_db_sup_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_SUPRAILIACA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_db_abd_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_ABDOMEN_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_db_axl_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
-        edt_db_pnm_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
-        mmo_out_med_dob_cut.Lines.Text := ado_query_dim_dobrasOUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString;
+          edt_db_trc_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_TRICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_db_bcp_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_BICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_db_sub_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_SUBESCAPULAR_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_db_sup_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_SUPRAILIACA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_db_abd_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_ABDOMEN_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_db_axl_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+          edt_db_pnm_med_dob_cut.Text := CurrToStr(ado_query_dim_dobrasDOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsCurrency);
+          mmo_out_med_dob_cut.Lines.Text := ado_query_dim_dobrasOUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS.AsString;
+        end;
+      except
+        on E: Exception do
+          ShowMessage('Erro: ' + E.Message + ' Medidas de Dobras Cutâneas.');
       end;
-
     end;
   end;
 
@@ -529,7 +544,7 @@ begin
     except
     on E: Exception do
     begin
-      ShowMessage('Erro: ' + E.Message);
+      ShowMessage('Erro: ' + E.Message + ' Ficha de Anamnese.');
     end;
   end;
 end;
@@ -586,7 +601,7 @@ begin
     except
     on E: Exception do
     begin
-      ShowMessage('Erro: ' + E.Message);
+      ShowMessage('Erro: ' + E.Message + ' Medidas de Dobras Cutâneas.');
     end;
   end;
 
@@ -679,7 +694,7 @@ begin
     except
     on E: Exception do
     begin
-      ShowMessage('Erro: ' + E.Message);
+      ShowMessage('Erro: ' + E.Message + ' Informações Básicas do Aluno.');
     end;
   end;
 end;
@@ -746,7 +761,7 @@ begin
   except
     on E: Exception do
     begin
-      ShowMessage('Erro: ' + E.Message);
+      ShowMessage('Erro: ' + E.Message + ' Medidas de Circunferências.');
     end;
   end;
 

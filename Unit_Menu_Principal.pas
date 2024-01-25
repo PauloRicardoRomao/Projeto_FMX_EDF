@@ -22,6 +22,9 @@ type
     lbl_btn_novo_aluno: TLabel;
     img_btn_exercicios: TImage;
     img_btn_novo_aluno: TImage;
+    btn_agendamento: TRectangle;
+    lbl_btn_agendamento: TLabel;
+    img_btn_agendamento: TImage;
     procedure btn_cards_alunosClick(Sender: TObject);
     procedure btn_exerciciosClick(Sender: TObject);
     procedure btn_novo_alunoClick(Sender: TObject);
@@ -32,6 +35,12 @@ type
     procedure btn_exerciciosMouseEnter(Sender: TObject);
     procedure btn_novo_alunoMouseEnter(Sender: TObject);
     procedure btn_novo_alunoMouseLeave(Sender: TObject);
+    procedure btn_agendamentoMouseEnter(Sender: TObject);
+    procedure btn_agendamentoMouseLeave(Sender: TObject);
+    procedure img_btn_agendamentoMouseLeave(Sender: TObject);
+    procedure img_btn_agendamentoMouseEnter(Sender: TObject);
+    procedure btn_agendamentoClick(Sender: TObject);
+    procedure img_btn_agendamentoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -46,7 +55,7 @@ implementation
 {$R *.fmx}
 
 uses Unit_Cards_Alunos, Unit_Cliente, Unit_Ficha_Consulta,
-  Unit_Popup_Card_Aluno, Unit_Exercicio;
+  Unit_Popup_Card_Aluno, Unit_Exercicio, Unit_Agendamentos;
 
 
 procedure Tform_menu_principal.btn_cards_alunosMouseEnter(Sender: TObject);
@@ -79,6 +88,22 @@ begin
   btn_exercicios.Fill.Color := $FF2E4347;
 end;
 
+procedure Tform_menu_principal.btn_agendamentoClick(Sender: TObject);
+begin
+  form_agendamentos := Tform_agendamentos.Create(Application);
+  form_agendamentos.ShowModal;
+end;
+
+procedure Tform_menu_principal.btn_agendamentoMouseEnter(Sender: TObject);
+begin
+  btn_agendamento.Fill.Color := $FF942222;
+end;
+
+procedure Tform_menu_principal.btn_agendamentoMouseLeave(Sender: TObject);
+begin
+  btn_agendamento.Fill.Color := $FF2E4347;
+end;
+
 procedure Tform_menu_principal.btn_cards_alunosClick(Sender: TObject);
 begin
   form_cards_alunos := Tform_cards_alunos.Create(Application);
@@ -102,6 +127,22 @@ procedure Tform_menu_principal.FormClose(Sender: TObject;
 begin
   form_menu_principal := nil;
   form_menu_principal.Free;
+end;
+
+procedure Tform_menu_principal.img_btn_agendamentoClick(Sender: TObject);
+begin
+  form_agendamentos := Tform_agendamentos.Create(Application);
+  form_agendamentos.ShowModal;
+end;
+
+procedure Tform_menu_principal.img_btn_agendamentoMouseEnter(Sender: TObject);
+begin
+  btn_agendamento.Fill.Color := $FF942222;
+end;
+
+procedure Tform_menu_principal.img_btn_agendamentoMouseLeave(Sender: TObject);
+begin
+  btn_agendamento.Fill.Color := $FF2E4347;
 end;
 
 end.

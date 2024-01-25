@@ -38,8 +38,20 @@ implementation
 
 uses Unit_Monta_Treino, Unit_DM_Treino;
 
+
+procedure Tform_dia_ficha_treino.FormCreate(Sender: TObject);
+begin
+  id_treino_dia := form_monta_treino.treino_dia;
+end;
+
 procedure Tform_dia_ficha_treino.btn_gravarClick(Sender: TObject);
 begin
+  if edt_espc_grup.Text = '' then
+  begin
+    ShowMessage('Campo NÃO obrigatório está vazio.');
+    Close;
+  end;
+
   try
     grupo_musc_dia := edt_espc_grup.Text;
     with dm_treino.ado_proc_grup_treino_dia do
@@ -52,7 +64,7 @@ begin
     form_dia_ficha_treino.Close;
   except
     on E: Exception do
-      ShowMessage('Erro: ' + E.Message);
+      ShowMessage('Erro: ' + E.Message + ' Especificação de Treino.');
   end;
 end;
 
@@ -71,13 +83,9 @@ end;
 procedure Tform_dia_ficha_treino.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  edt_espc_grup.Text := '';
   form_dia_ficha_treino := nil;
   form_dia_ficha_treino.Free;
-end;
-
-procedure Tform_dia_ficha_treino.FormCreate(Sender: TObject);
-begin
-  id_treino_dia := form_monta_treino.treino_dia;
 end;
 
 end.

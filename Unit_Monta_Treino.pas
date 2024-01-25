@@ -25,7 +25,7 @@ type
     lbl_dsc_menu: TLabel;
     lbl_btn_menu_add_ficha_a: TLabel;
     StyleBook1: TStyleBook;
-    pnl_fundo_treino_dia: TRectangle;
+    S: TRectangle;
     lbl_cbx_grup_muscular: TLabel;
     cbx_grup_muscular: TComboBox;
     pnl_grup_muscular: TRectangle;
@@ -51,8 +51,12 @@ type
     BindingsList1: TBindingsList;
     lbl_edt_grup_dia: TLabel;
     edt_grup_dia: TEdit;
-    Rectangle1: TRectangle;
-    Label1: TLabel;
+    btn_add_espec_ficha: TRectangle;
+    lbl_btn_add_espec_ficha: TLabel;
+    BindSourceDB2: TBindSourceDB;
+    grid_ficha_treino: TStringGrid;
+    LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
+    NavigatorBindSourceDB2: TBindNavigator;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_menu_add_ficha_aMouseEnter(Sender: TObject);
     procedure btn_menu_add_ficha_aMouseLeave(Sender: TObject);
@@ -103,6 +107,8 @@ begin
 end;
 
 procedure Tform_monta_treino.btn_menuClick(Sender: TObject);
+var
+  label_text : string;
 begin
   FSelectedButton := TRectangle(Sender);
 
@@ -142,6 +148,9 @@ begin
     on E: Exception do
       ShowMessage('Erro: ' + E.Message);
   end;
+
+  label_text := TLabel(SelectedButton.Children).Text;
+  tit_fund_ficha.Text := label_text;
 
 end;
 
@@ -209,7 +218,7 @@ begin
         begin
           SelectedButton := btn_menu;
           SelectedButton.Fill.Color := $FF9FB1F5;
-          btn_menuClick(SelectedButton);
+//          btn_menuClick(SelectedButton);
         end;
       end;
 
@@ -322,7 +331,7 @@ begin
     end;
   except
     on E: Exception do
-      ShowMessage('Erro: ' + E.Message);
+      ShowMessage('Erro: ' + E.Message + ' Lista de Exercícios.');
   end;
 end;
 
@@ -358,7 +367,7 @@ begin
 
   except
     on E: Exception do
-      ShowMessage('Erro: ' + E.Message);
+      ShowMessage('Erro: ' + E.Message + ' Lista de Grupos Musculares; Cadastro de Treino.');
   end;
 
 end;
