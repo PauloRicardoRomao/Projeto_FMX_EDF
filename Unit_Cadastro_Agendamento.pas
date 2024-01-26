@@ -24,10 +24,12 @@ type
     procedure btn_gravarMouseLeave(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_gravarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    id_aluno : integer;
   end;
 
 var
@@ -37,7 +39,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_Cliente;
+uses Unit_Cliente, Unit_DM_Principal, Unit_Cards_Alunos;
 
 
 procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
@@ -61,20 +63,13 @@ end;
 
 procedure Tform_cadastro_agendamento.btn_gravarClick(Sender: TObject);
 var
-  id_aluno : integer;
-  data_hora_agendamento, data_realiza_agendamento : TDateTime;
+  data_hora_agendamento,
+  data_realiza_agendamento : TDateTime;
   obs, dia, mes, ano, horas, minutos : string;
 begin
 
-  id_aluno := form_aluno.id_aluno;
-  dia := Copy(edt_data.Text, 1,2);
-  mes := Copy(edt_data.Text, 4,2);
-  ano := Copy(edt_data.Text, 6,4);
-  horas := Copy(edt_hora.Text, 1,2);
-  minutos := Copy(edt_hora.Text, 4,2);
-
-  data_hora_agendamento := StrToDateTime(ano +'-'+mes+'-'+dia+' '+ horas +':'+ minutos);
-
+  id_aluno := form_cards_alunos.id_aluno;
+  data_hora_agendamento := edt_data.Date + edt_hora.Time;
   data_realiza_agendamento := Now;
   obs := mmo_obs.Lines.Text;
 
@@ -89,7 +84,12 @@ begin
          Parameters.ParamByName('@OBS_CONSULTA_AGENDAMENTO').Value := obs;
          ExecProc;
        end;
+       ShowMessage('Consultoria agendada com sucesso, para a data: ' + DateToStr(edt_data.Date) + ' às ' + TimeToStr(edt_hora.Time));
+       ado_query_consulta_agendamentos.Close;
+       ado_query_consulta_agendamentos.Open;
     end;
+
+    form_cadastro_agendamento.Close;
 
   except
     on E: Exception do
@@ -113,8 +113,20 @@ procedure Tform_cadastro_agendamento.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   LimparControlesDentroDoRectangle(pnl_fun_cad_agendamento);
+  form_cards_alunos := Nil;
+  form_cards_alunos.Free;
   form_cadastro_agendamento := Nil;
   form_cadastro_agendamento.Free;
+end;
+
+procedure Tform_cadastro_agendamento.FormCreate(Sender: TObject);
+var
+  horas, minutos, segundos, milissegundos: Word;
+begin
+  edt_data.Date := Now;
+  edt_hora.Time := Now;
+  DecodeTime(edt_hora.Time, horas, minutos, segundos, milissegundos);
+  edt_hora.Time := EncodeTime(horas, minutos, 0, 0);
 end;
 
 end.

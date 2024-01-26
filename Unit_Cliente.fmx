@@ -1232,8 +1232,8 @@ object form_aluno: Tform_aluno
                 Size.Height = 121.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 4
-                Viewport.Width = 617.000000000000000000
-                Viewport.Height = 121.000000000000000000
+                Viewport.Width = 613.000000000000000000
+                Viewport.Height = 117.000000000000000000
               end
             end
             object lbl_db_bcp_med_dob_cut: TLabel

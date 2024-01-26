@@ -186,7 +186,7 @@ object form_monta_treino: Tform_monta_treino
                   Size.Width = 313.000000000000000000
                   Size.Height = 28.000000000000000000
                   Size.PlatformDefault = False
-                  TabOrder = 3
+                  TabOrder = 4
                   OnClick = cbx_grup_muscularClick
                 end
               end
@@ -204,7 +204,7 @@ object form_monta_treino: Tform_monta_treino
                 TabOrder = 6
                 object edt_grup_dia: TEdit
                   Touch.InteractiveGestures = [LongTap, DoubleTap]
-                  TabOrder = 3
+                  TabOrder = 4
                   ReadOnly = True
                   TextSettings.Font.Family = 'Arial'
                   TextSettings.Font.Size = 18.000000000000000000
@@ -231,7 +231,7 @@ object form_monta_treino: Tform_monta_treino
                 Stroke.Color = claBlanchedalmond
                 XRadius = 10.000000000000000000
                 YRadius = 10.000000000000000000
-                OnClick = btn_grava_inf_bscClick
+                OnClick = btn_add_espec_fichaClick
                 OnMouseEnter = btn_ficha_p_cadMouseEnter
                 OnMouseLeave = btn_ficha_p_cadMouseLeave
                 object lbl_btn_add_espec_ficha: TLabel
@@ -269,8 +269,8 @@ object form_monta_treino: Tform_monta_treino
               RowCount = 0
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               OnSelChanged = grid_lista_exerc_muscSelChanged
-              Viewport.Width = 480.000000000000000000
-              Viewport.Height = 386.000000000000000000
+              Viewport.Width = 476.000000000000000000
+              Viewport.Height = 361.000000000000000000
               object NavigatorBindSourceDB1: TBindNavigator
                 Position.X = -16.000000000000000000
                 Position.Y = 40.000000000000000000
@@ -401,8 +401,8 @@ object form_monta_treino: Tform_monta_treino
               TabOrder = 1
               RowCount = 0
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
-              Viewport.Width = 480.000000000000000000
-              Viewport.Height = 436.000000000000000000
+              Viewport.Width = 476.000000000000000000
+              Viewport.Height = 411.000000000000000000
               object NavigatorBindSourceDB2: TBindNavigator
                 Position.X = -8.000000000000000000
                 Position.Y = 48.000000000000000000

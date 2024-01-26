@@ -31,7 +31,7 @@ type
     procedure img_cardClick(Sender: TObject);
   public
     { Public declarations }
-    id_aluno : integer;
+    id_aluno, v_agendamento : integer;
   end;
 
 var
@@ -42,7 +42,7 @@ implementation
 {$R *.fmx}
 
 uses Unit_Cliente, Unit_Popup_Card_Aluno, Unit_Menu_Principal,
-  Unit_DM_Principal;
+  Unit_DM_Principal, Unit_Agendamentos, Unit_Cadastro_Agendamento;
 
 
 procedure Tform_cards_alunos.btn_filtroMouseEnter(Sender: TObject);
@@ -146,13 +146,27 @@ procedure Tform_cards_alunos.CardClick(Sender: TObject);
 var
   SelectedCard: TRectangle;
 begin
-  if Sender is TRectangle then
+  if v_agendamento = 0 then
   begin
-    SelectedCard := TRectangle(Sender);
-    form_popup_card_aluno := Tform_popup_card_aluno.Create(Application);
-    id_aluno := SelectedCard.Tag;
-    form_popup_card_aluno.id_aluno := id_aluno;
-    Unit_Popup_Card_Aluno.form_popup_card_aluno.ShowModal;
+    if Sender is TRectangle then
+    begin
+      SelectedCard := TRectangle(Sender);
+      form_popup_card_aluno := Tform_popup_card_aluno.Create(Application);
+      id_aluno := SelectedCard.Tag;
+      form_popup_card_aluno.id_aluno := id_aluno;
+      Unit_Popup_Card_Aluno.form_popup_card_aluno.ShowModal;
+    end;
+  end
+  else if v_agendamento = 1 then
+  begin
+    if Sender is TRectangle then
+    begin
+      SelectedCard := TRectangle(Sender);
+      form_cadastro_agendamento := Tform_cadastro_agendamento.Create(Application);
+      id_aluno := SelectedCard.Tag;
+      form_cadastro_agendamento.id_aluno := id_aluno;
+      Unit_Cadastro_Agendamento.form_cadastro_agendamento.ShowModal;
+    end;
   end;
 end;
 

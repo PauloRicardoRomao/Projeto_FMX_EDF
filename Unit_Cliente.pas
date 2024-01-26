@@ -343,9 +343,7 @@ var
   dia, mes, ano : string;
 begin
   id_aluno := 0;
-  {if form_popup_card_aluno.id_aluno <> 0 then
-      id_aluno := form_popup_card_aluno.id_aluno;
-      }
+  
   if Assigned(form_popup_card_aluno) then
     id_aluno := form_popup_card_aluno.id_aluno; 
       

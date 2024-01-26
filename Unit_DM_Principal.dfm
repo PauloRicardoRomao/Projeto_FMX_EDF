@@ -773,6 +773,7 @@ object dm_principal: Tdm_principal
     SQL.Strings = (
       'SELECT'
       '    A.ID_AGENDAMENTO,'
+      '    A.ID_ALUNO,'
       '    DPA.NOME_ALUNO,'
       '    A.DATA_HORA_CONSULTA_AGENDAMENTO,'
       '    A.OBS_CONSULTA_AGENDAMENTO'
@@ -800,6 +801,9 @@ object dm_principal: Tdm_principal
       FieldName = 'OBS_CONSULTA_AGENDAMENTO'
       BlobType = ftMemo
     end
+    object ado_query_consulta_agendamentosID_ALUNO: TIntegerField
+      FieldName = 'ID_ALUNO'
+    end
   end
   object dt_consulta_agendamentos: TDataSource
     DataSet = ado_query_consulta_agendamentos
@@ -809,6 +813,41 @@ object dm_principal: Tdm_principal
   object ado_proc_cad_agendamento: TADOStoredProc
     Connection = ado_connection
     ProcedureName = 'SP_GRAVA_AGENDAMENTO;1'
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@ID_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+      end
+      item
+        Name = '@DATA_HORA_CONSULTA_AGENDAMENTO'
+        Attributes = [paNullable]
+        DataType = ftDateTime
+      end
+      item
+        Name = '@DATA_HORA_REALIZA_AGENDAMENTO'
+        Attributes = [paNullable]
+        DataType = ftDateTime
+      end
+      item
+        Name = '@OBS_CONSULTA_AGENDAMENTO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 2147483647
+      end>
+    Left = 368
+    Top = 288
+  end
+  object ado_proc_grava_consulta: TADOStoredProc
+    Connection = ado_connection
+    ProcedureName = 'SP_GRAVA_CONSULTA;1'
     Parameters = <>
     Left = 664
     Top = 280

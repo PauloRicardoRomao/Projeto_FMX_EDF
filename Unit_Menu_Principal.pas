@@ -107,6 +107,7 @@ end;
 procedure Tform_menu_principal.btn_cards_alunosClick(Sender: TObject);
 begin
   form_cards_alunos := Tform_cards_alunos.Create(Application);
+  form_cards_alunos.v_agendamento := 0;
   Unit_Cards_Alunos.form_cards_alunos.ShowModal;
 end;
 

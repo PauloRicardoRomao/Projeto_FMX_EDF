@@ -488,7 +488,6 @@ object form_dia_ficha_treino: Tform_dia_ficha_treino
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
         TabOrder = 4
-        ReadOnly = True
         TextSettings.Font.Family = 'Arial'
         TextSettings.Font.Size = 18.000000000000000000
         Position.X = 208.000000000000000000
