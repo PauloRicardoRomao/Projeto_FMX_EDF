@@ -122,6 +122,8 @@ type
     ado_query_consulta_agendamentosDATA_HORA_CONSULTA_AGENDAMENTO: TDateTimeField;
     ado_query_consulta_agendamentosOBS_CONSULTA_AGENDAMENTO: TMemoField;
     ado_proc_cad_agendamento: TADOStoredProc;
+    ado_proc_grava_consulta: TADOStoredProc;
+    ado_query_consulta_agendamentosID_ALUNO: TIntegerField;
   private
     { Private declarations }
   public

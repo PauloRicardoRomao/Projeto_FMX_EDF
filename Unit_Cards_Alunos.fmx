@@ -72,7 +72,7 @@ object form_cards_alunos: Tform_cards_alunos
         TabOrder = 2
         object edt_filtro: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 4
+          TabOrder = 3
           TextSettings.Font.Family = 'Arial'
           TextSettings.Font.Size = 16.000000000000000000
           Position.X = 51.000000000000000000

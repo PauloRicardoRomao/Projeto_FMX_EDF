@@ -72,6 +72,7 @@ type
     procedure btn_ficha_p_cadMouseLeave(Sender: TObject);
     procedure cbx_grup_muscularClick(Sender: TObject);
     procedure grid_lista_exerc_muscSelChanged(Sender: TObject);
+    procedure btn_add_espec_fichaClick(Sender: TObject);
   private
     { Private declarations}
     SelectedButton : TRectangle;
@@ -230,6 +231,13 @@ begin
   form_dia_ficha_treino.ShowModal;
 end;
 
+procedure Tform_monta_treino.btn_add_espec_fichaClick(Sender: TObject);
+begin
+  form_dia_ficha_treino := Tform_dia_ficha_treino.Create(Application);
+  form_dia_ficha_treino.id_treino_dia := id_treino;
+  form_dia_ficha_treino.ShowModal;
+end;
+
 procedure Tform_monta_treino.btn_ficha_p_cadMouseEnter(Sender: TObject);
 begin
   btn_ficha_p_cad.Fill.Color := $FF214358;
@@ -279,7 +287,7 @@ begin
         with Unit_Exercicio_Ficha_Treino.form_exercicio_ficha_treino do
         begin
           //edt_exercicio.Text := IntToStr(exercicio_i);
-
+          //form_exercicio_ficha_treino := Tform_exercicio_ficha_treino.Create(Application);
           ShowModal;
         end;
         finally
@@ -362,8 +370,8 @@ begin
       end;
 
     end;
-
-    form_dia_ficha_treino.ShowModal;
+    //form_dia_ficha_treino := Tform_dia_ficha_treino.Create(Application);
+    //form_dia_ficha_treino.ShowModal;
 
   except
     on E: Exception do

@@ -41,7 +41,8 @@ uses Unit_Monta_Treino, Unit_DM_Treino;
 
 procedure Tform_dia_ficha_treino.FormCreate(Sender: TObject);
 begin
-  id_treino_dia := form_monta_treino.treino_dia;
+ // id_treino_dia := form_monta_treino.treino_dia;
+  edt_espc_grup.Text := '';
 end;
 
 procedure Tform_dia_ficha_treino.btn_gravarClick(Sender: TObject);
@@ -60,7 +61,7 @@ begin
       Parameters.ParamByname('@GRUPO_MUSCULAR_TREINO_DIA').Value := grupo_musc_dia;
       ExecProc;
     end;
-    edt_espc_grup.Text := grupo_musc_dia;
+    form_monta_treino.edt_grup_dia.Text := grupo_musc_dia;
     form_dia_ficha_treino.Close;
   except
     on E: Exception do
@@ -83,7 +84,7 @@ end;
 procedure Tform_dia_ficha_treino.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  edt_espc_grup.Text := '';
+  //edt_espc_grup.Text := '';
   form_dia_ficha_treino := nil;
   form_dia_ficha_treino.Free;
 end;
