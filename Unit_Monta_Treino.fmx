@@ -187,7 +187,7 @@ object form_monta_treino: Tform_monta_treino
                   Size.Height = 28.000000000000000000
                   Size.PlatformDefault = False
                   TabOrder = 4
-                  OnClick = cbx_grup_muscularClick
+                  OnChange = cbx_grup_muscularChange
                 end
               end
               object lbl_edt_grup_dia: TLabel
@@ -265,23 +265,15 @@ object form_monta_treino: Tform_monta_treino
               Size.Height = 386.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'StringGridBindSourceDB1Style1'
+              TextSettings.Font.Family = 'Arial'
+              TextSettings.Font.Size = 14.000000000000000000
+              StyledSettings = [Style, FontColor]
               TabOrder = 0
               RowCount = 0
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               OnSelChanged = grid_lista_exerc_muscSelChanged
               Viewport.Width = 476.000000000000000000
               Viewport.Height = 361.000000000000000000
-              object NavigatorBindSourceDB1: TBindNavigator
-                Position.X = -16.000000000000000000
-                Position.Y = 40.000000000000000000
-                Size.Width = 240.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                TabOrder = 0
-                DataSource = BindSourceDB1
-                xRadius = 4.000000000000000000
-                yRadius = 4.000000000000000000
-              end
             end
           end
           object pnl_fun_ficha_treino: TRectangle
@@ -396,7 +388,7 @@ object form_monta_treino: Tform_monta_treino
               Size.PlatformDefault = False
               StyleLookup = 'StringGridBindSourceDB1Style1'
               TextSettings.Font.Family = 'Arial'
-              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.Font.Size = 14.000000000000000000
               StyledSettings = [Style, FontColor]
               TabOrder = 1
               RowCount = 0
@@ -404,8 +396,8 @@ object form_monta_treino: Tform_monta_treino
               Viewport.Width = 476.000000000000000000
               Viewport.Height = 411.000000000000000000
               object NavigatorBindSourceDB2: TBindNavigator
-                Position.X = -8.000000000000000000
-                Position.Y = 48.000000000000000000
+                Position.X = 16.000000000000000000
+                Position.Y = 376.000000000000000000
                 Size.Width = 240.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -1833,42 +1825,22 @@ object form_monta_treino: Tform_monta_treino
           796C654C6F6F6B7570060B767468756D627374796C65000000}
       end>
   end
-  object BindSourceDB1: TBindSourceDB
-    ScopeMappings = <>
-    Left = 648
-    Top = 432
+  object NavigatorBindSourceDB1: TBindNavigator
+    Position.X = 20.000000000000000000
+    Position.Y = 807.000000000000000000
+    Size.Width = 240.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    DataSource = BindSourceDB1
+    xRadius = 4.000000000000000000
+    yRadius = 4.000000000000000000
   end
   object BindingsList1: TBindingsList
     Methods = <>
     OutputConverters = <>
     Left = 20
     Top = 5
-    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
-      Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
-      GridControl = grid_lista_exerc_musc
-      Columns = <
-        item
-          MemberName = 'ID_EXERCICIO'
-          Visible = False
-        end
-        item
-          MemberName = 'NOME_EXERCICIO'
-          Header = 'Exerc'#237'cio'
-          Width = 250
-          ColumnStyle = 'StringColumn'
-        end
-        item
-          MemberName = 'DESCRICAO_EXERCICIO'
-          Header = 'Descri'#231#227'o'
-          Width = 400
-          ColumnStyle = 'StringColumn'
-        end
-        item
-          MemberName = 'GRUPO_MUSCULAR'
-          Visible = False
-        end>
-    end
     object LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource
       Category = 'Quick Bindings'
       DataSource = BindSourceDB2
@@ -1939,11 +1911,41 @@ object form_monta_treino: Tform_monta_treino
           Visible = False
         end>
     end
+    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      GridControl = grid_lista_exerc_musc
+      Columns = <
+        item
+          MemberName = 'ID_EXERCICIO'
+          Visible = False
+        end
+        item
+          MemberName = 'NOME_EXERCICIO'
+          Header = 'Exerc'#237'cio'
+          Width = 300
+        end
+        item
+          MemberName = 'DESCRICAO_EXERCICIO'
+          Header = 'Descri'#231#227'o'
+          Width = 500
+        end
+        item
+          MemberName = 'GRUPO_MUSCULAR'
+          Visible = False
+        end>
+    end
   end
   object BindSourceDB2: TBindSourceDB
     DataSource = dm_treino.dt_source_ficha_treino
     ScopeMappings = <>
-    Left = 656
+    Left = 720
     Top = 440
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSource = dm_treino.dt_source_lista_exer_grup_musc
+    ScopeMappings = <>
+    Left = 568
+    Top = 384
   end
 end

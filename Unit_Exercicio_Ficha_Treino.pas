@@ -57,11 +57,29 @@ begin
     edt_exercicio.Text := form_monta_treino.nome_exercicio;
 end;
 
+procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
+var
+  i, j: Integer;
+begin
+  for i := 0 to Rectangle.ChildrenCount - 1 do
+  begin
+    if Rectangle.Children[i] is TLabel then
+    begin
+      for j := 0 to TLabel(Rectangle.Children[i]).ChildrenCount - 1 do
+      begin
+        if TLabel(Rectangle.Children[i]).Children[j] is TEdit then
+          TEdit(TLabel(Rectangle.Children[i]).Children[j]).Text := ''
+        else if TLabel(Rectangle.Children[i]).Children[j] is TMemo then
+          TMemo(TLabel(Rectangle.Children[i]).Children[j]).Lines.Clear;
+      end;
+    end;
+  end;
+end;
+
 procedure Tform_exercicio_ficha_treino.btn_gravarClick(Sender: TObject);
 var
-  series, rep : integer;
-  carga, temp : Currency;
-  obs : string;
+  series : integer;
+  rep, temp, carga, obs : string;
 begin
 
   if edt_series.Text = '' then
@@ -82,9 +100,9 @@ begin
   begin
 
     series := StrToInt(edt_series.Text);
-    rep := StrToInt(edt_repeticoes.Text);
-    carga := StrToCurr(edt_carga.Text);
-    temp := StrToCurr(edt_tempo.Text);
+    rep := edt_repeticoes.Text;
+    carga := edt_carga.Text;
+    temp := edt_tempo.Text;
     obs := mmo_obs.Lines.Text;
 
     Try
@@ -95,7 +113,7 @@ begin
         Parameters.ParamByName('@EXERCICIO_EXERCICIO_TREINO').Value := exercicio;
         Parameters.ParamByName('@SERIES_EXERCICIO_TREINO').Value := series;
         Parameters.ParamByName('@REPETICOES_EXERCICIO_TREINO').Value := rep;
-        Parameters.ParamByName('@TEMP_EXERCICIO_TREINO').Value := temp;
+        Parameters.ParamByName('@TEMP_EXERCICIO_TREINO').Value := edt_tempo.Text;
         Parameters.ParamByName('@CARGA_EXERCICIO_TREINO').Value := carga;
         Parameters.ParamByName('@OBS_EXERCICIO_TREINO').Value := obs;
         ExecProc;
@@ -109,25 +127,6 @@ begin
     end;
   end;
 
-end;
-
-procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
-var
-  i, j: Integer;
-begin
-  for i := 0 to Rectangle.ChildrenCount - 1 do
-  begin
-    if Rectangle.Children[i] is TLabel then
-    begin
-      for j := 0 to TLabel(Rectangle.Children[i]).ChildrenCount - 1 do
-      begin
-        if TLabel(Rectangle.Children[i]).Children[j] is TEdit then
-          TEdit(TLabel(Rectangle.Children[i]).Children[j]).Text := ''
-        else if TLabel(Rectangle.Children[i]).Children[j] is TMemo then
-          TMemo(TLabel(Rectangle.Children[i]).Children[j]).Lines.Clear;
-      end;
-    end;
-  end;
 end;
 
 procedure Tform_exercicio_ficha_treino.btn_gravarMouseEnter(Sender: TObject);

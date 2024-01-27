@@ -34,6 +34,7 @@ object form_info_bsc_treino: Tform_info_bsc_treino
           'Aumento de For'#231'a'
           'Aumento de Resist'#234'ncia'
           'Hipertrofia')
+        ItemIndex = 1
         Position.X = 112.000000000000000000
         Position.Y = -3.000000000000000000
         Size.Width = 249.000000000000000000
@@ -57,6 +58,7 @@ object form_info_bsc_treino: Tform_info_bsc_treino
           'ABCD'
           'ABCDE'
           'ABCDEF')
+        ItemIndex = 1
         Position.X = 128.000000000000000000
         Position.Y = -4.000000000000000000
         Size.Width = 233.000000000000000000

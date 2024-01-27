@@ -819,28 +819,33 @@ object dm_principal: Tdm_principal
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ID_ALUNO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@DATA_HORA_CONSULTA_AGENDAMENTO'
         Attributes = [paNullable]
         DataType = ftDateTime
+        Value = Null
       end
       item
         Name = '@DATA_HORA_REALIZA_AGENDAMENTO'
         Attributes = [paNullable]
         DataType = ftDateTime
+        Value = Null
       end
       item
         Name = '@OBS_CONSULTA_AGENDAMENTO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end>
     Left = 368
     Top = 288
