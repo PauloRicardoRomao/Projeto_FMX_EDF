@@ -56,8 +56,8 @@ begin
     ado_query_consulta_nr_treinos.Close;
     ado_query_consulta_nr_treinos.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
     ado_query_consulta_nr_treinos.Open;
+    nr_treino := ado_query_consulta_nr_treinosPROXIMO_NR_TREINO.AsInteger;
   end;
-  nr_treino := dm_treino.ado_query_consulta_nr_treinos.FieldByName('PROXIMO_NR_TREINO').AsInteger;
   edt_nr_treino.Text := IntToStr(nr_treino+1);
 end;
 

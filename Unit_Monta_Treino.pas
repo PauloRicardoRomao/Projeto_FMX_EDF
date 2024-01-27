@@ -44,10 +44,7 @@ type
     lbl_btn_alt_ord_exe: TLabel;
     pnl_fund_menu_ficha: TRectangle;
     lbl_tit_fun_cad_treino: TLabel;
-    BindSourceDB1: TBindSourceDB;
     grid_lista_exerc_musc: TStringGrid;
-    LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
-    NavigatorBindSourceDB1: TBindNavigator;
     BindingsList1: TBindingsList;
     lbl_edt_grup_dia: TLabel;
     edt_grup_dia: TEdit;
@@ -57,6 +54,9 @@ type
     grid_ficha_treino: TStringGrid;
     LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
     NavigatorBindSourceDB2: TBindNavigator;
+    BindSourceDB1: TBindSourceDB;
+    LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
+    NavigatorBindSourceDB1: TBindNavigator;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_menu_add_ficha_aMouseEnter(Sender: TObject);
     procedure btn_menu_add_ficha_aMouseLeave(Sender: TObject);
@@ -70,9 +70,9 @@ type
     procedure btn_gravarMouseLeave(Sender: TObject);
     procedure btn_ficha_p_cadMouseEnter(Sender: TObject);
     procedure btn_ficha_p_cadMouseLeave(Sender: TObject);
-    procedure cbx_grup_muscularClick(Sender: TObject);
     procedure grid_lista_exerc_muscSelChanged(Sender: TObject);
     procedure btn_add_espec_fichaClick(Sender: TObject);
+    procedure cbx_grup_muscularChange(Sender: TObject);
   private
     { Private declarations}
     SelectedButton : TRectangle;
@@ -86,7 +86,7 @@ type
     { Public declarations }
     id_aluno, Nr_Fichas, id_treino, treino_dia,
     exercicio_i : integer;
-    nome_exercicio, espec_treino_dia : string;
+    nome_exercicio, espec_treino_dia,  grupo_muscular : string;
     Function DefinirNrFichas(Valor: Integer) : Integer;
   end;
 
@@ -225,6 +225,43 @@ begin
 
 end;
 
+procedure Tform_monta_treino.FormCreate(Sender: TObject);
+begin
+  id_treino := form_info_bsc_treino.id_treino;
+  Criabtn_menu;
+  btn_ficha_p_cad.Visible := False;
+
+
+  try
+    with dm_treino do
+    begin
+      ado_query_consulta_grup_musc.Close;
+      ado_query_consulta_grup_musc.Open;
+      while not ado_query_consulta_grup_musc.Eof do
+      begin
+        cbx_grup_muscular.Items.Add(ado_query_consulta_grup_musc.FieldByName('NOME_GRUPO_MUSCULAR').AsString);
+        ado_query_consulta_grup_musc.Next;
+      end;
+
+      with ado_proc_cad_treino_dia do
+      begin
+        Parameters.ParamByname('@TREINO_TREINO_DIA').Value := id_treino;
+        Parameters.ParamByname('@GRUPO_MUSCULAR_TREINO_DIA').Value := null;
+        ExecProc;
+        treino_dia := Parameters.ParamByName('@RETURN_VALUE').Value;
+      end;
+
+    end;
+    //form_dia_ficha_treino := Tform_dia_ficha_treino.Create(Application);
+    //form_dia_ficha_treino.ShowModal;
+
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message + ' Lista de Grupos Musculares; Cadastro de Treino.');
+  end;
+
+end;
+
 procedure Tform_monta_treino.ShowEspecTreinoDia;
 begin
   form_dia_ficha_treino := Tform_dia_ficha_treino.Create(Application);
@@ -237,6 +274,49 @@ begin
   form_dia_ficha_treino.id_treino_dia := id_treino;
   form_dia_ficha_treino.ShowModal;
 end;
+
+procedure Tform_monta_treino.cbx_grup_muscularChange(Sender: TObject);
+begin
+  grupo_muscular := cbx_grup_muscular.Selected.Text;
+  Try
+    with dm_treino do
+    begin
+      ado_query_lista_exe_grp_musc.Close;
+      ado_query_lista_exe_grp_musc.Parameters.ParamByName('GRUPO_MUSCULAR').Value := grupo_muscular;
+      ado_query_lista_exe_grp_musc.Open;
+      if ado_query_lista_exe_grp_musc.RecordCount > 0 then
+        btn_ins_ficha.Enabled := True
+      else
+        btn_ins_ficha.Enabled := False;
+    end;
+  except
+    on E: Exception do
+        ShowMessage('Erro: ' + E.Message + ' Lista de Exercícios.');
+  end;
+end;
+
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+procedure Tform_monta_treino.grid_lista_exerc_muscSelChanged(Sender: TObject);
+begin
+ { Try
+    with dm_treino do
+    begin
+      if ado_query_lista_exe_grp_musc.RecNo > 0 then
+      begin
+        btn_ins_ficha.Enabled := True;
+
+      end;
+    end;
+    except
+      on E: Exception do
+        ShowMessage('Erro: ' + E.Message + 'aqui!!');
+  end;}
+end;
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 
 procedure Tform_monta_treino.btn_ficha_p_cadMouseEnter(Sender: TObject);
 begin
@@ -279,19 +359,21 @@ begin
     with dm_treino do
     begin
       //treino_dia :=;
-      exercicio_i := ado_query_lista_exer_grup_muscID_EXERCICIO.AsInteger;
-
-      nome_exercicio := ado_query_lista_exer_grup_muscNOME_EXERCICIO.AsString;
-      form_exercicio_ficha_treino := Tform_exercicio_ficha_treino.Create(Application);
-      try
-        with Unit_Exercicio_Ficha_Treino.form_exercicio_ficha_treino do
-        begin
-          //edt_exercicio.Text := IntToStr(exercicio_i);
-          //form_exercicio_ficha_treino := Tform_exercicio_ficha_treino.Create(Application);
-          ShowModal;
+      exercicio_i := ado_query_lista_exe_grp_muscID_EXERCICIO.AsInteger;
+      if exercicio_i > 0 then
+      begin
+        nome_exercicio := ado_query_lista_exe_grp_muscNOME_EXERCICIO.AsString;
+        form_exercicio_ficha_treino := Tform_exercicio_ficha_treino.Create(Application);
+        try
+          with Unit_Exercicio_Ficha_Treino.form_exercicio_ficha_treino do
+          begin
+            //edt_exercicio.Text := IntToStr(exercicio_i);
+            //form_exercicio_ficha_treino := Tform_exercicio_ficha_treino.Create(Application);
+            ShowModal;
+          end;
+          finally
+            form_exercicio_ficha_treino.Free;
         end;
-        finally
-          form_exercicio_ficha_treino.Free;
       end;
     end;
   except
@@ -322,79 +404,6 @@ procedure Tform_monta_treino.btn_rem_fichaMouseLeave(Sender: TObject);
 begin
   btn_rem_ficha.Fill.Color := $FF03223F;
   lbl_btn_rem_ficha.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
-end;
-
-procedure Tform_monta_treino.cbx_grup_muscularClick(Sender: TObject);
-var
-  grupo_muscular : string;
-begin
-  grupo_muscular := cbx_grup_muscular.Selected.Text;
-
-  Try
-    with dm_treino do
-    begin
-      ado_query_lista_exer_grup_musc.Close;
-      ado_query_lista_exer_grup_musc.Parameters.ParamByName('GRUPO_MUSCULAR').Value := grupo_muscular;
-      ado_query_lista_exer_grup_musc.Open;
-    end;
-  except
-    on E: Exception do
-      ShowMessage('Erro: ' + E.Message + ' Lista de Exercícios.');
-  end;
-end;
-
-procedure Tform_monta_treino.FormCreate(Sender: TObject);
-begin
-  id_treino := form_info_bsc_treino.id_treino;
-  Criabtn_menu;
-  btn_ficha_p_cad.Visible := False;
-
-
-  try
-    with dm_treino do
-    begin
-      ado_query_consulta_grup_musc.Close;
-      ado_query_consulta_grup_musc.Open;
-      while not ado_query_consulta_grup_musc.Eof do
-      begin
-        cbx_grup_muscular.Items.Add(ado_query_consulta_grup_musc.FieldByName('NOME_GRUPO_MUSCULAR').AsString);
-        ado_query_consulta_grup_musc.Next;
-      end;
-
-      with ado_proc_cad_treino_dia do
-      begin
-        Parameters.ParamByname('@TREINO_TREINO_DIA').Value := id_treino;
-        Parameters.ParamByname('@GRUPO_MUSCULAR_TREINO_DIA').Value := null;
-        ExecProc;
-        treino_dia := Parameters.ParamByName('@RETURN_VALUE').Value;
-      end;
-
-    end;
-    //form_dia_ficha_treino := Tform_dia_ficha_treino.Create(Application);
-    //form_dia_ficha_treino.ShowModal;
-
-  except
-    on E: Exception do
-      ShowMessage('Erro: ' + E.Message + ' Lista de Grupos Musculares; Cadastro de Treino.');
-  end;
-
-end;
-
-procedure Tform_monta_treino.grid_lista_exerc_muscSelChanged(Sender: TObject);
-begin
-  Try
-    with dm_treino do
-    begin
-      if ado_query_lista_exer_grup_musc.RecNo > 0 then
-      begin
-        btn_ins_ficha.Enabled := True;
-
-      end;
-    end;
-  except
-    on E: Exception do
-      ShowMessage('Erro: ' + E.Message);
-  end;
 end;
 
 procedure Tform_monta_treino.btn_ins_fichaMouseEnter(Sender: TObject);

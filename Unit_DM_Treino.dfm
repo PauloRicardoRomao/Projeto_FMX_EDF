@@ -1,6 +1,6 @@
 object dm_treino: Tdm_treino
   Height = 645
-  Width = 1280
+  Width = 1363
   object ado_proc_cad_info_basic_treino: TADOStoredProc
     Connection = dm_principal.ado_connection
     ProcedureName = 'SP_GRAVA_TREINO;1'
@@ -262,53 +262,9 @@ object dm_treino: Tdm_treino
       Size = 50
     end
   end
-  object ado_query_lista_exer_grup_musc: TADOQuery
-    Active = True
-    Connection = dm_principal.ado_connection
-    CursorType = ctStatic
-    Parameters = <
-      item
-        Name = 'GRUPO_MUSCULAR'
-        DataType = ftString
-        NumericScale = 255
-        Precision = 255
-        Size = 50
-        Value = Null
-      end>
-    SQL.Strings = (
-      'SELECT'
-      #9'ID_EXERCICIO,'
-      #9'NOME_EXERCICIO,'
-      #9'DESCRICAO_EXERCICIO,'
-      #9'GRUPO_MUSCULAR'
-      'FROM'
-      '  TB_GRUPO_MUSCULAR AS GRM'
-      
-        'INNER JOIN TB_EXERCICIO AS EXE ON GRM.ID_GRUPO_MUSCULAR = EXE.GR' +
-        'UPO_MUSCULAR'
-      'WHERE'
-      '  NOME_GRUPO_MUSCULAR = :GRUPO_MUSCULAR')
+  object dt_source_lista_exer_grup_musc: TDataSource
+    DataSet = ado_query_lista_exe_grp_musc
     Left = 1008
-    Top = 304
-    object ado_query_lista_exer_grup_muscID_EXERCICIO: TAutoIncField
-      FieldName = 'ID_EXERCICIO'
-      ReadOnly = True
-    end
-    object ado_query_lista_exer_grup_muscNOME_EXERCICIO: TStringField
-      FieldName = 'NOME_EXERCICIO'
-      Size = 100
-    end
-    object ado_query_lista_exer_grup_muscDESCRICAO_EXERCICIO: TMemoField
-      FieldName = 'DESCRICAO_EXERCICIO'
-      BlobType = ftMemo
-    end
-    object ado_query_lista_exer_grup_muscGRUPO_MUSCULAR: TIntegerField
-      FieldName = 'GRUPO_MUSCULAR'
-    end
-  end
-  object dt_source_consulta_grup_musc: TDataSource
-    DataSet = ado_query_lista_exer_grup_musc
-    Left = 992
     Top = 392
   end
   object ado_proc_add_exec_ficha_treino: TADOStoredProc
@@ -320,65 +276,54 @@ object dm_treino: Tdm_treino
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
-        Value = Null
       end
       item
         Name = '@TREINO_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
-        Value = Null
       end
       item
         Name = '@TREINO_DIA_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
-        Value = Null
       end
       item
         Name = '@EXERCICIO_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
-        Value = Null
       end
       item
         Name = '@SERIES_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
-        Value = Null
       end
       item
         Name = '@REPETICOES_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 10
-        Value = Null
       end
       item
         Name = '@TEMPO_EXERCICIO_TREINO'
         Attributes = [paNullable]
-        DataType = ftBCD
-        NumericScale = 2
-        Precision = 5
-        Value = Null
+        DataType = ftString
+        Size = 12
       end
       item
         Name = '@CARGA_EXERCICIO_TREINO'
         Attributes = [paNullable]
-        DataType = ftBCD
-        NumericScale = 2
-        Precision = 5
-        Value = Null
+        DataType = ftInteger
+        Precision = 10
       end
       item
         Name = '@OBS_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
-        Value = Null
       end>
     Left = 752
     Top = 128
@@ -499,15 +444,12 @@ object dm_treino: Tdm_treino
       FieldName = 'REPETICOES_EXERCICIO_TREINO'
       Size = 10
     end
-    object ado_query_ficha_treinoTEMPO_EXERCICIO_TREINO: TBCDField
+    object ado_query_ficha_treinoTEMPO_EXERCICIO_TREINO: TStringField
       FieldName = 'TEMPO_EXERCICIO_TREINO'
-      Precision = 5
-      Size = 2
+      Size = 12
     end
-    object ado_query_ficha_treinoCARGA_EXERCICIO_TREINO: TBCDField
+    object ado_query_ficha_treinoCARGA_EXERCICIO_TREINO: TIntegerField
       FieldName = 'CARGA_EXERCICIO_TREINO'
-      Precision = 5
-      Size = 2
     end
     object ado_query_ficha_treinoOBS_EXERCICIO_TREINO: TMemoField
       FieldName = 'OBS_EXERCICIO_TREINO'
@@ -532,6 +474,55 @@ object dm_treino: Tdm_treino
   object dt_source_ficha_treino: TDataSource
     DataSet = ado_query_ficha_treino
     Left = 1200
+    Top = 400
+  end
+  object ado_query_lista_exe_grp_musc: TADOQuery
+    Active = True
+    Connection = dm_principal.ado_connection
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'GRUPO_MUSCULAR'
+        DataType = ftString
+        NumericScale = 255
+        Precision = 255
+        Size = 50
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT'
+      #9'ID_EXERCICIO,'
+      #9'NOME_EXERCICIO,'
+      #9'DESCRICAO_EXERCICIO,'
+      #9'GRUPO_MUSCULAR'
+      'FROM'
+      '  TB_GRUPO_MUSCULAR AS GRM'
+      
+        'INNER JOIN TB_EXERCICIO AS EXE ON GRM.ID_GRUPO_MUSCULAR = EXE.GR' +
+        'UPO_MUSCULAR'
+      'WHERE'
+      '  NOME_GRUPO_MUSCULAR = :GRUPO_MUSCULAR')
+    Left = 1008
+    Top = 288
+    object ado_query_lista_exe_grp_muscID_EXERCICIO: TAutoIncField
+      FieldName = 'ID_EXERCICIO'
+      ReadOnly = True
+    end
+    object ado_query_lista_exe_grp_muscNOME_EXERCICIO: TStringField
+      FieldName = 'NOME_EXERCICIO'
+      Size = 100
+    end
+    object ado_query_lista_exe_grp_muscDESCRICAO_EXERCICIO: TMemoField
+      FieldName = 'DESCRICAO_EXERCICIO'
+      BlobType = ftMemo
+    end
+    object ado_query_lista_exe_grp_muscGRUPO_MUSCULAR: TIntegerField
+      FieldName = 'GRUPO_MUSCULAR'
+    end
+  end
+  object dt_source_consulta_grup_musc: TDataSource
+    DataSet = ado_query_consulta_grup_musc
+    Left = 808
     Top = 400
   end
 end
