@@ -55,7 +55,7 @@ implementation
 {$R *.fmx}
 
 uses Unit_Cards_Alunos, Unit_Cliente, Unit_Ficha_Consulta,
-  Unit_Popup_Card_Aluno, Unit_Exercicio, Unit_Agendamentos;
+  Unit_Popup_Card_Aluno, Unit_Exercicio, Unit_Agendamentos, Unit_Login;
 
 
 procedure Tform_menu_principal.btn_cards_alunosMouseEnter(Sender: TObject);
@@ -123,13 +123,6 @@ begin
   Unit_Exercicio.form_exercicios.ShowModal;
 end;
 
-procedure Tform_menu_principal.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  form_menu_principal := nil;
-  form_menu_principal.Free;
-end;
-
 procedure Tform_menu_principal.img_btn_agendamentoClick(Sender: TObject);
 begin
   form_agendamentos := Tform_agendamentos.Create(Application);
@@ -145,5 +138,13 @@ procedure Tform_menu_principal.img_btn_agendamentoMouseLeave(Sender: TObject);
 begin
   btn_agendamento.Fill.Color := $FF2E4347;
 end;
+
+procedure Tform_menu_principal.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  form_menu_principal := nil;
+  form_menu_principal.Free;
+end;
+
 
 end.

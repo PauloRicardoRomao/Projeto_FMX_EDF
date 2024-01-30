@@ -36,7 +36,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_Monta_Treino, Unit_DM_Treino;
+uses Unit_Monta_Treino, Unit_DM_Treino, Unit_Consulta_Treino_Atual;
 
 
 procedure Tform_dia_ficha_treino.FormCreate(Sender: TObject);
@@ -61,7 +61,35 @@ begin
       Parameters.ParamByname('@GRUPO_MUSCULAR_TREINO_DIA').Value := grupo_musc_dia;
       ExecProc;
     end;
-    form_monta_treino.edt_grup_dia.Text := grupo_musc_dia;
+    if Assigned(form_monta_treino) then
+      form_monta_treino.edt_grup_dia.Text := grupo_musc_dia;
+    if Assigned(form_consulta_treino_atual) then
+    begin
+      try
+      with dm_treino do
+      begin
+        with ado_query_ficha_treino do
+        begin
+          Close;
+          Parameters.ParamByName('TREINO_DIA').Value := id_treino_dia;
+          Open;
+        end;
+        if (ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString <> '') or (ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString <> 'null') then
+        begin
+          form_consulta_treino_atual.espec_treino_dia := ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString;
+          form_consulta_treino_atual.btn_add_espec_ficha.Enabled := False;
+        end
+        else
+        begin
+          form_consulta_treino_atual.espec_treino_dia := '';
+          form_consulta_treino_atual.btn_add_espec_ficha.Enabled := True;
+        end;
+      end;
+      except
+        on E: Exception do
+          ShowMessage('Erro: ' + E.Message);
+      end;
+    end;
     form_dia_ficha_treino.Close;
   except
     on E: Exception do

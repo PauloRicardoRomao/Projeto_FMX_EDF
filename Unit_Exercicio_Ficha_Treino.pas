@@ -52,7 +52,7 @@ uses Unit_DM_Treino, Unit_Monta_Treino;
 procedure Tform_exercicio_ficha_treino.FormCreate(Sender: TObject);
 begin
     treino := form_monta_treino.id_treino;
-    //    treino_dia := ; }
+    treino_dia := form_monta_treino.treino_dia;
     exercicio := form_monta_treino.exercicio_i;
     edt_exercicio.Text := form_monta_treino.nome_exercicio;
 end;
@@ -106,19 +106,27 @@ begin
     obs := mmo_obs.Lines.Text;
 
     Try
-      with dm_treino.ado_proc_add_exec_ficha_treino do
+      with dm_treino do
       begin
-        Parameters.ParamByName('@TREINO_EXERCICIO_TREINO').Value := treino;
-        Parameters.ParamByName('@TREINO_DIA_EXERCICIO_TREINO').Value := treino_dia;
-        Parameters.ParamByName('@EXERCICIO_EXERCICIO_TREINO').Value := exercicio;
-        Parameters.ParamByName('@SERIES_EXERCICIO_TREINO').Value := series;
-        Parameters.ParamByName('@REPETICOES_EXERCICIO_TREINO').Value := rep;
-        Parameters.ParamByName('@TEMP_EXERCICIO_TREINO').Value := edt_tempo.Text;
-        Parameters.ParamByName('@CARGA_EXERCICIO_TREINO').Value := carga;
-        Parameters.ParamByName('@OBS_EXERCICIO_TREINO').Value := obs;
-        ExecProc;
+        with ado_proc_add_exec_ficha_treino do
+        begin
+          Parameters.ParamByName('@TREINO_EXERCICIO_TREINO').Value := treino;
+          Parameters.ParamByName('@TREINO_DIA_EXERCICIO_TREINO').Value := treino_dia;
+          Parameters.ParamByName('@EXERCICIO_EXERCICIO_TREINO').Value := exercicio;
+          Parameters.ParamByName('@SERIES_EXERCICIO_TREINO').Value := series;
+          Parameters.ParamByName('@REPETICOES_EXERCICIO_TREINO').Value := rep;
+          Parameters.ParamByName('@TEMPO_EXERCICIO_TREINO').Value := edt_tempo.Text;
+          Parameters.ParamByName('@CARGA_EXERCICIO_TREINO').Value := edt_carga.Text;
+          Parameters.ParamByName('@OBS_EXERCICIO_TREINO').Value := obs;
+          ExecProc;
+        end;
+        with ado_query_ficha_treino do
+        begin
+          Close;
+          Parameters.ParamByName('TREINO_DIA').Value := treino_dia;
+          Open;
+        end;
       end;
-
       form_exercicio_ficha_treino.Close;
 
     except

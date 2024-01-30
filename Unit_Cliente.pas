@@ -325,7 +325,7 @@ type
   public
     { Public declarations }
     foto : string;
-    id_aluno, id_anamnese : integer;
+    id_aluno, id_aluno_verifica, id_anamnese : integer;
   end;
 
 var
@@ -335,7 +335,8 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_DM_Principal, Unit_Popup_Card_Aluno, Unit_Menu_Principal;
+uses Unit_DM_Principal, Unit_Popup_Card_Aluno, Unit_Menu_Principal,
+  Unit_Cards_Alunos;
 
 
 procedure Tform_aluno.FormCreate(Sender: TObject);
@@ -346,9 +347,10 @@ begin
   
   if Assigned(form_popup_card_aluno) then
     id_aluno := form_popup_card_aluno.id_aluno; 
-      
+
   if id_aluno > 0 then
   begin
+    id_aluno_verifica := id_aluno;
     with dm_principal do
     begin
 
@@ -890,10 +892,20 @@ begin
   btn_lmp_anm_medClick(Self);
   btn_lmp_med_cirClick(Self);
   btn_lmp_db_cutClick(Self);
-  id_aluno := 0;
-
-  form_aluno := nil;
-  form_aluno.Free;
+  //id_aluno := 0;
+  if id_aluno_verifica > 0 then
+  begin
+    id_aluno := 0;
+    form_aluno := nil;
+    form_aluno.Free;
+  end
+  else if id_aluno_verifica = 0 then
+  begin
+    id_aluno := 0;
+    form_menu_principal.ShowModal;
+    form_aluno := nil;
+    form_aluno.Free;
+  end;
 end;
 
 end.

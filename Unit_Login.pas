@@ -45,6 +45,21 @@ implementation
 
 uses Unit_Cadastro_Usuario, Unit_Menu_Principal, Unit_DM_Principal;
 
+
+procedure Tform_login.FormCreate(Sender: TObject);
+begin
+  edt_usuario.Text := 'Paulo';
+  edt_senha.Text := '123456';
+end;
+
+procedure Tform_login.btn_menu_prim_acessoClick(Sender: TObject);
+begin
+  form_cadastro_usuario := Tform_cadastro_usuario.Create(Application);
+  form_login.Hide;
+  form_cadastro_usuario.ShowModal;
+  form_login.Close;
+end;
+
 procedure Tform_login.btn_entrarClick(Sender: TObject);
 begin
   if (edt_usuario.Text = '') or (edt_senha.Text = '') then
@@ -70,6 +85,7 @@ begin
         if ado_query_login.RecordCount > 0 then
         begin
           form_menu_principal := Tform_menu_principal.Create(Application);
+          //form_login.Hide;
           form_menu_principal.ShowModal;
           form_login.Close;
         end
@@ -102,23 +118,10 @@ begin
   lbl_btn_entrar.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
-procedure Tform_login.btn_menu_prim_acessoClick(Sender: TObject);
-begin
-  form_cadastro_usuario := Tform_cadastro_usuario.Create(Application);
-  form_cadastro_usuario.ShowModal;
-  form_login.Close;
-end;
-
 procedure Tform_login.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   form_login := nil;
   form_login.Free;
-end;
-
-procedure Tform_login.FormCreate(Sender: TObject);
-begin
-  edt_usuario.Text := 'Paulo';
-  edt_senha.Text := '123456';
 end;
 
 end.
