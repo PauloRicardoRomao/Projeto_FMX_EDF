@@ -50,12 +50,36 @@ type
     ado_query_ficha_treinoSERIES_EXERCICIO_TREINO: TIntegerField;
     ado_query_ficha_treinoREPETICOES_EXERCICIO_TREINO: TStringField;
     ado_query_ficha_treinoTEMPO_EXERCICIO_TREINO: TStringField;
-    ado_query_ficha_treinoCARGA_EXERCICIO_TREINO: TIntegerField;
+    ado_query_ficha_treinoCARGA_EXERCICIO_TREINO: TStringField;
     ado_query_ficha_treinoOBS_EXERCICIO_TREINO: TMemoField;
     ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA: TStringField;
     ado_query_ficha_treinoNOME_EXERCICIO: TStringField;
     ado_query_ficha_treinoDESCRICAO_EXERCICIO: TMemoField;
     ado_query_ficha_treinoGRUPO_MUSCULAR: TIntegerField;
+    ado_proc_cancela_treino: TADOStoredProc;
+    ado_proc_consulta_treino_atual: TADOStoredProc;
+    ado_query_consulta_aluno_auxiliar: TADOQuery;
+    ado_query_consulta_aluno_auxiliarID_ALUNO: TAutoIncField;
+    ado_query_consulta_aluno_auxiliarNOME_ALUNO: TStringField;
+    ado_query_consulta_aluno_auxiliarDATA_NASCIMENTO_ALUNO: TWideStringField;
+    ado_query_consulta_aluno_auxiliarSEXO_ALUNO: TStringField;
+    ado_query_consulta_aluno_auxiliarALTURA_ALUNO: TBCDField;
+    ado_query_consulta_aluno_auxiliarPESO_ALUNO: TBCDField;
+    ado_query_consulta_aluno_auxiliarOBJETIVO_ALUNO: TStringField;
+    ado_query_consulta_aluno_auxiliarNIVEL_ATIVIDADE_ALUNO: TIntegerField;
+    ado_query_consulta_aluno_auxiliarFOTO_ALUNO: TBlobField;
+    ado_query_consulta_aluno_auxiliarDATA_INCLUSAO: TDateTimeField;
+    ado_query_consulta_aluno_auxiliarFLAG_ATIVO: TBooleanField;
+    ado_query_hist_fich_treinoID_TREINO_DIA: TAutoIncField;
+    ado_query_consulta_ficha_treino_exp: TADOQuery;
+    ado_query_consulta_ficha_treino_expGRUPO_MUSCULAR_TREINO_DIA: TStringField;
+    ado_query_consulta_ficha_treino_expNOME_EXERCICIO: TStringField;
+    ado_query_consulta_ficha_treino_expSERIES_EXERCICIO_TREINO: TIntegerField;
+    ado_query_consulta_ficha_treino_expREPETICOES_EXERCICIO_TREINO: TStringField;
+    ado_query_consulta_ficha_treino_expTEMPO_EXERCICIO_TREINO: TStringField;
+    ado_query_consulta_ficha_treino_expCARGA_EXERCICIO_TREINO: TStringField;
+    ado_query_consulta_ficha_treino_expOBS_EXERCICIO_TREINO: TMemoField;
+    ado_query_consulta_ficha_treino_expDESCRICAO_EXERCICIO: TMemoField;
   private
     { Private declarations }
   public

@@ -45,6 +45,11 @@ uses Unit_Cliente, Unit_Popup_Card_Aluno, Unit_Menu_Principal,
   Unit_DM_Principal, Unit_Agendamentos, Unit_Cadastro_Agendamento;
 
 
+procedure Tform_cards_alunos.FormCreate(Sender: TObject);
+begin
+  CriaCards;
+end;
+
 procedure Tform_cards_alunos.btn_filtroMouseEnter(Sender: TObject);
 begin
   btn_filtro.Fill.Color := $FF214358;
@@ -67,7 +72,7 @@ var
 begin
   try
     dm_principal.ado_proc_consulta_alunos.Open;
-
+    dm_principal.ado_proc_consulta_alunos.First;
     while not dm_principal.ado_proc_consulta_alunos.Eof do
     begin
       Card := TRectangle.Create(Self);
@@ -175,11 +180,6 @@ begin
   form_popup_card_aluno := Tform_popup_card_aluno.Create(Application);
   form_popup_card_aluno.id_aluno := dm_principal.ado_proc_consulta_alunos.FieldByName('ID_ALUNO').AsInteger;
   Unit_Popup_Card_Aluno.form_popup_card_aluno.ShowModal;
-end;
-
-procedure Tform_cards_alunos.FormCreate(Sender: TObject);
-begin
-  CriaCards;
 end;
 
 procedure Tform_cards_alunos.FormClose(Sender: TObject;

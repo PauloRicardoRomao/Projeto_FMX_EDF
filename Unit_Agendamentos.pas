@@ -65,7 +65,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_DM_Principal, Unit_Cards_Alunos;
+uses Unit_DM_Principal, Unit_Cards_Alunos, Unit_Menu_Principal;
 
 
 procedure Tform_agendamentos.FormCreate(Sender: TObject);

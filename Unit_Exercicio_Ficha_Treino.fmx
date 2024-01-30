@@ -486,7 +486,7 @@ object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
       object edt_carga: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 3
+        TabOrder = 4
         TextSettings.Font.Family = 'Arial'
         TextSettings.Font.Size = 18.000000000000000000
         Position.X = 62.000000000000000000
@@ -508,7 +508,7 @@ object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
       object edt_exercicio: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 3
+        TabOrder = 0
         ReadOnly = True
         TextSettings.Font.Family = 'Arial'
         TextSettings.Font.Size = 18.000000000000000000
@@ -538,9 +538,9 @@ object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
         Size.Width = 505.000000000000000000
         Size.Height = 95.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 3
-        Viewport.Width = 505.000000000000000000
-        Viewport.Height = 95.000000000000000000
+        TabOrder = 4
+        Viewport.Width = 501.000000000000000000
+        Viewport.Height = 91.000000000000000000
       end
     end
     object lbl_repeticoes: TLabel
@@ -555,7 +555,7 @@ object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
       object edt_repeticoes: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 3
+        TabOrder = 2
         TextSettings.Font.Family = 'Arial'
         TextSettings.Font.Size = 18.000000000000000000
         Position.X = 108.000000000000000000
@@ -577,7 +577,7 @@ object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
       object edt_series: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 3
+        TabOrder = 1
         TextSettings.Font.Family = 'Arial'
         TextSettings.Font.Size = 18.000000000000000000
         Position.X = 89.000000000000000000
@@ -600,7 +600,7 @@ object form_exercicio_ficha_treino: Tform_exercicio_ficha_treino
       object edt_tempo: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 3
+        TabOrder = 4
         TextSettings.Font.Family = 'Arial'
         TextSettings.Font.Size = 18.000000000000000000
         Position.X = 66.000000000000000000

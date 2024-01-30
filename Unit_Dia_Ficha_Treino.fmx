@@ -3,7 +3,6 @@ object form_dia_ficha_treino: Tform_dia_ficha_treino
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = Single
-  Caption = 'Form2'
   ClientHeight = 291
   ClientWidth = 607
   Fill.Color = xFF89A09A

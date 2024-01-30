@@ -34,7 +34,7 @@ object form_login: Tform_login
       object edt_usuario: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 4
+        TabOrder = 3
         Position.X = 76.000000000000000000
         Position.Y = -3.000000000000000000
         Size.Width = 309.000000000000000000
@@ -53,7 +53,7 @@ object form_login: Tform_login
       object edt_senha: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'edt_style'
-        TabOrder = 4
+        TabOrder = 3
         Position.X = 71.000000000000000000
         Position.Y = -4.000000000000000000
         Size.Width = 309.000000000000000000
