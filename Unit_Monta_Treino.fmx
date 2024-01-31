@@ -186,7 +186,7 @@ object form_monta_treino: Tform_monta_treino
                   Size.Width = 313.000000000000000000
                   Size.Height = 28.000000000000000000
                   Size.PlatformDefault = False
-                  TabOrder = 3
+                  TabOrder = 4
                   OnChange = cbx_grup_muscularChange
                 end
               end
@@ -204,7 +204,7 @@ object form_monta_treino: Tform_monta_treino
                 TabOrder = 6
                 object edt_grup_dia: TEdit
                   Touch.InteractiveGestures = [LongTap, DoubleTap]
-                  TabOrder = 3
+                  TabOrder = 4
                   ReadOnly = True
                   TextSettings.Font.Family = 'Arial'
                   TextSettings.Font.Size = 18.000000000000000000
@@ -271,8 +271,8 @@ object form_monta_treino: Tform_monta_treino
               TabOrder = 0
               RowCount = 0
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-              Viewport.Width = 480.000000000000000000
-              Viewport.Height = 386.000000000000000000
+              Viewport.Width = 476.000000000000000000
+              Viewport.Height = 361.000000000000000000
             end
           end
           object pnl_fun_ficha_treino: TRectangle
@@ -318,6 +318,7 @@ object form_monta_treino: Tform_monta_treino
                 Size.Height = 55.000000000000000000
                 Size.PlatformDefault = False
                 Stroke.Color = claBlanchedalmond
+                Visible = False
                 XRadius = 10.000000000000000000
                 YRadius = 10.000000000000000000
                 OnMouseEnter = btn_rem_fichaMouseEnter
@@ -390,8 +391,8 @@ object form_monta_treino: Tform_monta_treino
               TabOrder = 1
               RowCount = 0
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-              Viewport.Width = 480.000000000000000000
-              Viewport.Height = 436.000000000000000000
+              Viewport.Width = 476.000000000000000000
+              Viewport.Height = 411.000000000000000000
               object NavigatorBindSourceDB2: TBindNavigator
                 Position.X = 16.000000000000000000
                 Position.Y = 376.000000000000000000

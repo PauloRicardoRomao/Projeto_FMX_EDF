@@ -5,7 +5,7 @@ object form_finaliza_treino: Tform_finaliza_treino
   BorderStyle = Single
   ClientHeight = 301
   ClientWidth = 347
-  Fill.Color = xFFC0D1C2
+  Fill.Color = xFFC1C0AE
   Fill.Kind = Solid
   Position = DesktopCenter
   FormFactor.Width = 320
@@ -15,7 +15,7 @@ object form_finaliza_treino: Tform_finaliza_treino
   DesignerMasterStyle = 0
   object pnl_fundo: TRectangle
     Align = Client
-    Fill.Color = xFFC0D1C2
+    Fill.Color = xFFC1C0AE
     Size.Width = 347.000000000000000000
     Size.Height = 301.000000000000000000
     Size.PlatformDefault = False

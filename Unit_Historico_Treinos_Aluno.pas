@@ -27,8 +27,8 @@ type
     lbl_fun_exe_ficha: TLabel;
     pnl_fun_ficha_exe_treino: TRectangle;
     pnl_fun_exe_ficha_treino: TRectangle;
-    btn_imp_ficha: TRectangle;
-    lbl_btn_imp_ficha: TLabel;
+    btn_imp_treino: TRectangle;
+    lbl_btn_imp_treino: TLabel;
     BindSourceDB1: TBindSourceDB;
     grid_treinos: TStringGrid;
     LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
@@ -45,8 +45,8 @@ type
     lbl_btn_exp_ficha: TLabel;
     btn_exp_treino: TRectangle;
     lbl_btn_exp_treino: TLabel;
-    procedure btn_imp_fichaMouseEnter(Sender: TObject);
-    procedure btn_imp_fichaMouseLeave(Sender: TObject);
+    procedure btn_imp_treinoMouseEnter(Sender: TObject);
+    procedure btn_imp_treinoMouseLeave(Sender: TObject);
     procedure grid_treinosCellClick(const Column: TColumn; const Row: Integer);
     procedure grid_fichasCellClick(const Column: TColumn; const Row: Integer);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -55,7 +55,7 @@ type
     procedure btn_exp_treinoMouseEnter(Sender: TObject);
     procedure btn_exp_fichaMouseLeave(Sender: TObject);
     procedure btn_exp_treinoMouseLeave(Sender: TObject);
-    procedure btn_imp_fichaClick(Sender: TObject);
+    procedure btn_imp_treinoClick(Sender: TObject);
     procedure btn_exp_fichaClick(Sender: TObject);
     procedure btn_exp_treinoClick(Sender: TObject);
   private
@@ -145,7 +145,7 @@ begin
   lbl_btn_exp_treino.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
-procedure Tform_hist_treinos_aluno.btn_imp_fichaClick(Sender: TObject);
+procedure Tform_hist_treinos_aluno.btn_imp_treinoClick(Sender: TObject);
 begin
   try
     if dm_treino.ado_query_hist_fich_treino.RecordCount > 0 then
@@ -163,16 +163,16 @@ begin
 
 end;
 
-procedure Tform_hist_treinos_aluno.btn_imp_fichaMouseEnter(Sender: TObject);
+procedure Tform_hist_treinos_aluno.btn_imp_treinoMouseEnter(Sender: TObject);
 begin
-  btn_imp_ficha.Fill.Color := $FF214358;
-  lbl_btn_imp_ficha.TextSettings.FontColor := $FFFFFFFF;
+  btn_imp_treino.Fill.Color := $FF214358;
+  lbl_btn_imp_treino.TextSettings.FontColor := $FFFFFFFF;
 end;
 
-procedure Tform_hist_treinos_aluno.btn_imp_fichaMouseLeave(Sender: TObject);
+procedure Tform_hist_treinos_aluno.btn_imp_treinoMouseLeave(Sender: TObject);
 begin
-  btn_imp_ficha.Fill.Color := $FF03223F;
-  lbl_btn_imp_ficha.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+  btn_imp_treino.Fill.Color := $FF03223F;
+  lbl_btn_imp_treino.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
 procedure Tform_hist_treinos_aluno.grid_treinosCellClick(const Column: TColumn;

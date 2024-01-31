@@ -367,20 +367,20 @@ begin
         ano := Copy(ado_query_consulta_alunoDATA_NASCIMENTO_ALUNO.AsString, 1,4);
         edt_data_nasc.Text :=  dia+'/'+mes+'/'+ano;
         if ado_query_consulta_alunoSEXO_ALUNO.AsString = 'Masculino' then
-          cbx_sexo.Index := 0
+          cbx_sexo.ItemIndex := 0
         else if ado_query_consulta_alunoSEXO_ALUNO.AsString = 'Feminino' then
-          cbx_sexo.Index := 1
+          cbx_sexo.ItemIndex := 1
         else
-          cbx_sexo.Index := 2;
+          cbx_sexo.ItemIndex := 2;
         edt_altura.Text := CurrToStr(ado_query_consulta_alunoALTURA_ALUNO.AsCurrency);
         edt_peso_base.Text := CurrToStr(ado_query_consulta_alunoPESO_ALUNO.AsCurrency);
         mmo_obj.Lines.Text :=  ado_query_consulta_alunoOBJETIVO_ALUNO.AsString;
         if ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO.AsString = 'Sedentário' then
-          cbx_sexo.Index := 0
+          cbx_nvl_ativ.ItemIndex := 0
         else if ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO.AsString = 'Moderadamente Ativo' then
-          cbx_sexo.Index := 1
+          cbx_nvl_ativ.ItemIndex := 1
         else
-          cbx_sexo.Index := 2;
+          cbx_nvl_ativ.ItemIndex := 2;
       except
         on E: Exception do
           ShowMessage('Erro: ' + E.Message + ' Informações Básicas do Aluno.');
@@ -469,6 +469,13 @@ begin
           ShowMessage('Erro: ' + E.Message + ' Medidas de Dobras Cutâneas.');
       end;
     end;
+  end
+
+  else if id_aluno = 0 then
+  begin
+    edt_data_nasc.Date := Now;
+    edt_data_cir.Date := Now;
+    edt_data_med_dob_cut.Date := Now;
   end;
 
   menu_info_basicClick(Self);
@@ -657,10 +664,16 @@ begin
 
   nome := edt_nome.Text;
   data_nascimento := edt_data_nasc.Text;
-  sexo := cbx_sexo.Selected.Text;
+  if cbx_sexo.ItemIndex = -1 then
+    sexo := null
+  else
+    sexo := cbx_sexo.Selected.Text;
   altura := StrToCurr(edt_altura.Text);
   peso := StrToCurr(edt_peso_base.Text);
   objetivo := mmo_obj.Lines.Text;
+  if cbx_nvl_ativ.ItemIndex = -1 then
+    nivel_atividade := null
+  else
   nivel_atividade := cbx_nvl_ativ.Selected.Text;
 
   //foto :=
@@ -902,7 +915,6 @@ begin
   else if id_aluno_verifica = 0 then
   begin
     id_aluno := 0;
-    form_menu_principal.ShowModal;
     form_aluno := nil;
     form_aluno.Free;
   end;

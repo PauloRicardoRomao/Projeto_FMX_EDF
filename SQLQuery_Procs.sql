@@ -64,11 +64,11 @@ CREATE PROCEDURE SP_CADASTRO_ALUNO
 	@ID_ALUNO INT,
     @NOME_ALUNO VARCHAR(255),
     @DATA_NASCIMENTO_ALUNO DATE,
-    @SEXO_ALUNO CHAR(1),
+    @SEXO_ALUNO VARCHAR(15),
     @ALTURA_ALUNO NUMERIC(5, 2),
     @PESO_ALUNO NUMERIC(5, 2),
     @OBJETIVO_ALUNO VARCHAR(255),
-    @NIVEL_ATIVIDADE_ALUNO INT,
+    @NIVEL_ATIVIDADE_ALUNO VARCHAR(25),
     @FOTO_ALUNO VARBINARY(MAX)
 AS
 BEGIN
@@ -113,11 +113,11 @@ BEGIN
 	END
 END
 GO
-EXEC SP_CADASTRO_ALUNO 1, 'João Silva', '1990-05-15', 'M', 1.80, 75.5, 'Ganhar massa muscular', 3, NULL
-EXEC SP_CADASTRO_ALUNO 2, 'Maria Oliveira', '1985-09-20', 'F', 1.65, 60.0, 'Perder peso', 2, NULL
-EXEC SP_CADASTRO_ALUNO 3, 'Carlos Santos', '1993-07-10', 'M', 1.75, 70.8, 'Manter forma física', 4, NULL
-EXEC SP_CADASTRO_ALUNO 4, 'Ana Souza', '1988-03-25', 'F', 1.70, 68.5, 'Ganhar resistência', 3, NULL
-EXEC SP_CADASTRO_ALUNO 5, 'José Lima', '1995-12-15', 'M', 1.82, 78.2, 'Melhorar condicionamento', 5, NULL
+EXEC SP_CADASTRO_ALUNO 1, 'João Silva', '1990-05-15', 'Masculino', 1.80, 75.5, 'Ganhar massa muscular', 'Ativo', NULL
+EXEC SP_CADASTRO_ALUNO 2, 'Maria Oliveira', '1985-09-20', 'Feminino', 1.65, 60.0, 'Perder peso', 'Moderadamente Ativo', NULL
+EXEC SP_CADASTRO_ALUNO 3, 'Carlos Santos', '1993-07-10', 'Masculino', 1.75, 70.8, 'Manter forma física', 'Moderadamento Ativo', NULL
+EXEC SP_CADASTRO_ALUNO 4, 'Ana Souza', '1988-03-25', 'Feminino', 1.70, 68.5, 'Ganhar resistência', 'Sedentário', NULL
+EXEC SP_CADASTRO_ALUNO 5, 'José Lima', '1995-12-15', 'Masculino', 1.82, 78.2, 'Melhorar condicionamento', 'Ativo', NULL
 
 GO
 

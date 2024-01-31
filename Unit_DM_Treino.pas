@@ -59,17 +59,6 @@ type
     ado_proc_cancela_treino: TADOStoredProc;
     ado_proc_consulta_treino_atual: TADOStoredProc;
     ado_query_consulta_aluno_auxiliar: TADOQuery;
-    ado_query_consulta_aluno_auxiliarID_ALUNO: TAutoIncField;
-    ado_query_consulta_aluno_auxiliarNOME_ALUNO: TStringField;
-    ado_query_consulta_aluno_auxiliarDATA_NASCIMENTO_ALUNO: TWideStringField;
-    ado_query_consulta_aluno_auxiliarSEXO_ALUNO: TStringField;
-    ado_query_consulta_aluno_auxiliarALTURA_ALUNO: TBCDField;
-    ado_query_consulta_aluno_auxiliarPESO_ALUNO: TBCDField;
-    ado_query_consulta_aluno_auxiliarOBJETIVO_ALUNO: TStringField;
-    ado_query_consulta_aluno_auxiliarNIVEL_ATIVIDADE_ALUNO: TIntegerField;
-    ado_query_consulta_aluno_auxiliarFOTO_ALUNO: TBlobField;
-    ado_query_consulta_aluno_auxiliarDATA_INCLUSAO: TDateTimeField;
-    ado_query_consulta_aluno_auxiliarFLAG_ATIVO: TBooleanField;
     ado_query_hist_fich_treinoID_TREINO_DIA: TAutoIncField;
     ado_query_consulta_ficha_treino_exp: TADOQuery;
     ado_query_consulta_ficha_treino_expGRUPO_MUSCULAR_TREINO_DIA: TStringField;
@@ -80,6 +69,28 @@ type
     ado_query_consulta_ficha_treino_expCARGA_EXERCICIO_TREINO: TStringField;
     ado_query_consulta_ficha_treino_expOBS_EXERCICIO_TREINO: TMemoField;
     ado_query_consulta_ficha_treino_expDESCRICAO_EXERCICIO: TMemoField;
+    ado_query_verifica_ficha_treino_diaFICHA_TREINO_DIA: TStringField;
+    ado_query_hist_fich_treinoFICHA_TREINO_DIA: TStringField;
+    ado_query_ficha_treinoFICHA_TREINO_DIA: TStringField;
+    ado_query_consulta_ficha_treino_expFICHA_TREINO_DIA: TStringField;
+    ado_query_consulta_aluno_auxiliarID_ALUNO: TAutoIncField;
+    ado_query_consulta_aluno_auxiliarNOME_ALUNO: TStringField;
+    ado_query_consulta_aluno_auxiliarDATA_NASCIMENTO_ALUNO: TWideStringField;
+    ado_query_consulta_aluno_auxiliarSEXO_ALUNO: TStringField;
+    ado_query_consulta_aluno_auxiliarALTURA_ALUNO: TBCDField;
+    ado_query_consulta_aluno_auxiliarPESO_ALUNO: TBCDField;
+    ado_query_consulta_aluno_auxiliarOBJETIVO_ALUNO: TStringField;
+    ado_query_consulta_aluno_auxiliarNIVEL_ATIVIDADE_ALUNO: TStringField;
+    ado_query_consulta_aluno_auxiliarFOTO_ALUNO: TBlobField;
+    ado_query_consulta_aluno_auxiliarDATA_INCLUSAO: TDateTimeField;
+    ado_query_consulta_aluno_auxiliarFLAG_ATIVO: TBooleanField;
+    ado_query_dia_treino: TADOQuery;
+    ado_query_dia_treinoID_TREINO_DIA: TAutoIncField;
+    ado_query_dia_treinoTREINO_TREINO_DIA: TIntegerField;
+    ado_query_dia_treinoFICHA_TREINO_DIA: TStringField;
+    ado_query_dia_treinoGRUPO_MUSCULAR_TREINO_DIA: TStringField;
+    ado_query_dia_treinoDATA_INCLUSAO_TREINO_DIA: TDateTimeField;
+    ado_query_dia_treinoFLAG_ATIVO: TBooleanField;
   private
     { Private declarations }
   public

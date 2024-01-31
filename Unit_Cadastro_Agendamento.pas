@@ -109,16 +109,6 @@ begin
   lbl_btn_gravar.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
 
-procedure Tform_cadastro_agendamento.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  LimparControlesDentroDoRectangle(pnl_fun_cad_agendamento);
-  form_cards_alunos := Nil;
-  form_cards_alunos.Free;
-  form_cadastro_agendamento := Nil;
-  form_cadastro_agendamento.Free;
-end;
-
 procedure Tform_cadastro_agendamento.FormCreate(Sender: TObject);
 var
   horas, minutos, segundos, milissegundos: Word;
@@ -127,6 +117,16 @@ begin
   edt_hora.Time := Now;
   DecodeTime(edt_hora.Time, horas, minutos, segundos, milissegundos);
   edt_hora.Time := EncodeTime(horas, minutos, 0, 0);
+end;
+
+procedure Tform_cadastro_agendamento.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  LimparControlesDentroDoRectangle(pnl_fun_cad_agendamento);
+  form_cards_alunos := Nil;
+  form_cards_alunos.Free;
+  form_cadastro_agendamento := Nil;
+  form_cadastro_agendamento.Free;
 end;
 
 end.
