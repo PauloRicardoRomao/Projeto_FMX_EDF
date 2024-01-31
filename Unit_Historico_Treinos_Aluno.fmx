@@ -14,7 +14,7 @@ object form_hist_treinos_aluno: Tform_hist_treinos_aluno
   DesignerMasterStyle = 0
   object pnl_fundo: TRectangle
     Align = Client
-    Fill.Color = xFFC0D1C2
+    Fill.Color = xFFC1C0AE
     Size.Width = 1500.000000000000000000
     Size.Height = 1300.000000000000000000
     Size.PlatformDefault = False
@@ -74,7 +74,7 @@ object form_hist_treinos_aluno: Tform_hist_treinos_aluno
         Viewport.Height = 728.000000000000000000
         object pnl_fundo_info_basic: TRectangle
           Align = MostTop
-          Fill.Color = xFFC0D1C2
+          Fill.Color = xFFC1C0AE
           Size.Width = 1484.000000000000000000
           Size.Height = 1081.000000000000000000
           Size.PlatformDefault = False
@@ -255,7 +255,7 @@ object form_hist_treinos_aluno: Tform_hist_treinos_aluno
                 end
               end
             end
-            object btn_imp_ficha: TRectangle
+            object btn_imp_treino: TRectangle
               Cursor = crHandPoint
               Fill.Color = xFF03223F
               Position.X = 51.000000000000000000
@@ -266,10 +266,10 @@ object form_hist_treinos_aluno: Tform_hist_treinos_aluno
               Stroke.Color = claBlanchedalmond
               XRadius = 10.000000000000000000
               YRadius = 10.000000000000000000
-              OnClick = btn_imp_fichaClick
-              OnMouseEnter = btn_imp_fichaMouseEnter
-              OnMouseLeave = btn_imp_fichaMouseLeave
-              object lbl_btn_imp_ficha: TLabel
+              OnClick = btn_imp_treinoClick
+              OnMouseEnter = btn_imp_treinoMouseEnter
+              OnMouseLeave = btn_imp_treinoMouseLeave
+              object lbl_btn_imp_treino: TLabel
                 Align = Client
                 StyledSettings = [Style]
                 Margins.Left = 5.000000000000000000
@@ -283,7 +283,7 @@ object form_hist_treinos_aluno: Tform_hist_treinos_aluno
                 TextSettings.Font.Size = 20.000000000000000000
                 TextSettings.FontColor = claBlanchedalmond
                 TextSettings.HorzAlign = Center
-                Text = 'Imprimir Ficha'
+                Text = 'Imprimir Treino'
                 TabOrder = 0
               end
             end

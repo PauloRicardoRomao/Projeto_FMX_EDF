@@ -14,7 +14,69 @@ object dm_principal: Tdm_principal
   object ado_proc_cad_aluno_info_basic: TADOStoredProc
     Connection = ado_connection
     ProcedureName = 'SP_CADASTRO_ALUNO;1'
-    Parameters = <>
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@ID_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+      end
+      item
+        Name = '@NOME_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = '@DATA_NASCIMENTO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        Size = 10
+      end
+      item
+        Name = '@SEXO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = '@ALTURA_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@PESO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@OBJETIVO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = '@NIVEL_ATIVIDADE_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = '@FOTO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftVarBytes
+        Size = 2147483647
+      end>
     Left = 184
     Top = 32
   end
@@ -41,10 +103,44 @@ object dm_principal: Tdm_principal
   end
   object ado_proc_consulta_alunos: TADOStoredProc
     Connection = ado_connection
+    CursorType = ctStatic
     ProcedureName = 'SP_CONSULTA_DADOS_PESSOAIS_ALUNO'
     Parameters = <>
     Left = 184
     Top = 152
+    object ado_proc_consulta_alunosID_ALUNO: TAutoIncField
+      FieldName = 'ID_ALUNO'
+      ReadOnly = True
+    end
+    object ado_proc_consulta_alunosNOME_ALUNO: TStringField
+      FieldName = 'NOME_ALUNO'
+      Size = 255
+    end
+    object ado_proc_consulta_alunosDATA_NASCIMENTO_ALUNO: TWideStringField
+      FieldName = 'DATA_NASCIMENTO_ALUNO'
+      Size = 10
+    end
+    object ado_proc_consulta_alunosSEXO_ALUNO: TStringField
+      FieldName = 'SEXO_ALUNO'
+      Size = 15
+    end
+    object ado_proc_consulta_alunosALTURA_ALUNO: TBCDField
+      FieldName = 'ALTURA_ALUNO'
+      Precision = 5
+      Size = 2
+    end
+    object ado_proc_consulta_alunosPESO_ALUNO: TBCDField
+      FieldName = 'PESO_ALUNO'
+      Precision = 5
+      Size = 2
+    end
+    object ado_proc_consulta_alunosOBJETIVO_ALUNO: TStringField
+      FieldName = 'OBJETIVO_ALUNO'
+      Size = 255
+    end
+    object ado_proc_consulta_alunosFOTO_ALUNO: TBlobField
+      FieldName = 'FOTO_ALUNO'
+    end
   end
   object ado_proc_consulta_completa_alunos: TADOStoredProc
     Connection = ado_connection
@@ -164,8 +260,7 @@ object dm_principal: Tdm_principal
     end
     object ado_query_consulta_completa_alunoSEXO_ALUNO: TStringField
       FieldName = 'SEXO_ALUNO'
-      FixedChar = True
-      Size = 1
+      Size = 15
     end
     object ado_query_consulta_completa_alunoALTURA_ALUNO: TBCDField
       FieldName = 'ALTURA_ALUNO'
@@ -181,8 +276,9 @@ object dm_principal: Tdm_principal
       FieldName = 'OBJETIVO_ALUNO'
       Size = 255
     end
-    object ado_query_consulta_completa_alunoNIVEL_ATIVIDADE_ALUNO: TIntegerField
+    object ado_query_consulta_completa_alunoNIVEL_ATIVIDADE_ALUNO: TStringField
       FieldName = 'NIVEL_ATIVIDADE_ALUNO'
+      Size = 25
     end
     object ado_query_consulta_completa_alunoFOTO_ALUNO: TBlobField
       FieldName = 'FOTO_ALUNO'
@@ -386,8 +482,7 @@ object dm_principal: Tdm_principal
     end
     object ado_query_consulta_alunoSEXO_ALUNO: TStringField
       FieldName = 'SEXO_ALUNO'
-      FixedChar = True
-      Size = 1
+      Size = 15
     end
     object ado_query_consulta_alunoALTURA_ALUNO: TBCDField
       FieldName = 'ALTURA_ALUNO'
@@ -403,8 +498,9 @@ object dm_principal: Tdm_principal
       FieldName = 'OBJETIVO_ALUNO'
       Size = 255
     end
-    object ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO: TIntegerField
+    object ado_query_consulta_alunoNIVEL_ATIVIDADE_ALUNO: TStringField
       FieldName = 'NIVEL_ATIVIDADE_ALUNO'
+      Size = 25
     end
     object ado_query_consulta_alunoFOTO_ALUNO: TBlobField
       FieldName = 'FOTO_ALUNO'

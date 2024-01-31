@@ -16,7 +16,7 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
   DesignerMasterStyle = 0
   object pnl_fundo: TRectangle
     Align = Client
-    Fill.Color = xFFC0D1C2
+    Fill.Color = xFFC1C0AE
     Size.Width = 1200.000000000000000000
     Size.Height = 600.000000000000000000
     Size.PlatformDefault = False
@@ -151,7 +151,7 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
         Viewport.Height = 650.000000000000000000
         object S: TRectangle
           Align = MostTop
-          Fill.Color = xFFC0D1C2
+          Fill.Color = xFFC1C0AE
           Size.Width = 1184.000000000000000000
           Size.Height = 625.000000000000000000
           Size.PlatformDefault = False
@@ -181,7 +181,7 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
                 TabOrder = 6
                 object edt_grup_dia: TEdit
                   Touch.InteractiveGestures = [LongTap, DoubleTap]
-                  TabOrder = 4
+                  TabOrder = 3
                   ReadOnly = True
                   TextSettings.Font.Family = 'Arial'
                   TextSettings.Font.Size = 18.000000000000000000
@@ -210,6 +210,8 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
                 XRadius = 10.000000000000000000
                 YRadius = 10.000000000000000000
                 OnClick = btn_add_espec_fichaClick
+                OnMouseEnter = btn_add_espec_fichaMouseEnter
+                OnMouseLeave = btn_add_espec_fichaMouseLeave
                 object lbl_btn_add_espec_ficha: TLabel
                   Align = Client
                   StyledSettings = [Style]
@@ -238,7 +240,7 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
               Margins.Right = 20.000000000000000000
               Margins.Bottom = 10.000000000000000000
               Position.X = 20.000000000000000000
-              Position.Y = 270.000000000000000000
+              Position.Y = 195.000000000000000000
               Size.Width = 460.000000000000000000
               Size.Height = 55.000000000000000000
               Size.PlatformDefault = False
@@ -246,6 +248,8 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
               XRadius = 10.000000000000000000
               YRadius = 10.000000000000000000
               OnClick = btn_exportar_compClick
+              OnMouseEnter = btn_exportar_compMouseEnter
+              OnMouseLeave = btn_exportar_compMouseLeave
               object lbl_btn_exportar_comp: TLabel
                 Align = Client
                 StyledSettings = [Style]
@@ -278,8 +282,11 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
               Size.Height = 55.000000000000000000
               Size.PlatformDefault = False
               Stroke.Color = claBlanchedalmond
+              Visible = False
               XRadius = 10.000000000000000000
               YRadius = 10.000000000000000000
+              OnMouseEnter = btn_exportar_enviarMouseEnter
+              OnMouseLeave = btn_exportar_enviarMouseLeave
               object lbl_btn_exportar_enviar: TLabel
                 Align = Client
                 StyledSettings = [Style]
@@ -307,7 +314,7 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
               Margins.Right = 20.000000000000000000
               Margins.Bottom = 10.000000000000000000
               Position.X = 20.000000000000000000
-              Position.Y = 345.000000000000000000
+              Position.Y = 270.000000000000000000
               Size.Width = 460.000000000000000000
               Size.Height = 55.000000000000000000
               Size.PlatformDefault = False
@@ -315,6 +322,8 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
               XRadius = 10.000000000000000000
               YRadius = 10.000000000000000000
               OnClick = btn_exportar_ficha_diaClick
+              OnMouseEnter = btn_exportar_ficha_diaMouseEnter
+              OnMouseLeave = btn_exportar_ficha_diaMouseLeave
               object lbl_btn_exportar_ficha_dia: TLabel
                 Align = Client
                 StyledSettings = [Style]
@@ -336,7 +345,7 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
           end
           object pnl_fun_ficha_treino: TRectangle
             Align = MostRight
-            Fill.Color = xFFC0D1C2
+            Fill.Color = xFFC1C0AE
             Position.X = 684.000000000000000000
             Size.Width = 500.000000000000000000
             Size.Height = 625.000000000000000000
@@ -363,7 +372,7 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
             end
             object pnl_fund_menu_ficha: TRectangle
               Align = Bottom
-              Fill.Color = xFFC0D1C2
+              Fill.Color = xFFC1C0AE
               Position.Y = 525.000000000000000000
               Size.Width = 500.000000000000000000
               Size.Height = 100.000000000000000000
@@ -379,6 +388,8 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
                 Stroke.Color = claBlanchedalmond
                 XRadius = 10.000000000000000000
                 YRadius = 10.000000000000000000
+                OnMouseEnter = btn_alt_ord_exeMouseEnter
+                OnMouseLeave = btn_alt_ord_exeMouseLeave
                 object lbl_btn_alt_ord_exe: TLabel
                   Align = Client
                   StyledSettings = [Style]
@@ -408,6 +419,8 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
                 Stroke.Color = claBlanchedalmond
                 XRadius = 10.000000000000000000
                 YRadius = 10.000000000000000000
+                OnMouseEnter = btn_rem_fichaMouseEnter
+                OnMouseLeave = btn_rem_fichaMouseLeave
                 object lbl_btn_rem_ficha: TLabel
                   Align = Client
                   StyledSettings = [Style]
@@ -445,8 +458,8 @@ object form_consulta_treino_atual: Tform_consulta_treino_atual
               TabOrder = 1
               RowCount = 0
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-              Viewport.Width = 476.000000000000000000
-              Viewport.Height = 411.000000000000000000
+              Viewport.Width = 480.000000000000000000
+              Viewport.Height = 436.000000000000000000
               object NavigatorBindSourceDB2: TBindNavigator
                 Position.X = 16.000000000000000000
                 Position.Y = 376.000000000000000000

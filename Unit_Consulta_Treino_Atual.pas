@@ -56,6 +56,18 @@ type
     procedure btn_add_espec_fichaClick(Sender: TObject);
     procedure btn_exportar_compClick(Sender: TObject);
     procedure btn_exportar_ficha_diaClick(Sender: TObject);
+    procedure btn_rem_fichaMouseEnter(Sender: TObject);
+    procedure btn_alt_ord_exeMouseEnter(Sender: TObject);
+    procedure btn_exportar_enviarMouseEnter(Sender: TObject);
+    procedure btn_exportar_compMouseEnter(Sender: TObject);
+    procedure btn_exportar_ficha_diaMouseEnter(Sender: TObject);
+    procedure btn_exportar_enviarMouseLeave(Sender: TObject);
+    procedure btn_exportar_compMouseLeave(Sender: TObject);
+    procedure btn_exportar_ficha_diaMouseLeave(Sender: TObject);
+    procedure btn_rem_fichaMouseLeave(Sender: TObject);
+    procedure btn_alt_ord_exeMouseLeave(Sender: TObject);
+    procedure btn_add_espec_fichaMouseLeave(Sender: TObject);
+    procedure btn_add_espec_fichaMouseEnter(Sender: TObject);
   private
     { Private declarations }
     SelectedButton : TRectangle;
@@ -85,6 +97,7 @@ uses Unit_DM_Treino, Unit_Popup_Card_Aluno, Unit_Dia_Ficha_Treino;
 procedure Tform_consulta_treino_atual.FormCreate(Sender: TObject);
 begin
   Criabtn_menu;
+  tit_fund_ficha.Text := 'Ficha A';
 end;
 
 procedure Tform_consulta_treino_atual.Criabtn_menu;
@@ -174,6 +187,18 @@ begin
     TRectangle(Sender).Fill.Color := $FFFFFFFF;
 end;
 
+procedure Tform_consulta_treino_atual.btn_rem_fichaMouseEnter(Sender: TObject);
+begin
+  btn_rem_ficha.Fill.Color := $FF214358;
+  lbl_btn_rem_ficha.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_consulta_treino_atual.btn_rem_fichaMouseLeave(Sender: TObject);
+begin
+  btn_rem_ficha.Fill.Color := $FF03223F;
+  lbl_btn_rem_ficha.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
 procedure Tform_consulta_treino_atual.btn_add_espec_fichaClick(Sender: TObject);
 begin
   form_dia_ficha_treino := Tform_dia_ficha_treino.Create(Application);
@@ -181,9 +206,119 @@ begin
   form_dia_ficha_treino.ShowModal;
 end;
 
+procedure Tform_consulta_treino_atual.btn_add_espec_fichaMouseEnter(
+  Sender: TObject);
+begin
+  btn_add_espec_ficha.Fill.Color := $FF214358;
+  lbl_btn_add_espec_ficha.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_consulta_treino_atual.btn_add_espec_fichaMouseLeave(
+  Sender: TObject);
+begin
+  btn_add_espec_ficha.Fill.Color := $FF03223F;
+  lbl_btn_add_espec_ficha.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_consulta_treino_atual.btn_alt_ord_exeMouseEnter(
+  Sender: TObject);
+begin
+  btn_alt_ord_exe.Fill.Color := $FF214358;
+  lbl_btn_alt_ord_exe.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_consulta_treino_atual.btn_alt_ord_exeMouseLeave(
+  Sender: TObject);
+begin
+  btn_alt_ord_exe.Fill.Color := $FF03223F;
+  lbl_btn_alt_ord_exe.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
 procedure Tform_consulta_treino_atual.btn_exportar_compClick(Sender: TObject);
 begin
   Exportar_XLSX;
+end;
+
+procedure Tform_consulta_treino_atual.btn_exportar_compMouseEnter(
+  Sender: TObject);
+begin
+  btn_exportar_comp.Fill.Color := $FF214358;
+  lbl_btn_exportar_comp.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_consulta_treino_atual.btn_exportar_compMouseLeave(
+  Sender: TObject);
+begin
+  btn_exportar_comp.Fill.Color := $FF03223F;
+  lbl_btn_exportar_comp.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_consulta_treino_atual.btn_exportar_enviarMouseEnter(
+  Sender: TObject);
+begin
+  btn_exportar_enviar.Fill.Color := $FF214358;
+  lbl_btn_exportar_enviar.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_consulta_treino_atual.btn_exportar_enviarMouseLeave(
+  Sender: TObject);
+begin
+  btn_exportar_enviar.Fill.Color := $FF03223F;
+  lbl_btn_exportar_enviar.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_consulta_treino_atual.btn_menuClick(Sender: TObject);
+var
+  label_text : string;
+  Index: Integer;
+  IDAssociado: Integer;
+begin
+  FSelectedButton := TRectangle(Sender);
+
+  if Assigned(SelectedButton) then
+  begin
+    SelectedButton.Fill.Color := $FFFFFFFF;
+  end;
+
+  SelectedButton := TRectangle(Sender);
+  TRectangle(Sender).Fill.Color := $FF9FB1F5;
+
+  Index := SelectedButton.Tag;
+
+  IDAssociado := Index;
+  treino_dia := Index;
+
+  try
+    with dm_treino do
+    begin
+      with ado_query_ficha_treino do
+      begin
+        Close;
+        Parameters.ParamByName('TREINO_DIA').Value := IDAssociado;
+        Open;
+      end;
+      if (ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString <> '') or (ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString <> 'null') then
+      begin
+        espec_treino_dia := ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString;
+        btn_add_espec_ficha.Enabled := False;
+      end
+      else
+      begin
+        espec_treino_dia := '';
+        btn_add_espec_ficha.Enabled := True;
+      end;
+      with ado_query_dia_treino do
+      begin
+        Close;
+        Parameters.ParamByName('ID_TREINO_DIA').Value := IDAssociado;
+        Open;
+        tit_fund_ficha.Text := ado_query_dia_treinoFICHA_TREINO_DIA.AsString;
+      end;
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+  end;
 end;
 
 procedure Tform_consulta_treino_atual.btn_exportar_ficha_diaClick(
@@ -203,7 +338,7 @@ begin
     planilha.Workbooks.Add(1);
 
     planilha.Sheets.Add;
-    planilha.Sheets[linha].Name := ado_query_ficha_treinoFICHA_TREINO_DIA.AsString;
+    planilha.Sheets[linha].Name := dm_treino.ado_query_ficha_treinoFICHA_TREINO_DIA.AsString;
 
 
 
@@ -252,62 +387,19 @@ begin
        end;
 end;
 
-procedure Tform_consulta_treino_atual.btn_menuClick(Sender: TObject);
-var
-  label_text : string;
-  Index: Integer;
-  IDAssociado: Integer;
+procedure Tform_consulta_treino_atual.btn_exportar_ficha_diaMouseEnter(
+  Sender: TObject);
 begin
-  FSelectedButton := TRectangle(Sender);
-
-  if Assigned(SelectedButton) then
-  begin
-    SelectedButton.Fill.Color := $FFFFFFFF;
-  end;
-
-  SelectedButton := TRectangle(Sender);
-  TRectangle(Sender).Fill.Color := $FF9FB1F5;
-
-  Index := SelectedButton.Tag;
-
-  IDAssociado := Index;
-  treino_dia := Index;
-
-  try
-    with dm_treino do
-    begin
-      with ado_query_ficha_treino do
-      begin
-        Close;
-        Parameters.ParamByName('TREINO_DIA').Value := IDAssociado;
-        Open;
-      end;
-      if (ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString <> '') or (ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString <> 'null') then
-      begin
-        espec_treino_dia := ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString;
-        btn_add_espec_ficha.Enabled := False;
-      end
-      else
-      begin
-        espec_treino_dia := '';
-        btn_add_espec_ficha.Enabled := True;
-      end;
-      lbl_tit_fun_consulta_treino.Text := ado_query_ficha_treinoFICHA_TREINO_DIA.AsString;
-    end;
-  except
-    on E: Exception do
-      ShowMessage('Erro: ' + E.Message);
-  end;
-
+  btn_exportar_ficha_dia.Fill.Color := $FF214358;
+  lbl_btn_exportar_ficha_dia.TextSettings.FontColor := $FFFFFFFF;
 end;
 
-procedure Tform_consulta_treino_atual.FormClose(Sender: TObject;
-  var Action: TCloseAction);
+procedure Tform_consulta_treino_atual.btn_exportar_ficha_diaMouseLeave(
+  Sender: TObject);
 begin
-  form_consulta_treino_atual := Nil;
-  form_consulta_treino_atual.Free;
+  btn_exportar_ficha_dia.Fill.Color := $FF03223F;
+  lbl_btn_exportar_ficha_dia.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
 end;
-
 
 procedure Tform_consulta_treino_atual.Exportar_XLSX;
 var
@@ -390,6 +482,13 @@ begin
       ShowMessage('Erro ao preencher detalhes do treino do dia: ' + E.Message);
   end;
 
+end;
+
+procedure Tform_consulta_treino_atual.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  form_consulta_treino_atual := Nil;
+  form_consulta_treino_atual.Free;
 end;
 
 end.

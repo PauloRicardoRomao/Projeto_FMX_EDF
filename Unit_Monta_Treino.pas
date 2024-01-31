@@ -142,7 +142,13 @@ begin
         espec_treino_dia := ado_query_ficha_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString
       else
         espec_treino_dia := '';
-      lbl_tit_fun_cad_treino.Text := ado_query_ficha_treinoFICHA_TREINO_DIA.AsString;
+      with ado_query_dia_treino do
+      begin
+        Close;
+        Parameters.ParamByName('ID_TREINO_DIA').Value := IDAssociado;
+        Open;
+        tit_fund_ficha.Text := ado_query_dia_treinoFICHA_TREINO_DIA.AsString;
+      end;
     end;
   except
     on E: Exception do
@@ -240,7 +246,7 @@ begin
   id_treino := form_info_bsc_treino.id_treino;
   Criabtn_menu;
   btn_ficha_p_cad.Visible := False;
-
+  tit_fund_ficha.Text := 'Ficha A';
 
   try
     with dm_treino do
