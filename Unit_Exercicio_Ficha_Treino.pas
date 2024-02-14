@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
   FMX.ScrollBox, FMX.Memo, FMX.Edit, FMX.Controls.Presentation, FMX.StdCtrls,
-  FMX.Objects;
+  FMX.Objects, FMX.Layouts;
 
 type
   Tform_exercicio_ficha_treino = class(TForm)
@@ -27,6 +27,7 @@ type
     edt_tempo: TEdit;
     btn_gravar: TRectangle;
     lbl_btn_gravar: TLabel;
+    Layout1: TLayout;
     procedure btn_gravarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_gravarMouseEnter(Sender: TObject);

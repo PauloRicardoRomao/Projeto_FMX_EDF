@@ -1,11 +1,12 @@
 object form_cards_alunos: Tform_cards_alunos
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = None
   ClientHeight = 597
-  ClientWidth = 637
-  Position = DesktopCenter
+  ClientWidth = 1000
+  Position = MainFormCenter
   StyleBook = StyleBook1
-  WindowState = wsMaximized
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -14,13 +15,13 @@ object form_cards_alunos: Tform_cards_alunos
   DesignerMasterStyle = 0
   object pnl_fundo: TRectangle
     Align = Client
-    Fill.Color = xFFC1C0AE
-    Size.Width = 637.000000000000000000
+    Fill.Color = claAliceblue
+    Size.Width = 1000.000000000000000000
     Size.Height = 597.000000000000000000
     Size.PlatformDefault = False
     object pnl_header: TPanel
       Align = MostTop
-      Size.Width = 637.000000000000000000
+      Size.Width = 1000.000000000000000000
       Size.Height = 97.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'pnl_header_style'
@@ -72,7 +73,7 @@ object form_cards_alunos: Tform_cards_alunos
         TabOrder = 2
         object edt_filtro: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 3
+          TabOrder = 4
           TextSettings.Font.Family = 'Arial'
           TextSettings.Font.Size = 16.000000000000000000
           Position.X = 51.000000000000000000
@@ -86,11 +87,11 @@ object form_cards_alunos: Tform_cards_alunos
     end
     object scr_box: TScrollBox
       Align = Client
-      Size.Width = 637.000000000000000000
+      Size.Width = 1000.000000000000000000
       Size.Height = 500.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
-      Viewport.Width = 637.000000000000000000
+      Viewport.Width = 1000.000000000000000000
       Viewport.Height = 500.000000000000000000
     end
   end

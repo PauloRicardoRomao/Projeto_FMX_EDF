@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Edit;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Edit, FMX.Layouts;
 
 type
   Tform_cadastro_usuario = class(TForm)
@@ -20,6 +20,7 @@ type
     edt_senha: TEdit;
     edt_usuario: TEdit;
     edt_chave_acesso: TEdit;
+    Layout1: TLayout;
     procedure btn_gravarMouseEnter(Sender: TObject);
     procedure btn_gravarMouseLeave(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

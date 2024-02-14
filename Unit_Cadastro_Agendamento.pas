@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
   FMX.Edit, FMX.ScrollBox, FMX.Memo, FMX.ListBox, FMX.Controls.Presentation,
-  FMX.StdCtrls, FMX.Objects, FMX.DateTimeCtrls;
+  FMX.StdCtrls, FMX.Objects, FMX.DateTimeCtrls, FMX.Layouts;
 
 type
   Tform_cadastro_agendamento = class(TForm)
@@ -20,6 +20,7 @@ type
     lbl_btn_gravar: TLabel;
     edt_data: TDateEdit;
     edt_hora: TTimeEdit;
+    Layout1: TLayout;
     procedure btn_gravarMouseEnter(Sender: TObject);
     procedure btn_gravarMouseLeave(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -123,8 +124,8 @@ procedure Tform_cadastro_agendamento.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   LimparControlesDentroDoRectangle(pnl_fun_cad_agendamento);
-  form_cards_alunos := Nil;
-  form_cards_alunos.Free;
+  //form_cards_alunos := Nil;
+  //form_cards_alunos.Free;
   form_cadastro_agendamento := Nil;
   form_cadastro_agendamento.Free;
 end;

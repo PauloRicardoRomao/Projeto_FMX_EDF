@@ -91,6 +91,20 @@ type
     ado_query_dia_treinoGRUPO_MUSCULAR_TREINO_DIA: TStringField;
     ado_query_dia_treinoDATA_INCLUSAO_TREINO_DIA: TDateTimeField;
     ado_query_dia_treinoFLAG_ATIVO: TBooleanField;
+    ado_query_grup_musc_auxiliar: TADOQuery;
+    ado_query_grup_musc_auxiliarID_GRUPO_MUSCULAR: TAutoIncField;
+    ado_query_grup_musc_auxiliarNOME_GRUPO_MUSCULAR: TStringField;
+    ado_proc_remove_exerc_ficha: TADOStoredProc;
+    ado_query_consulta_treino: TADOQuery;
+    ado_query_consulta_treinoID_TREINO: TAutoIncField;
+    ado_query_consulta_treinoALUNO_TREINO: TStringField;
+    ado_query_consulta_treinoNR_TREINO_ALUNO: TIntegerField;
+    ado_query_consulta_treinoMODELO_TREINO: TStringField;
+    ado_query_consulta_treinoFOCO_TREINO: TMemoField;
+    ado_query_consulta_treinoNOME_ALUNO: TStringField;
+    ado_query_consulta_treinoID_TREINO_DIA: TAutoIncField;
+    ado_query_consulta_treinoFICHA_TREINO_DIA: TStringField;
+    ado_query_consulta_treinoGRUPO_MUSCULAR_TREINO_DIA: TStringField;
   private
     { Private declarations }
   public

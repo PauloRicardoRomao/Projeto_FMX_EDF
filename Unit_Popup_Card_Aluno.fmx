@@ -13,246 +13,253 @@ object form_popup_card_aluno: Tform_popup_card_aluno
   FormFactor.Devices = [Desktop]
   OnClose = FormClose
   DesignerMasterStyle = 0
-  object pnl_ppp_card_aluno: TRectangle
+  object Layout1: TLayout
     Align = Client
-    Fill.Color = xFF89A09A
     Size.Width = 464.000000000000000000
     Size.Height = 614.000000000000000000
     Size.PlatformDefault = False
-    Stroke.Kind = None
-    XRadius = 15.000000000000000000
-    YRadius = 15.000000000000000000
-    object btn_inf_aluno_ppp: TRectangle
-      StyleName = 'btn_menu_cards_style'
-      Align = MostTop
-      Cursor = crHandPoint
-      Fill.Color = xFF03223F
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 454.000000000000000000
-      Size.Height = 80.000000000000000000
+    TabOrder = 1
+    object pnl_ppp_card_aluno: TRectangle
+      Align = Client
+      Fill.Color = xFF89A09A
+      Size.Width = 464.000000000000000000
+      Size.Height = 614.000000000000000000
       Size.PlatformDefault = False
-      Stroke.Color = claBlanchedalmond
-      XRadius = 10.000000000000000000
-      YRadius = 10.000000000000000000
-      OnClick = btn_inf_aluno_pppClick
-      OnMouseEnter = btn_inf_aluno_pppMouseEnter
-      OnMouseLeave = btn_inf_aluno_pppMouseLeave
-      object lbl_btn_inf_aluno_ppp: TLabel
-        Align = Client
-        StyledSettings = []
+      Stroke.Kind = None
+      XRadius = 15.000000000000000000
+      YRadius = 15.000000000000000000
+      object btn_inf_aluno_ppp: TRectangle
+        StyleName = 'btn_menu_cards_style'
+        Align = MostTop
+        Cursor = crHandPoint
+        Fill.Color = xFF03223F
         Margins.Left = 5.000000000000000000
-        Margins.Top = 3.000000000000000000
+        Margins.Top = 10.000000000000000000
         Margins.Right = 5.000000000000000000
-        Margins.Bottom = 3.000000000000000000
-        Size.Width = 444.000000000000000000
-        Size.Height = 74.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 454.000000000000000000
+        Size.Height = 80.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 16.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.FontColor = claBlanchedalmond
-        TextSettings.HorzAlign = Center
-        Text = 'Informa'#231#245'es do Aluno'
-        TabOrder = 0
+        Stroke.Color = claBlanchedalmond
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+        OnClick = btn_inf_aluno_pppClick
+        OnMouseEnter = btn_inf_aluno_pppMouseEnter
+        OnMouseLeave = btn_inf_aluno_pppMouseLeave
+        object lbl_btn_inf_aluno_ppp: TLabel
+          Align = Client
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Size.Width = 444.000000000000000000
+          Size.Height = 74.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Arial'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claBlanchedalmond
+          TextSettings.HorzAlign = Center
+          Text = 'Informa'#231#245'es do Aluno'
+          TabOrder = 0
+        end
       end
-    end
-    object btn_cad_ficha_aluno_ppp: TRectangle
-      StyleName = 'btn_menu_cards_style'
-      Align = Top
-      Cursor = crHandPoint
-      Fill.Color = xFF03223F
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 210.000000000000000000
-      Size.Width = 454.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Color = claBlanchedalmond
-      XRadius = 10.000000000000000000
-      YRadius = 10.000000000000000000
-      OnClick = btn_cad_ficha_aluno_pppClick
-      OnMouseEnter = btn_cad_ficha_aluno_pppMouseEnter
-      OnMouseLeave = btn_cad_ficha_aluno_pppMouseLeave
-      object lbl_btn_cad_ficha_aluno_ppp: TLabel
-        Align = Client
-        StyledSettings = []
+      object btn_cad_ficha_aluno_ppp: TRectangle
+        StyleName = 'btn_menu_cards_style'
+        Align = Top
+        Cursor = crHandPoint
+        Fill.Color = xFF03223F
         Margins.Left = 5.000000000000000000
-        Margins.Top = 3.000000000000000000
+        Margins.Top = 10.000000000000000000
         Margins.Right = 5.000000000000000000
-        Margins.Bottom = 3.000000000000000000
-        Size.Width = 444.000000000000000000
-        Size.Height = 74.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 210.000000000000000000
+        Size.Width = 454.000000000000000000
+        Size.Height = 80.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 16.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.FontColor = claBlanchedalmond
-        TextSettings.HorzAlign = Center
-        Text = 'Cadastrar Ficha Consulta'
-        TabOrder = 0
+        Stroke.Color = claBlanchedalmond
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+        OnClick = btn_cad_ficha_aluno_pppClick
+        OnMouseEnter = btn_cad_ficha_aluno_pppMouseEnter
+        OnMouseLeave = btn_cad_ficha_aluno_pppMouseLeave
+        object lbl_btn_cad_ficha_aluno_ppp: TLabel
+          Align = Client
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Size.Width = 444.000000000000000000
+          Size.Height = 74.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Arial'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claBlanchedalmond
+          TextSettings.HorzAlign = Center
+          Text = 'Cadastrar Ficha Consulta'
+          TabOrder = 0
+        end
       end
-    end
-    object btn_cad_treino_aluno_ppp: TRectangle
-      StyleName = 'btn_menu_cards_style'
-      Align = Top
-      Cursor = crHandPoint
-      Fill.Color = xFF03223F
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 310.000000000000000000
-      Size.Width = 454.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Color = claBlanchedalmond
-      XRadius = 10.000000000000000000
-      YRadius = 10.000000000000000000
-      OnClick = btn_cad_treino_aluno_pppClick
-      OnMouseEnter = btn_cad_treino_aluno_pppMouseEnter
-      OnMouseLeave = btn_cad_treino_aluno_pppMouseLeave
-      object lbl_cad_treino_aluno_ppp: TLabel
-        Align = Client
-        StyledSettings = []
+      object btn_cad_treino_aluno_ppp: TRectangle
+        StyleName = 'btn_menu_cards_style'
+        Align = Top
+        Cursor = crHandPoint
+        Fill.Color = xFF03223F
         Margins.Left = 5.000000000000000000
-        Margins.Top = 3.000000000000000000
+        Margins.Top = 10.000000000000000000
         Margins.Right = 5.000000000000000000
-        Margins.Bottom = 3.000000000000000000
-        Size.Width = 444.000000000000000000
-        Size.Height = 74.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 310.000000000000000000
+        Size.Width = 454.000000000000000000
+        Size.Height = 80.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 16.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.FontColor = claBlanchedalmond
-        TextSettings.HorzAlign = Center
-        Text = 'Cadastrar Novo Treino'
-        TabOrder = 0
+        Stroke.Color = claBlanchedalmond
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+        OnClick = btn_cad_treino_aluno_pppClick
+        OnMouseEnter = btn_cad_treino_aluno_pppMouseEnter
+        OnMouseLeave = btn_cad_treino_aluno_pppMouseLeave
+        object lbl_cad_treino_aluno_ppp: TLabel
+          Align = Client
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Size.Width = 444.000000000000000000
+          Size.Height = 74.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Arial'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claBlanchedalmond
+          TextSettings.HorzAlign = Center
+          Text = 'Cadastrar Novo Treino'
+          TabOrder = 0
+        end
       end
-    end
-    object btn_hist_treino_aluno_ppp: TRectangle
-      StyleName = 'btn_menu_cards_style'
-      Align = Top
-      Cursor = crHandPoint
-      Fill.Color = xFF03223F
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 510.000000000000000000
-      Size.Width = 454.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Color = claBlanchedalmond
-      XRadius = 10.000000000000000000
-      YRadius = 10.000000000000000000
-      OnClick = btn_hist_treino_aluno_pppClick
-      OnMouseEnter = btn_hist_treino_aluno_pppMouseEnter
-      OnMouseLeave = btn_hist_treino_aluno_pppMouseLeave
-      object lbl_btn_hist_treino_aluno_ppp: TLabel
-        Align = Client
-        StyledSettings = []
+      object btn_hist_treino_aluno_ppp: TRectangle
+        StyleName = 'btn_menu_cards_style'
+        Align = Top
+        Cursor = crHandPoint
+        Fill.Color = xFF03223F
         Margins.Left = 5.000000000000000000
-        Margins.Top = 3.000000000000000000
+        Margins.Top = 10.000000000000000000
         Margins.Right = 5.000000000000000000
-        Margins.Bottom = 3.000000000000000000
-        Size.Width = 444.000000000000000000
-        Size.Height = 74.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 510.000000000000000000
+        Size.Width = 454.000000000000000000
+        Size.Height = 80.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 16.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.FontColor = claBlanchedalmond
-        TextSettings.HorzAlign = Center
-        Text = 'Hist'#243'rico de Treinos'
-        TabOrder = 0
+        Stroke.Color = claBlanchedalmond
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+        OnClick = btn_hist_treino_aluno_pppClick
+        OnMouseEnter = btn_hist_treino_aluno_pppMouseEnter
+        OnMouseLeave = btn_hist_treino_aluno_pppMouseLeave
+        object lbl_btn_hist_treino_aluno_ppp: TLabel
+          Align = Client
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Size.Width = 444.000000000000000000
+          Size.Height = 74.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Arial'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claBlanchedalmond
+          TextSettings.HorzAlign = Center
+          Text = 'Hist'#243'rico de Treinos'
+          TabOrder = 0
+        end
       end
-    end
-    object btn_hist_fichas_consultas_aluno_ppp: TRectangle
-      StyleName = 'btn_menu_cards_style'
-      Align = Top
-      Cursor = crHandPoint
-      Fill.Color = xFF03223F
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 410.000000000000000000
-      Size.Width = 454.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Color = claBlanchedalmond
-      XRadius = 10.000000000000000000
-      YRadius = 10.000000000000000000
-      OnMouseEnter = btn_hist_fichas_consultas_aluno_pppMouseEnter
-      OnMouseLeave = btn_hist_fichas_consultas_aluno_pppMouseLeave
-      object lbl_btn_hist_fichas_consultas_aluno_ppp: TLabel
-        Align = Client
-        StyledSettings = []
+      object btn_hist_fichas_consultas_aluno_ppp: TRectangle
+        StyleName = 'btn_menu_cards_style'
+        Align = Top
+        Cursor = crHandPoint
+        Fill.Color = xFF03223F
         Margins.Left = 5.000000000000000000
-        Margins.Top = 3.000000000000000000
+        Margins.Top = 10.000000000000000000
         Margins.Right = 5.000000000000000000
-        Margins.Bottom = 3.000000000000000000
-        Size.Width = 444.000000000000000000
-        Size.Height = 74.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 410.000000000000000000
+        Size.Width = 454.000000000000000000
+        Size.Height = 80.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 16.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.FontColor = claBlanchedalmond
-        TextSettings.HorzAlign = Center
-        Text = 'Hist'#243'rico de Fichas de Consulta'
-        TabOrder = 0
+        Stroke.Color = claBlanchedalmond
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+        OnMouseEnter = btn_hist_fichas_consultas_aluno_pppMouseEnter
+        OnMouseLeave = btn_hist_fichas_consultas_aluno_pppMouseLeave
+        object lbl_btn_hist_fichas_consultas_aluno_ppp: TLabel
+          Align = Client
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Size.Width = 444.000000000000000000
+          Size.Height = 74.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Arial'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claBlanchedalmond
+          TextSettings.HorzAlign = Center
+          Text = 'Hist'#243'rico de Fichas de Consulta'
+          TabOrder = 0
+        end
       end
-    end
-    object btn_treino_atual_ppp: TRectangle
-      StyleName = 'btn_menu_cards_style'
-      Align = Top
-      Cursor = crHandPoint
-      Fill.Color = xFF03223F
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 110.000000000000000000
-      Size.Width = 454.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Color = claBlanchedalmond
-      XRadius = 10.000000000000000000
-      YRadius = 10.000000000000000000
-      OnClick = btn_treino_atual_pppClick
-      OnMouseEnter = btn_treino_atual_pppMouseEnter
-      OnMouseLeave = btn_treino_atual_pppMouseLeave
-      object lbl_btn_treino_atual_ppp: TLabel
-        Align = Client
-        StyledSettings = []
+      object btn_treino_atual_ppp: TRectangle
+        StyleName = 'btn_menu_cards_style'
+        Align = Top
+        Cursor = crHandPoint
+        Fill.Color = xFF03223F
         Margins.Left = 5.000000000000000000
-        Margins.Top = 3.000000000000000000
+        Margins.Top = 10.000000000000000000
         Margins.Right = 5.000000000000000000
-        Margins.Bottom = 3.000000000000000000
-        Size.Width = 444.000000000000000000
-        Size.Height = 74.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 110.000000000000000000
+        Size.Width = 454.000000000000000000
+        Size.Height = 80.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Family = 'Arial'
-        TextSettings.Font.Size = 16.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.FontColor = claBlanchedalmond
-        TextSettings.HorzAlign = Center
-        Text = 'Treino Atual'
-        TabOrder = 0
+        Stroke.Color = claBlanchedalmond
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+        OnClick = btn_treino_atual_pppClick
+        OnMouseEnter = btn_treino_atual_pppMouseEnter
+        OnMouseLeave = btn_treino_atual_pppMouseLeave
+        object lbl_btn_treino_atual_ppp: TLabel
+          Align = Client
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Size.Width = 444.000000000000000000
+          Size.Height = 74.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Arial'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claBlanchedalmond
+          TextSettings.HorzAlign = Center
+          Text = 'Treino Atual'
+          TabOrder = 0
+        end
       end
     end
   end

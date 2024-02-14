@@ -57,6 +57,7 @@ type
     BindSourceDB1: TBindSourceDB;
     LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
     NavigatorBindSourceDB1: TBindNavigator;
+    Layout1: TLayout;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_menu_add_ficha_aMouseEnter(Sender: TObject);
     procedure btn_menu_add_ficha_aMouseLeave(Sender: TObject);
@@ -73,6 +74,9 @@ type
     procedure cbx_grup_muscularChange(Sender: TObject);
     procedure btn_ins_fichaClick(Sender: TObject);
     procedure btn_gravarClick(Sender: TObject);
+    procedure btn_rem_fichaClick(Sender: TObject);
+    procedure grid_ficha_treinoCellClick(const Column: TColumn;
+      const Row: Integer);
   private
     { Private declarations}
     SelectedButton : TRectangle;
@@ -148,6 +152,7 @@ begin
         Parameters.ParamByName('ID_TREINO_DIA').Value := IDAssociado;
         Open;
         tit_fund_ficha.Text := ado_query_dia_treinoFICHA_TREINO_DIA.AsString;
+        edt_grup_dia.Text := ado_query_dia_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString;
       end;
     end;
   except
@@ -268,6 +273,20 @@ begin
 
 end;
 
+procedure Tform_monta_treino.grid_ficha_treinoCellClick(const Column: TColumn;
+  const Row: Integer);
+begin
+  Try
+    if not dm_treino.ado_query_ficha_treinoID_EXERCICIO_TREINO.AsInteger > 0 then
+      btn_rem_ficha.Enabled := True
+    else
+      btn_rem_ficha.Enabled := False;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+  end;
+end;
+
 procedure Tform_monta_treino.ShowEspecTreinoDia;
 begin
   form_dia_ficha_treino := Tform_dia_ficha_treino.Create(Application);
@@ -277,7 +296,7 @@ end;
 procedure Tform_monta_treino.btn_add_espec_fichaClick(Sender: TObject);
 begin
   form_dia_ficha_treino := Tform_dia_ficha_treino.Create(Application);
-  form_dia_ficha_treino.id_treino_dia := id_treino;
+  form_dia_ficha_treino.id_treino_dia := treino_dia;
   form_dia_ficha_treino.ShowModal;
 end;
 
@@ -341,6 +360,29 @@ procedure Tform_monta_treino.btn_menu_add_ficha_aMouseLeave(Sender: TObject);
 begin
   btn_menu_add_ficha_a.Fill.Color := $FFFFFFFF;
   lbl_btn_menu_add_ficha_a.TextSettings.FontColor := $00000080;
+end;
+
+procedure Tform_monta_treino.btn_rem_fichaClick(Sender: TObject);
+begin
+  try
+    with dm_treino do
+    begin
+      with ado_proc_remove_exerc_ficha do
+      begin
+        Parameters.ParamByName('@ID_EXERCICIO_TREINO').Value := ado_query_ficha_treinoID_EXERCICIO_TREINO.AsInteger;
+        ExecProc;
+      end;
+      with ado_query_ficha_treino do
+      begin
+        Close;
+        Parameters.ParamByName('TREINO_DIA').Value := treino_dia;
+        Open;
+      end;
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+  end;
 end;
 
 procedure Tform_monta_treino.btn_rem_fichaMouseEnter(Sender: TObject);

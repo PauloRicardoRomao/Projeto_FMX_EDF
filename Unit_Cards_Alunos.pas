@@ -32,6 +32,7 @@ type
   public
     { Public declarations }
     id_aluno, v_agendamento : integer;
+    function Recursos(pnl_menu : TForm) : Tform_cards_alunos;
   end;
 
 var
@@ -187,6 +188,14 @@ procedure Tform_cards_alunos.FormClose(Sender: TObject;
 begin
   form_cards_alunos := nil;
   form_cards_alunos.Free;
+end;
+
+
+
+function Tform_cards_alunos.Recursos(pnl_menu : TForm) : Tform_cards_alunos;
+begin
+  Result := Self;
+  pnl_menu := Tform_cards_alunos.Create(Self);
 end;
 
 end.

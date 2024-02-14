@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Layouts;
 
 type
   Tform_popup_card_aluno = class(TForm)
@@ -22,6 +22,7 @@ type
     lbl_btn_hist_fichas_consultas_aluno_ppp: TLabel;
     btn_treino_atual_ppp: TRectangle;
     lbl_btn_treino_atual_ppp: TLabel;
+    Layout1: TLayout;
     procedure btn_cad_ficha_aluno_pppMouseEnter(Sender: TObject);
     procedure btn_cad_ficha_aluno_pppMouseLeave(Sender: TObject);
     procedure btn_inf_aluno_pppMouseLeave(Sender: TObject);
@@ -154,33 +155,59 @@ procedure Tform_popup_card_aluno.btn_treino_atual_pppClick(Sender: TObject);
 var
   j : integer;
 begin
+  j := 0;
   i := 0;
-  with dm_treino do
-  begin
-    ado_proc_consulta_treino_atual.Parameters.ParamByName('@ID_ALUNO').Value := id_aluno;
-    ado_proc_consulta_treino_atual.ExecProc;
-    ado_query_consulta_aluno_auxiliar.Close;
-    ado_query_consulta_aluno_auxiliar.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
-    ado_query_consulta_aluno_auxiliar.Open;
-    ado_proc_consulta_treino_atual.Open;
-    with ado_proc_consulta_treino_atual do
+  try
+    with dm_treino do
     begin
-      while not ado_proc_consulta_treino_atual.Eof do
+      ado_proc_consulta_treino_atual.Parameters.ParamByName('@ID_ALUNO').Value := id_aluno;
+      ado_proc_consulta_treino_atual.ExecProc;
+
+
+      ado_query_consulta_aluno_auxiliar.Close;
+      ado_query_consulta_aluno_auxiliar.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+      ado_query_consulta_aluno_auxiliar.Open;
+      ado_proc_consulta_treino_atual.Open;
+      {with ado_proc_consulta_treino_atual do
       begin
-        j := ado_proc_consulta_treino_atual.FieldByName('ID_TREINO_DIA').AsInteger;
-        i := i + 1;
-        ado_proc_consulta_treino_atual.Next;
+        ado_proc_consulta_treino_atual.Parameters.ParamByName('@ID_ALUNO').Value := id_aluno;
+        ado_proc_consulta_treino_atual.ExecProc;
+        ado_proc_consulta_treino_atual.First;
+        while not ado_proc_consulta_treino_atual.Eof do
+        begin
+          j := ado_proc_consulta_treino_atual.FieldByName('ID_TREINO_DIA').AsInteger;
+          i := i + 1;
+          ado_proc_consulta_treino_atual.Next;
+        end;
+      end; }
+      with ado_query_consulta_treino do
+      begin
+        ado_query_consulta_treino.Close;
+        ado_query_consulta_treino.Parameters.ParamByName('ID_ALUNO').Value := id_aluno;
+        ado_query_consulta_treino.Open;
+        while not ado_query_consulta_treino.Eof do
+        begin
+          j := ado_query_consulta_treinoID_TREINO_DIA.AsInteger;
+          i := i + 1;
+          ado_query_consulta_treino.Next;
+        end;
       end;
+      form_consulta_treino_atual := Tform_consulta_treino_atual.Create(Application);
+      with form_consulta_treino_atual do
+      begin
+        lbl_tit_fun_consulta_treino.Text := form_consulta_treino_atual.lbl_tit_fun_consulta_treino.Text + ado_query_consulta_aluno_auxiliarNOME_ALUNO.AsString;
+        //lbl_mdl_treino.Text := lbl_mdl_treino.Text + ' ' + ado_proc_consulta_treino_atual.FieldByName('MODELO_TREINO').AsString;
+        //lbl_fco_treino.Text := lbl_fco_treino.Text + ' ' + ado_proc_consulta_treino_atual.FieldByName('FOCO_TREINO').AsString;
+        lbl_mdl_treino.Text := lbl_mdl_treino.Text + ' ' + ado_query_consulta_treinoMODELO_TREINO.AsString;
+        lbl_fco_treino.Text := lbl_fco_treino.Text + ' ' + ado_query_consulta_treinoFOCO_TREINO.AsString;
+      end;
+      form_consulta_treino_atual.ShowModal
     end;
-    form_consulta_treino_atual := Tform_consulta_treino_atual.Create(Application);
-    with form_consulta_treino_atual do
-    begin
-      lbl_tit_fun_consulta_treino.Text := form_consulta_treino_atual.lbl_tit_fun_consulta_treino.Text + ado_query_consulta_aluno_auxiliarNOME_ALUNO.AsString;
-      lbl_mdl_treino.Text := lbl_mdl_treino.Text + ' ' + ado_proc_consulta_treino_atual.FieldByName('MODELO_TREINO').AsString;
-      lbl_fco_treino.Text := lbl_fco_treino.Text + ' ' + ado_proc_consulta_treino_atual.FieldByName('FOCO_TREINO').AsString;
-    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
   end;
-  form_consulta_treino_atual.ShowModal
+
 end;
 
 procedure Tform_popup_card_aluno.btn_treino_atual_pppMouseEnter(
