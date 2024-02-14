@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
   FMX.Edit, FMX.ScrollBox, FMX.Memo, FMX.ListBox, FMX.Controls.Presentation,
-  FMX.StdCtrls, FMX.Objects, FMX.Menus;
+  FMX.StdCtrls, FMX.Objects, FMX.Menus, FMX.Layouts;
 
 type
   Tform_login = class(TForm)
@@ -23,6 +23,7 @@ type
     MainMenu1: TMainMenu;
     btn_menu_prim_acesso: TMenuItem;
     btn_menu_ajuda: TMenuItem;
+    Layout1: TLayout;
     procedure btn_entrarMouseEnter(Sender: TObject);
     procedure btn_entrarMouseLeave(Sender: TObject);
     procedure btn_entrarClick(Sender: TObject);
@@ -43,7 +44,8 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_Cadastro_Usuario, Unit_Menu_Principal, Unit_DM_Principal;
+uses Unit_Cadastro_Usuario, Unit_Menu_Principal, Unit_DM_Principal,
+  Unit_Menu_Novo;
 
 
 procedure Tform_login.FormCreate(Sender: TObject);
@@ -84,9 +86,12 @@ begin
         ado_query_login.Open;
         if ado_query_login.RecordCount > 0 then
         begin
-          form_menu_principal := Tform_menu_principal.Create(Application);
+         { form_menu_principal := Tform_menu_principal.Create(Application);
           //form_login.Hide;
           form_menu_principal.ShowModal;
+          form_login.Close;  }
+          form_menu_novo := Tform_menu_novo.Create(Application);
+          form_menu_novo.ShowModal;
           form_login.Close;
         end
         else

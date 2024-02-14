@@ -10,42 +10,36 @@ object dm_treino: Tdm_treino
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
-        Value = 0
       end
       item
         Name = '@ALUNO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 255
-        Value = Null
       end
       item
         Name = '@NR_TREINO_ALUNO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
-        Value = Null
       end
       item
         Name = '@FOCO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
-        Value = Null
       end
       item
         Name = '@MODELO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 255
-        Value = Null
       end
       item
         Name = '@OBS_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
-        Value = Null
       end>
     Left = 56
     Top = 128
@@ -292,54 +286,63 @@ object dm_treino: Tdm_treino
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@TREINO_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@TREINO_DIA_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@EXERCICIO_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@SERIES_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@REPETICOES_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 10
+        Value = Null
       end
       item
         Name = '@TEMPO_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 12
+        Value = Null
       end
       item
         Name = '@CARGA_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 10
+        Value = Null
       end
       item
         Name = '@OBS_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end>
     Left = 752
     Top = 128
@@ -382,7 +385,25 @@ object dm_treino: Tdm_treino
   object ado_proc_grup_treino_dia: TADOStoredProc
     Connection = dm_principal.ado_connection
     ProcedureName = 'SP_ESPECIFICA_TREINO_DIA;1'
-    Parameters = <>
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@ID_TREINO_DIA'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+      end
+      item
+        Name = '@GRUPO_MUSCULAR_TREINO_DIA'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+      end>
     Left = 576
     Top = 128
   end
@@ -551,14 +572,27 @@ object dm_treino: Tdm_treino
         Precision = 10
         Value = Null
       end>
-    Left = 936
+    Left = 1120
     Top = 128
   end
   object ado_proc_consulta_treino_atual: TADOStoredProc
     Connection = dm_principal.ado_connection
     ProcedureName = 'SP_CONSULTA_TREINO_ATUAL;1'
-    Parameters = <>
-    Left = 1120
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@ID_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+        Value = 0
+      end>
+    Left = 1336
     Top = 128
   end
   object ado_query_consulta_aluno_auxiliar: TADOQuery
@@ -730,6 +764,153 @@ object dm_treino: Tdm_treino
     end
     object ado_query_dia_treinoFLAG_ATIVO: TBooleanField
       FieldName = 'FLAG_ATIVO'
+    end
+  end
+  object ado_query_grup_musc_auxiliar: TADOQuery
+    Active = True
+    Connection = dm_principal.ado_connection
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'NOME_GRUPO_MUSCULAR'
+        DataType = ftString
+        NumericScale = 255
+        Precision = 255
+        Size = 50
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT ID_GRUPO_MUSCULAR, NOME_GRUPO_MUSCULAR'
+      'FROM TB_GRUPO_MUSCULAR'
+      'WHERE NOME_GRUPO_MUSCULAR = :NOME_GRUPO_MUSCULAR')
+    Left = 608
+    Top = 472
+    object ado_query_grup_musc_auxiliarID_GRUPO_MUSCULAR: TAutoIncField
+      FieldName = 'ID_GRUPO_MUSCULAR'
+      ReadOnly = True
+    end
+    object ado_query_grup_musc_auxiliarNOME_GRUPO_MUSCULAR: TStringField
+      FieldName = 'NOME_GRUPO_MUSCULAR'
+      Size = 50
+    end
+  end
+  object ado_proc_remove_exerc_ficha: TADOStoredProc
+    Connection = dm_principal.ado_connection
+    ProcedureName = 'SP_REMOVE_TREINO_FICHA;1'
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@ID_EXERCICIO_TREINO'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+      end>
+    Left = 944
+    Top = 128
+  end
+  object ado_query_consulta_treino: TADOQuery
+    Connection = dm_principal.ado_connection
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'ID_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        NumericScale = 255
+        Precision = 255
+        Size = 255
+        Value = Null
+      end>
+    SQL.Strings = (
+      #9'DECLARE @ID_TREINO INT;'
+      #9'SELECT TOP 1 @ID_TREINO = TRE.ID_TREINO'
+      #9'FROM TB_TREINO AS TRE'
+      
+        #9'INNER JOIN TB_TREINO_DIA AS TRD ON TRD.TREINO_TREINO_DIA = TRE.' +
+        'ID_TREINO'
+      #9'WHERE ALUNO_TREINO = :ID_ALUNO AND TRE.FLAG_ATIVO = 1'
+      #9'ORDER BY DATA_INCLUSAO_TREINO DESC'
+      ''
+      
+        #9'SELECT TRE.ID_TREINO, TRE.ALUNO_TREINO, TRE.NR_TREINO_ALUNO, TR' +
+        'E.MODELO_TREINO, TRE.FOCO_TREINO, DPA.NOME_ALUNO, TRD.ID_TREINO_' +
+        'DIA, TRD.FICHA_TREINO_DIA, TRD.GRUPO_MUSCULAR_TREINO_DIA'
+      #9'FROM TB_TREINO AS TRE'
+      
+        #9'INNER JOIN TB_TREINO_DIA AS TRD ON TRD.TREINO_TREINO_DIA = TRE.' +
+        'ID_TREINO'
+      
+        #9'INNER JOIN TB_DADOS_PESSOAIS_ALUNO AS DPA ON DPA.ID_ALUNO = TRE' +
+        '.ALUNO_TREINO'
+      #9'WHERE ID_TREINO = @ID_TREINO AND TRE.FLAG_ATIVO = 1'
+      #9'ORDER BY DATA_INCLUSAO_TREINO DESC'
+      ''
+      ''
+      #9'SELECT'
+      #9#9'ET.ID_EXERCICIO_TREINO,'
+      #9#9'ET.TREINO_EXERCICIO_TREINO,'
+      #9#9'ET.TREINO_DIA_EXERCICIO_TREINO,'
+      #9#9'ET.EXERCICIO_EXERCICIO_TREINO,'
+      #9#9'ET.SERIES_EXERCICIO_TREINO,'
+      #9#9'ET.REPETICOES_EXERCICIO_TREINO,'
+      #9#9'ET.TEMPO_EXERCICIO_TREINO,'
+      #9#9'ET.CARGA_EXERCICIO_TREINO,'
+      #9#9'ET.OBS_EXERCICIO_TREINO,'
+      #9#9'TD.FICHA_TREINO_DIA,'
+      #9#9'TD.GRUPO_MUSCULAR_TREINO_DIA,'
+      #9#9'EX.NOME_EXERCICIO,'
+      #9#9'EX.DESCRICAO_EXERCICIO,'
+      #9#9'EX.GRUPO_MUSCULAR'
+      #9'FROM'
+      #9#9'TB_EXERCICIO_TREINO ET'
+      
+        #9'INNER JOIN TB_TREINO_DIA TD ON ET.TREINO_DIA_EXERCICIO_TREINO =' +
+        ' TD.ID_TREINO_DIA'
+      
+        #9'INNER JOIN TB_EXERCICIO EX ON ET.EXERCICIO_EXERCICIO_TREINO = I' +
+        'D_EXERCICIO'
+      #9'WHERE TREINO_TREINO_DIA = @ID_TREINO')
+    Left = 1488
+    Top = 440
+    object ado_query_consulta_treinoID_TREINO: TAutoIncField
+      FieldName = 'ID_TREINO'
+      ReadOnly = True
+    end
+    object ado_query_consulta_treinoALUNO_TREINO: TStringField
+      FieldName = 'ALUNO_TREINO'
+      Size = 255
+    end
+    object ado_query_consulta_treinoNR_TREINO_ALUNO: TIntegerField
+      FieldName = 'NR_TREINO_ALUNO'
+    end
+    object ado_query_consulta_treinoMODELO_TREINO: TStringField
+      FieldName = 'MODELO_TREINO'
+      Size = 255
+    end
+    object ado_query_consulta_treinoFOCO_TREINO: TMemoField
+      FieldName = 'FOCO_TREINO'
+      BlobType = ftMemo
+    end
+    object ado_query_consulta_treinoNOME_ALUNO: TStringField
+      FieldName = 'NOME_ALUNO'
+      Size = 255
+    end
+    object ado_query_consulta_treinoID_TREINO_DIA: TAutoIncField
+      FieldName = 'ID_TREINO_DIA'
+      ReadOnly = True
+    end
+    object ado_query_consulta_treinoFICHA_TREINO_DIA: TStringField
+      FieldName = 'FICHA_TREINO_DIA'
+      Size = 10
+    end
+    object ado_query_consulta_treinoGRUPO_MUSCULAR_TREINO_DIA: TStringField
+      FieldName = 'GRUPO_MUSCULAR_TREINO_DIA'
+      Size = 255
     end
   end
 end

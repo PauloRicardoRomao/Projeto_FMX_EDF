@@ -75,6 +75,7 @@ type
     menu_med_corp_dob_cut: TMenuItem;
     lbl_dsc_menu: TLabel;
     scr_box_fundo: TScrollBox;
+    Layout1: TLayout;
     procedure menu_med_corp_cirClick(Sender: TObject);
     procedure menu_med_corp_dob_cutClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

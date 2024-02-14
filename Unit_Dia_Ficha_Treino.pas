@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Edit,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Layouts;
 
 type
   Tform_dia_ficha_treino = class(TForm)
@@ -16,6 +16,7 @@ type
     edt_espc_grup: TEdit;
     btn_gravar: TRectangle;
     lbl_btn_gravar: TLabel;
+    Layout1: TLayout;
     procedure btn_gravarMouseEnter(Sender: TObject);
     procedure btn_gravarMouseLeave(Sender: TObject);
     procedure btn_gravarClick(Sender: TObject);

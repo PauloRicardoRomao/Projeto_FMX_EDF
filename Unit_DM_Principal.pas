@@ -64,13 +64,8 @@ type
     ado_proc_cad_usuario: TADOStoredProc;
     ado_query_consulta_agendamentos: TADOQuery;
     dt_consulta_agendamentos: TDataSource;
-    ado_query_consulta_agendamentosID_AGENDAMENTO: TAutoIncField;
-    ado_query_consulta_agendamentosNOME_ALUNO: TStringField;
-    ado_query_consulta_agendamentosDATA_HORA_CONSULTA_AGENDAMENTO: TDateTimeField;
-    ado_query_consulta_agendamentosOBS_CONSULTA_AGENDAMENTO: TMemoField;
     ado_proc_cad_agendamento: TADOStoredProc;
     ado_proc_grava_consulta: TADOStoredProc;
-    ado_query_consulta_agendamentosID_ALUNO: TIntegerField;
     ado_proc_consulta_alunosID_ALUNO: TAutoIncField;
     ado_proc_consulta_alunosNOME_ALUNO: TStringField;
     ado_proc_consulta_alunosDATA_NASCIMENTO_ALUNO: TWideStringField;
@@ -132,6 +127,11 @@ type
     ado_query_consulta_completa_alunoDOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS: TBCDField;
     ado_query_consulta_completa_alunoDOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS: TBCDField;
     ado_query_consulta_completa_alunoOUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS: TMemoField;
+    ado_query_consulta_agendamentosID_AGENDAMENTO: TAutoIncField;
+    ado_query_consulta_agendamentosID_ALUNO: TIntegerField;
+    ado_query_consulta_agendamentosNOME_ALUNO: TStringField;
+    ado_query_consulta_agendamentosDATA_HORA_CONSULTA_AGENDAMENTO: TDateTimeField;
+    ado_query_consulta_agendamentosOBS_CONSULTA_AGENDAMENTO: TMemoField;
   private
     { Private declarations }
   public

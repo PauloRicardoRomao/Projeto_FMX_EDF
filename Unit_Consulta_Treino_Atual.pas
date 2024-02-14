@@ -51,6 +51,7 @@ type
     lbl_btn_exportar_enviar: TLabel;
     btn_exportar_ficha_dia: TRectangle;
     lbl_btn_exportar_ficha_dia: TLabel;
+    Layout1: TLayout;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_add_espec_fichaClick(Sender: TObject);
@@ -68,6 +69,9 @@ type
     procedure btn_alt_ord_exeMouseLeave(Sender: TObject);
     procedure btn_add_espec_fichaMouseLeave(Sender: TObject);
     procedure btn_add_espec_fichaMouseEnter(Sender: TObject);
+    procedure grid_ficha_treinoCellClick(const Column: TColumn;
+      const Row: Integer);
+    procedure btn_rem_fichaClick(Sender: TObject);
   private
     { Private declarations }
     SelectedButton : TRectangle;
@@ -79,9 +83,11 @@ type
     procedure btn_menuClick(Sender: TObject);
     procedure Exportar_XLSX;
     procedure DetalhesTreinoDoDia(planilha: Variant; idTreinoDia: Integer; linhaInicio: Integer);
+    procedure LimparBotoesMenu;
   public
     { Public declarations }
     Nr_Fichas, IDTreinoDia, treino_dia : integer;
+    btn_menu : TRectangle;
     espec_treino_dia : string;
   end;
 
@@ -100,18 +106,27 @@ begin
   tit_fund_ficha.Text := 'Ficha A';
 end;
 
+procedure Tform_consulta_treino_atual.grid_ficha_treinoCellClick(
+  const Column: TColumn; const Row: Integer);
+begin
+  Try
+    if not dm_treino.ado_query_ficha_treinoID_EXERCICIO_TREINO.AsInteger > 0 then
+      btn_rem_ficha.Enabled := True
+    else
+      btn_rem_ficha.Enabled := False;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+  end;
+end;
+
 procedure Tform_consulta_treino_atual.Criabtn_menu;
 var
   i : integer;
-  btn_menu : TRectangle;
   lbl_btn_menu : TLabel;
   letra : string;
 begin
-{
-  with dm_treino.ado_proc_consulta_treino_atual do
-  begin
-    Parameters.ParamByName('@ID_TREINO').Value := id;
-  end;    }
+  FButtonIDs := 0;
   i := 0;
   Nr_Fichas := form_popup_card_aluno.i;
   SetLength(FButtonIDs, Nr_Fichas + 1);
@@ -185,6 +200,29 @@ procedure Tform_consulta_treino_atual.btn_menuMouseLeave(Sender: TObject);
 begin
   if Sender <> FSelectedButton then
     TRectangle(Sender).Fill.Color := $FFFFFFFF;
+end;
+
+procedure Tform_consulta_treino_atual.btn_rem_fichaClick(Sender: TObject);
+begin
+  try
+    with dm_treino do
+    begin
+      with ado_proc_remove_exerc_ficha do
+      begin
+        Parameters.ParamByName('@ID_EXERCICIO_TREINO').Value := ado_query_ficha_treinoID_EXERCICIO_TREINO.AsInteger;
+        ExecProc;
+      end;
+      with ado_query_ficha_treino do
+      begin
+        Close;
+        Parameters.ParamByName('TREINO_DIA').Value := treino_dia;
+        Open;
+      end;
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+  end;
 end;
 
 procedure Tform_consulta_treino_atual.btn_rem_fichaMouseEnter(Sender: TObject);
@@ -313,6 +351,8 @@ begin
         Parameters.ParamByName('ID_TREINO_DIA').Value := IDAssociado;
         Open;
         tit_fund_ficha.Text := ado_query_dia_treinoFICHA_TREINO_DIA.AsString;
+        edt_grup_dia.Text := ado_query_dia_treinoGRUPO_MUSCULAR_TREINO_DIA.AsString;
+        btn_add_espec_ficha.Enabled := True;
       end;
     end;
   except
@@ -484,10 +524,29 @@ begin
 
 end;
 
+//procedure Tform_consulta_treino_atual.LimparBotoesMenu;;
+procedure Tform_consulta_treino_atual.LimparBotoesMenu;
+var
+  i: Integer;
+begin
+  for i := Low(FButtonIDs) to High(FButtonIDs) do
+  begin
+    if Assigned(FButtonIDs) then
+    begin
+      TRectangle(FButtonIDs[i]).Free;
+    end;
+  end;
+
+  FButtonIDs := nil;
+end;
+
+
 procedure Tform_consulta_treino_atual.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  form_consulta_treino_atual := Nil;
+  dm_treino.ado_query_consulta_treino.Close;
+  //LimparBotoesMenu;
+  form_consulta_treino_atual := nil;
   form_consulta_treino_atual.Free;
 end;
 

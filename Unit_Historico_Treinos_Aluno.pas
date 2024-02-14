@@ -45,6 +45,7 @@ type
     lbl_btn_exp_ficha: TLabel;
     btn_exp_treino: TRectangle;
     lbl_btn_exp_treino: TLabel;
+    Layout1: TLayout;
     procedure btn_imp_treinoMouseEnter(Sender: TObject);
     procedure btn_imp_treinoMouseLeave(Sender: TObject);
     procedure grid_treinosCellClick(const Column: TColumn; const Row: Integer);

@@ -35,6 +35,7 @@ type
     rb_ag_abertos: TRadioButton;
     rb_ag_todos: TRadioButton;
     Rectangle1: TRectangle;
+    Layout1: TLayout;
     procedure btn_novo_agendamentoMouseEnter(Sender: TObject);
     procedure btn_novo_agendamentoMouseLeave(Sender: TObject);
     procedure btn_finaliza_consultaMouseEnter(Sender: TObject);
@@ -69,14 +70,22 @@ uses Unit_DM_Principal, Unit_Cards_Alunos, Unit_Menu_Principal;
 
 
 procedure Tform_agendamentos.FormCreate(Sender: TObject);
+var
+  dia, mes, ano : string;
 begin
   cld_agenda.Date := Now;
   data_selecionada := cld_agenda.Date;
+  data_selecionada := cld_agenda.Date;
+  dia := Copy(DateToStr(cld_agenda.Date),1,2);
+  mes := Copy(DateToStr(cld_agenda.Date),4,2);
+  ano := Copy(DateToStr(cld_agenda.Date),7,4);
   try
     with dm_principal do
     begin
       ado_query_consulta_agendamentos.Close;
-      ado_query_consulta_agendamentos.Parameters.ParamByName('DATA_CONSULTA_AGENDAMENTO').Value := data_selecionada;
+      ado_query_consulta_agendamentos.Parameters.ParamByName('ANO').Value := ano;
+      ado_query_consulta_agendamentos.Parameters.ParamByName('MES').Value := mes;
+      ado_query_consulta_agendamentos.Parameters.ParamByName('DIA').Value := dia;
       ado_query_consulta_agendamentos.Open;
     end;
 
@@ -84,6 +93,8 @@ begin
     on E: Exception do
       ShowMessage('Erro: ' + E.Message + ' Lista de Exercícios.');
   end;
+  rb_ag_abertos.IsChecked := True;
+  rb_ag_todos.IsChecked := False;
 end;
 
 procedure Tform_agendamentos.btn_finaliza_consultaMouseEnter(Sender: TObject);
@@ -118,13 +129,20 @@ begin
 end;
 
 procedure Tform_agendamentos.cld_agendaDayClick(Sender: TObject);
+var
+  dia, mes, ano : string;
 begin
   data_selecionada := cld_agenda.Date;
+  dia := Copy(DateToStr(cld_agenda.Date),1,2);
+  mes := Copy(DateToStr(cld_agenda.Date),4,2);
+  ano := Copy(DateToStr(cld_agenda.Date),7,4);
   try
     with dm_principal do
     begin
       ado_query_consulta_agendamentos.Close;
-      ado_query_consulta_agendamentos.Parameters.ParamByName('DATA_CONSULTA_AGENDAMENTO').Value := data_selecionada;
+      ado_query_consulta_agendamentos.Parameters.ParamByName('ANO').Value := ano;
+      ado_query_consulta_agendamentos.Parameters.ParamByName('MES').Value := mes;
+      ado_query_consulta_agendamentos.Parameters.ParamByName('DIA').Value := dia;
       ado_query_consulta_agendamentos.Open;
     end;
 
@@ -156,7 +174,14 @@ begin
 end;
 
 procedure Tform_agendamentos.rb_ag_abertosChange(Sender: TObject);
+var
+  dia, mes, ano : string;
 begin
+  data_selecionada := cld_agenda.Date;
+  dia := Copy(DateToStr(cld_agenda.Date),1,2);
+  mes := Copy(DateToStr(cld_agenda.Date),4,2);
+  ano := Copy(DateToStr(cld_agenda.Date),7,4);
+
   with dm_principal.ado_query_consulta_agendamentos do
   begin
     Close;
@@ -171,15 +196,27 @@ begin
     SQL.Add('    TB_AGENDAMENTOS A');
     SQL.Add('INNER JOIN');
     SQL.Add('    TB_DADOS_PESSOAIS_ALUNO DPA ON A.ID_ALUNO = DPA.ID_ALUNO');
-    SQL.Add('WHERE A.DATA_HORA_CONSULTA_AGENDAMENTO = :DATA_CONSULTA_AGENDAMENTO');
+    SQL.Add('WHERE');
+    SQL.Add('DATEPART(YEAR, A.DATA_HORA_CONSULTA_AGENDAMENTO) = :ANO AND');
+    SQL.Add('DATEPART(MONTH, A.DATA_HORA_CONSULTA_AGENDAMENTO) = :MES AND');
+    SQL.Add('DATEPART(DAY, A.DATA_HORA_CONSULTA_AGENDAMENTO) = :DIA');
     SQL.Add('AND A.FLAG_ATIVO = 1');
-    Parameters.ParamByName('DATA_CONSULTA_AGENDAMENTO').Value := data_selecionada;
+    Parameters.ParamByName('ANO').Value := ano;
+    Parameters.ParamByName('MES').Value := mes;
+    Parameters.ParamByName('DIA').Value := dia;
     Open;
   end;
 end;
 
 procedure Tform_agendamentos.rb_ag_todosChange(Sender: TObject);
+var
+  dia, mes, ano : string;
 begin
+  data_selecionada := cld_agenda.Date;
+  dia := Copy(DateToStr(cld_agenda.Date),1,2);
+  mes := Copy(DateToStr(cld_agenda.Date),4,2);
+  ano := Copy(DateToStr(cld_agenda.Date),7,4);
+
   with dm_principal.ado_query_consulta_agendamentos do
   begin
     Close;
@@ -194,27 +231,40 @@ begin
     SQL.Add('    TB_AGENDAMENTOS A');
     SQL.Add('INNER JOIN');
     SQL.Add('    TB_DADOS_PESSOAIS_ALUNO DPA ON A.ID_ALUNO = DPA.ID_ALUNO');
-    SQL.Add('WHERE A.DATA_HORA_CONSULTA_AGENDAMENTO = :DATA_CONSULTA_AGENDAMENTO');
-    Parameters.ParamByName('DATA_CONSULTA_AGENDAMENTO').Value := data_selecionada;
+    SQL.Add('WHERE');
+    SQL.Add('DATEPART(YEAR, A.DATA_HORA_CONSULTA_AGENDAMENTO) = :ANO AND');
+    SQL.Add('DATEPART(MONTH, A.DATA_HORA_CONSULTA_AGENDAMENTO) = :MES AND');
+    SQL.Add('DATEPART(DAY, A.DATA_HORA_CONSULTA_AGENDAMENTO) = :DIA');
+    Parameters.ParamByName('ANO').Value := ano;
+    Parameters.ParamByName('MES').Value := mes;
+    Parameters.ParamByName('DIA').Value := dia;
     Open;
   end;
 end;
 
 procedure Tform_agendamentos.btn_finaliza_consultaClick(Sender: TObject);
 begin
-  with dm_principal do
-  begin
-    with ado_proc_grava_consulta do
+  Try
+    with dm_principal do
     begin
-      Parameters.ParamByName('@AGENDAMENTO_CONSULTA').Value := agendamento;
-      Parameters.ParamByName('@ALUNO_CONSULTA').Value := aluno;
-      Parameters.ParamByName('@DATA_HORA_CONSULTA').Value := data_consulta;
-      Parameters.ParamByName('@OBS_CONSULTA').Value := obs_consulta;
-      ExecProc;
+      with ado_proc_grava_consulta do
+      begin
+        Parameters.ParamByName('@AGENDAMENTO_CONSULTA').Value := agendamento;
+        Parameters.ParamByName('@ALUNO_CONSULTA').Value := aluno;
+        Parameters.ParamByName('@DATA_HORA_CONSULTA').Value := data_consulta;
+        Parameters.ParamByName('@OBS_CONSULTA').Value := obs_consulta;
+        ExecProc;
+      end;
+      cld_agendaDayClick(Self);
+      ShowMessage('Confirmação de Consulta Realizada');
     end;
-    cld_agendaDayClick(Self);
-    ShowMessage('Confirmação de Consulta Realizada');
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
   end;
+  btn_finaliza_consulta.Enabled := False;
+  rb_ag_abertos.IsChecked := True;
+  rb_ag_todos.IsChecked := False;
 end;
 
 procedure Tform_agendamentos.FormClose(Sender: TObject;

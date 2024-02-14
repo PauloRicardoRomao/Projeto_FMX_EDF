@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, FMX.ListBox,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit, FMX.DialogService;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit, FMX.DialogService,
+  FMX.Layouts;
 
 type
   Tform_info_bsc_treino = class(TForm)
@@ -23,6 +24,7 @@ type
     edt_nr_treino: TEdit;
     btn_grava_inf_bsc: TRectangle;
     lbl_btn_grava_inf_bsc: TLabel;
+    Layout1: TLayout;
     procedure btn_grava_inf_bscMouseEnter(Sender: TObject);
     procedure btn_grava_inf_bscMouseLeave(Sender: TObject);
     procedure btn_grava_inf_bscClick(Sender: TObject);

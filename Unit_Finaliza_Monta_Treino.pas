@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Controls.Presentation, FMX.StdCtrls;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts;
 
 type
   Tform_finaliza_treino = class(TForm)
@@ -18,6 +18,7 @@ type
     lbl_btn_exportar_ficha_dia: TLabel;
     btn_salvar: TRectangle;
     lbl_btn_salvar: TLabel;
+    Layout1: TLayout;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btn_salvarClick(Sender: TObject);
   private

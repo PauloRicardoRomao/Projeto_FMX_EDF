@@ -289,6 +289,7 @@ type
     menu_med_corp_cir: TMenuItem;
     menu_med_corp_dob_cut: TMenuItem;
     lbl_dsc_menu: TLabel;
+    Layout1: TLayout;
     procedure menu_info_basicClick(Sender: TObject);
     procedure menu_anamneseClick(Sender: TObject);
     procedure menu_med_corp_cirClick(Sender: TObject);

@@ -20,6 +20,91 @@ object dm_principal: Tdm_principal
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
+      end
+      item
+        Name = '@ID_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+        Value = Null
+      end
+      item
+        Name = '@NOME_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+        Value = Null
+      end
+      item
+        Name = '@DATA_NASCIMENTO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        Size = 10
+        Value = Null
+      end
+      item
+        Name = '@SEXO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 15
+        Value = Null
+      end
+      item
+        Name = '@ALTURA_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+        Value = Null
+      end
+      item
+        Name = '@PESO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+        Value = Null
+      end
+      item
+        Name = '@OBJETIVO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 255
+        Value = Null
+      end
+      item
+        Name = '@NIVEL_ATIVIDADE_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 25
+        Value = Null
+      end
+      item
+        Name = '@FOTO_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftVarBytes
+        Size = 2147483647
+        Value = Null
+      end>
+    Left = 184
+    Top = 32
+  end
+  object ado_proc_cad_aluno_anamnese: TADOStoredProc
+    Connection = ado_connection
+    ProcedureName = 'SP_CADASTRO_ANAMNESE_ALUNO;1'
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@ID_ANAMNESE_MEDICA'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
       end
       item
         Name = '@ID_ALUNO'
@@ -28,76 +113,242 @@ object dm_principal: Tdm_principal
         Precision = 10
       end
       item
-        Name = '@NOME_ALUNO'
+        Name = '@CONDICOES_MEDICAS_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
-        Size = 255
+        Size = 2147483647
       end
       item
-        Name = '@DATA_NASCIMENTO_ALUNO'
-        Attributes = [paNullable]
-        DataType = ftWideString
-        Size = 10
-      end
-      item
-        Name = '@SEXO_ALUNO'
+        Name = '@MEDICAMENTOS_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
-        Size = 15
+        Size = 2147483647
       end
       item
-        Name = '@ALTURA_ALUNO'
-        Attributes = [paNullable]
-        DataType = ftBCD
-        NumericScale = 2
-        Precision = 5
-      end
-      item
-        Name = '@PESO_ALUNO'
-        Attributes = [paNullable]
-        DataType = ftBCD
-        NumericScale = 2
-        Precision = 5
-      end
-      item
-        Name = '@OBJETIVO_ALUNO'
+        Name = '@RESTRICOES_ALIMENTARES_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
-        Size = 255
+        Size = 2147483647
       end
       item
-        Name = '@NIVEL_ATIVIDADE_ALUNO'
+        Name = '@HISTORICO_EXERCICIOS_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
-        Size = 25
+        Size = 2147483647
       end
       item
-        Name = '@FOTO_ALUNO'
+        Name = '@FREQUENCIA_CARDIACA_REPOUSO_ALUNO'
         Attributes = [paNullable]
-        DataType = ftVarBytes
+        DataType = ftInteger
+        Precision = 10
+      end
+      item
+        Name = '@PRESSAO_ARTERIAL_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = '@OUTRAS_OBSERVACOES_ALUNO'
+        Attributes = [paNullable]
+        DataType = ftString
         Size = 2147483647
       end>
-    Left = 184
-    Top = 32
-  end
-  object ado_proc_cad_aluno_anamnese: TADOStoredProc
-    Connection = ado_connection
-    ProcedureName = 'SP_CADASTRO_ANAMNESE_ALUNO;1'
-    Parameters = <>
     Left = 392
     Top = 32
   end
   object ado_proc_cad_aluno_info_circ: TADOStoredProc
     Connection = ado_connection
     ProcedureName = 'SP_CADASTRO_CIRCUNFERENCIAS;1'
-    Parameters = <>
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@ALUNO_ID_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+      end
+      item
+        Name = '@DATA_MEDICAO_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        Size = 10
+      end
+      item
+        Name = '@ALTURA_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@PESO_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_BRACO_ESQ_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_BRACO_DIR_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_PERNA_ESQ_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_PERNA_DIR_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_PANTURRILHA_ESQ_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_PANTURRILHA_DIR_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_ABDOMINAL_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_CINTURA_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_QUADRIL_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@CIRCUNFERENCIA_PEITORAL_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@OUTRAS_MEDICOES_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 2147483647
+      end>
     Left = 600
     Top = 32
   end
   object ado_proc_cad_aluno_db_cut_corp: TADOStoredProc
     Connection = ado_connection
     ProcedureName = 'SP_CADASTRO_DOBRAS_CULTANEAS;1'
-    Parameters = <>
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@ALUNO_ID_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+      end
+      item
+        Name = '@DATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        Size = 10
+      end
+      item
+        Name = '@DOBRA_TRICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@DOBRA_BICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@DOBRA_SUBESCAPULAR_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@DOBRA_SUPRAILIACA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@DOBRA_ABDOMEN_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@DOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@DOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftBCD
+        NumericScale = 2
+        Precision = 5
+      end
+      item
+        Name = '@OUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 2147483647
+      end>
     Left = 800
     Top = 32
   end
@@ -859,14 +1110,31 @@ object dm_principal: Tdm_principal
     CursorType = ctStatic
     Parameters = <
       item
-        Name = 'DATA_CONSULTA_AGENDAMENTO'
-        DataType = ftDateTime
-        NumericScale = 3
-        Precision = 23
-        Size = 16
+        Name = 'ANO'
+        Attributes = [paSigned, paNullable]
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'MES'
+        Attributes = [paSigned, paNullable]
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'DIA'
+        Attributes = [paSigned, paNullable]
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
         Value = Null
       end>
     SQL.Strings = (
+      ''
       'SELECT'
       '    A.ID_AGENDAMENTO,'
       '    A.ID_ALUNO,'
@@ -877,14 +1145,18 @@ object dm_principal: Tdm_principal
       '    TB_AGENDAMENTOS A'
       'INNER JOIN'
       '    TB_DADOS_PESSOAIS_ALUNO DPA ON A.ID_ALUNO = DPA.ID_ALUNO'
-      
-        'WHERE A.DATA_HORA_CONSULTA_AGENDAMENTO = :DATA_CONSULTA_AGENDAME' +
-        'NTO')
+      'WHERE'
+      'DATEPART(YEAR, A.DATA_HORA_CONSULTA_AGENDAMENTO) = :ANO AND'
+      'DATEPART(MONTH, A.DATA_HORA_CONSULTA_AGENDAMENTO) = :MES AND'
+      'DATEPART(DAY, A.DATA_HORA_CONSULTA_AGENDAMENTO) = :DIA')
     Left = 1056
     Top = 440
     object ado_query_consulta_agendamentosID_AGENDAMENTO: TAutoIncField
       FieldName = 'ID_AGENDAMENTO'
       ReadOnly = True
+    end
+    object ado_query_consulta_agendamentosID_ALUNO: TIntegerField
+      FieldName = 'ID_ALUNO'
     end
     object ado_query_consulta_agendamentosNOME_ALUNO: TStringField
       FieldName = 'NOME_ALUNO'
@@ -896,9 +1168,6 @@ object dm_principal: Tdm_principal
     object ado_query_consulta_agendamentosOBS_CONSULTA_AGENDAMENTO: TMemoField
       FieldName = 'OBS_CONSULTA_AGENDAMENTO'
       BlobType = ftMemo
-    end
-    object ado_query_consulta_agendamentosID_ALUNO: TIntegerField
-      FieldName = 'ID_ALUNO'
     end
   end
   object dt_consulta_agendamentos: TDataSource
@@ -949,7 +1218,36 @@ object dm_principal: Tdm_principal
   object ado_proc_grava_consulta: TADOStoredProc
     Connection = ado_connection
     ProcedureName = 'SP_GRAVA_CONSULTA;1'
-    Parameters = <>
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+      end
+      item
+        Name = '@AGENDAMENTO_CONSULTA'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+      end
+      item
+        Name = '@ALUNO_CONSULTA'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+      end
+      item
+        Name = '@DATA_HORA_CONSULTA'
+        Attributes = [paNullable]
+        DataType = ftDateTime
+      end
+      item
+        Name = '@OBS_CONSULTA'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 2147483647
+      end>
     Left = 664
     Top = 280
   end

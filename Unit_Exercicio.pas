@@ -6,7 +6,9 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
   FMX.Edit, FMX.ScrollBox, FMX.Memo, FMX.ListBox, FMX.Controls.Presentation,
-  FMX.StdCtrls, FMX.Objects;
+  FMX.StdCtrls, FMX.Objects, System.Rtti, System.Bindings.Outputs,
+  Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
+  Data.Bind.DBScope, FMX.Layouts;
 
 type
   Tform_exercicios = class(TForm)
@@ -23,6 +25,10 @@ type
     edt_nme_exercicio: TEdit;
     mmo_desc_exercicio: TMemo;
     cbx_grup_muscular: TComboBox;
+    BindSourceDB1: TBindSourceDB;
+    LinkListControlToFieldNOME_GRUPO_MUSCULAR: TLinkListControlToField;
+    BindingsList1: TBindingsList;
+    Layout1: TLayout;
     procedure btn_grava_inf_bscMouseEnter(Sender: TObject);
     procedure btn_grava_inf_bscMouseLeave(Sender: TObject);
     procedure btn_lmp_inf_bscMouseEnter(Sender: TObject);
@@ -43,7 +49,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_DM_Principal;
+uses Unit_DM_Principal, Unit_DM_Treino;
 
 procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
 var
@@ -67,19 +73,42 @@ end;
 procedure Tform_exercicios.btn_grava_inf_bscClick(Sender: TObject);
 var
   exercicio, descricao, musculo : string;
+  id_musculo : integer;
 begin
+  if (edt_nme_exercicio.Text = '') or (cbx_grup_muscular.ItemIndex = -1) then
+  begin
+    ShowMessage('É necessário informar o NOME e selecionar o GRUPO MUSCULAR');
+    Exit;
+  end;
+
   exercicio := edt_nme_exercicio.Text;
   descricao := mmo_desc_exercicio.Lines.Text;
   musculo := cbx_grup_muscular.Selected.Text;
-  with dm_principal.ado_proc_cad_exercicio do
+
+  with dm_treino do
   begin
-    Parameters.ParamByName('@NOME_EXERCICIO').Value := exercicio;
-    Parameters.ParamByName('@DESCRICAO_EXERCICIO').Value := descricao;
-    Parameters.ParamByName('@GRUPO_MUSCULAR').Value := musculo;
-    ExecProc;
+    with ado_query_grup_musc_auxiliar do
+    begin
+      Close;
+      Parameters.ParamByName('NOME_GRUPO_MUSCULAR').Value := musculo;
+      Open;
+    end;
+    id_musculo := ado_query_grup_musc_auxiliarID_GRUPO_MUSCULAR.AsInteger;
   end;
-  ShowMessage('Exercício gravado com sucesso!');
-  LimparControlesDentroDoRectangle(pnl_fun_cad_treino);
+  try
+    with dm_principal.ado_proc_cad_exercicio do
+    begin
+      Parameters.ParamByName('@NOME_EXERCICIO').Value := exercicio;
+      Parameters.ParamByName('@DESCRICAO_EXERCICIO').Value := descricao;
+      Parameters.ParamByName('@GRUPO_MUSCULAR').Value := id_musculo;
+      ExecProc;
+    end;
+    ShowMessage('Exercício gravado com sucesso!');
+    LimparControlesDentroDoRectangle(pnl_fun_cad_treino);
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message + ' Cadastro de Exercícios.');
+  end;
 end;
 
 procedure Tform_exercicios.btn_grava_inf_bscMouseEnter(Sender: TObject);
