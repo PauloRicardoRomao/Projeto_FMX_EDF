@@ -49,7 +49,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_DM_Principal, Unit_DM_Treino;
+uses Unit_DM_Principal, Unit_DM_Treino, Unit_Menu_Novo;
 
 procedure LimparControlesDentroDoRectangle(Rectangle: TRectangle);
 var

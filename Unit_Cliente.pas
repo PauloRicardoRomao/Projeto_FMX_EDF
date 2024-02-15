@@ -326,7 +326,7 @@ type
   public
     { Public declarations }
     foto : string;
-    id_aluno, id_aluno_verifica, id_anamnese : integer;
+    id_aluno, id_aluno_verifica, id_anamnese, id_aluno_novo : integer;
   end;
 
 var
@@ -530,29 +530,67 @@ begin
   obs := mmo_obs.Lines.Text;
   id_anamnese := dm_principal. ado_query_consulta_anamneseID_ANAMNESE_MEDICA.AsInteger;
 
-  try
-    with dm_principal do
-    begin
-      with ado_proc_cad_aluno_anamnese.Parameters do
+  if id_aluno > 0 then
+  begin
+    try
+      with dm_principal do
       begin
-        ParamByName('@ID_ANAMNESE_MEDICA').Value := id_anamnese;
-        ParamByName('@ID_ALUNO').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
-        ParamByName('@CONDICOES_MEDICAS_ALUNO').Value := cond_medicas;
-        ParamByName('@MEDICAMENTOS_ALUNO').Value := medicamentos;
-        ParamByName('@RESTRICOES_ALIMENTARES_ALUNO').Value := rest_alimentar;
-        ParamByName('@HISTORICO_EXERCICIOS_ALUNO').Value := hist_exercicios;
-        ParamByName('@FREQUENCIA_CARDIACA_REPOUSO_ALUNO').Value := freq_card_base;
-        ParamByName('@PRESSAO_ARTERIAL_ALUNO').Value := press_art_base;
-        ParamByName('@OUTRAS_OBSERVACOES_ALUNO').Value := obs;
-        ado_proc_cad_aluno_anamnese.ExecProc;
+        with ado_proc_cad_aluno_anamnese.Parameters do
+        begin
+          ParamByName('@ID_ANAMNESE_MEDICA').Value := id_anamnese;
+          ParamByName('@ID_ALUNO').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
+          ParamByName('@CONDICOES_MEDICAS_ALUNO').Value := cond_medicas;
+          ParamByName('@MEDICAMENTOS_ALUNO').Value := medicamentos;
+          ParamByName('@RESTRICOES_ALIMENTARES_ALUNO').Value := rest_alimentar;
+          ParamByName('@HISTORICO_EXERCICIOS_ALUNO').Value := hist_exercicios;
+          ParamByName('@FREQUENCIA_CARDIACA_REPOUSO_ALUNO').Value := freq_card_base;
+          ParamByName('@PRESSAO_ARTERIAL_ALUNO').Value := press_art_base;
+          ParamByName('@OUTRAS_OBSERVACOES_ALUNO').Value := obs;
+          ado_proc_cad_aluno_anamnese.ExecProc;
+        end;
+      end;
+      ShowMessage('Ficha de anamnese cadastrada com sucesso!');
+
+      except
+      on E: Exception do
+      begin
+        ShowMessage('Erro: ' + E.Message + ' Ficha de Anamnese.');
       end;
     end;
-    ShowMessage('Ficha de anamnese cadastrada com sucesso!');
-
-    except
-    on E: Exception do
+  end
+  else if not id_aluno > 0 then
+  begin
+    if id_aluno_novo > 0 then
     begin
-      ShowMessage('Erro: ' + E.Message + ' Ficha de Anamnese.');
+      try
+      with dm_principal do
+      begin
+        with ado_proc_cad_aluno_anamnese.Parameters do
+        begin
+          ParamByName('@ID_ANAMNESE_MEDICA').Value := id_anamnese;
+          ParamByName('@ID_ALUNO').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
+          ParamByName('@CONDICOES_MEDICAS_ALUNO').Value := cond_medicas;
+          ParamByName('@MEDICAMENTOS_ALUNO').Value := medicamentos;
+          ParamByName('@RESTRICOES_ALIMENTARES_ALUNO').Value := rest_alimentar;
+          ParamByName('@HISTORICO_EXERCICIOS_ALUNO').Value := hist_exercicios;
+          ParamByName('@FREQUENCIA_CARDIACA_REPOUSO_ALUNO').Value := freq_card_base;
+          ParamByName('@PRESSAO_ARTERIAL_ALUNO').Value := press_art_base;
+          ParamByName('@OUTRAS_OBSERVACOES_ALUNO').Value := obs;
+          ado_proc_cad_aluno_anamnese.ExecProc;
+        end;
+      end;
+      ShowMessage('Ficha de anamnese cadastrada com sucesso!');
+
+      except
+        on E: Exception do
+        begin
+          ShowMessage('Erro: ' + E.Message + ' Ficha de Anamnese.');
+        end;
+      end;
+    end
+    else if not id_aluno_novo > 0 then
+    begin
+      ShowMessage('Necessário cadastrar as informações iniciais do Aluno primeiramente.');
     end;
   end;
 end;
@@ -576,6 +614,7 @@ var
   outras_medicoes : string;
 begin
 
+
   data := edt_data_med_dob_cut.Date;
   triceps := StrToCurr(edt_db_trc_med_dob_cut.Text);
   biceps := StrToCurr(edt_db_bcp_med_dob_cut.Text);
@@ -586,33 +625,73 @@ begin
   perna := StrToCurr(edt_db_pnm_med_dob_cut.Text);
   outras_medicoes := mmo_out_med_dob_cut.Lines.Text;
 
-  try
-    with dm_principal do
-    begin
-      with ado_proc_cad_aluno_db_cut_corp.Parameters do
+  if id_aluno > 0 then
+  begin
+
+    try
+      with dm_principal do
       begin
-        ParamByName('@ALUNO_ID_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
-        ParamByName('@DATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := data;
-        ParamByName('@DOBRA_TRICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := triceps;
-        ParamByName('@DOBRA_BICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := biceps;
-        ParamByName('@DOBRA_SUBESCAPULAR_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := subescapular;
-        ParamByName('@DOBRA_SUPRAILIACA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := suprailiaca;
-        ParamByName('@DOBRA_ABDOMEN_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := abdominal;
-        ParamByName('@DOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := axilar;
-        ParamByName('@DOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := perna;
-        ParamByName('@OUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := outras_medicoes;
-        ado_proc_cad_aluno_db_cut_corp.ExecProc;
+        with ado_proc_cad_aluno_db_cut_corp.Parameters do
+        begin
+          ParamByName('@ALUNO_ID_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
+          ParamByName('@DATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := data;
+          ParamByName('@DOBRA_TRICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := triceps;
+          ParamByName('@DOBRA_BICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := biceps;
+          ParamByName('@DOBRA_SUBESCAPULAR_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := subescapular;
+          ParamByName('@DOBRA_SUPRAILIACA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := suprailiaca;
+          ParamByName('@DOBRA_ABDOMEN_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := abdominal;
+          ParamByName('@DOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := axilar;
+          ParamByName('@DOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := perna;
+          ParamByName('@OUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := outras_medicoes;
+          ado_proc_cad_aluno_db_cut_corp.ExecProc;
+        end;
+      end;
+      ShowMessage('Medidas cadastrada com sucesso!');
+
+      except
+      on E: Exception do
+      begin
+        ShowMessage('Erro: ' + E.Message + ' Medidas de Dobras Cutâneas.');
       end;
     end;
-    ShowMessage('Medidas cadastrada com sucesso!');
 
-    except
-    on E: Exception do
+  end
+  else if not id_aluno > 0  then
+  begin
+    if id_aluno_novo > 0 then
     begin
-      ShowMessage('Erro: ' + E.Message + ' Medidas de Dobras Cutâneas.');
+      try
+        with dm_principal do
+        begin
+          with ado_proc_cad_aluno_db_cut_corp.Parameters do
+          begin
+            ParamByName('@ALUNO_ID_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := id_aluno_novo; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
+            ParamByName('@DATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := data;
+            ParamByName('@DOBRA_TRICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := triceps;
+            ParamByName('@DOBRA_BICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := biceps;
+            ParamByName('@DOBRA_SUBESCAPULAR_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := subescapular;
+            ParamByName('@DOBRA_SUPRAILIACA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := suprailiaca;
+            ParamByName('@DOBRA_ABDOMEN_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := abdominal;
+            ParamByName('@DOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := axilar;
+            ParamByName('@DOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := perna;
+            ParamByName('@OUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS').Value := outras_medicoes;
+            ado_proc_cad_aluno_db_cut_corp.ExecProc;
+          end;
+        end;
+        ShowMessage('Medidas cadastrada com sucesso!');
+
+        except
+        on E: Exception do
+        begin
+          ShowMessage('Erro: ' + E.Message + ' Medidas de Dobras Cutâneas.');
+        end;
+      end;
+    end
+    else if not id_aluno_novo > 0 then
+    begin
+      ShowMessage('Necessário cadastrar as informações iniciais do Aluno primeiramente.');
     end;
   end;
-
 end;
 
 procedure Tform_aluno.btn_grava_db_cutMouseEnter(Sender: TObject);
@@ -700,6 +779,7 @@ begin
             ParamByName('@FOTO_ALUNO').Value := null;
 
           ado_proc_cad_aluno_info_basic.ExecProc;
+          id_aluno_novo := ParamByName('@RETURN_VALUE').Value;
         end;
       end;
       ShowMessage('Informações básicas cadastradas com sucesso!');
@@ -747,35 +827,81 @@ begin
   cir_peit := StrToCurr(edt_cir_pei.Text);
   outras_medicoes := mmo_cir_out_med.Lines.Text;
 
-  try
-    with dm_principal do
-    begin
-      with ado_proc_cad_aluno_info_circ.Parameters do
-        begin
-          ParamByName('@ALUNO_ID_DIMENSOES_CORPORAIS').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
-          ParamByName('@DATA_MEDICAO_DIMENSOES_CORPORAIS').Value := data;
-          ParamByName('@ALTURA_DIMENSOES_CORPORAIS').Value := altura;
-          ParamByName('@PESO_DIMENSOES_CORPORAIS').Value := peso;
-          ParamByName('@CIRCUNFERENCIA_BRACO_ESQ_DIMENSOES_CORPORAIS').Value := bra_esq;
-          ParamByName('@CIRCUNFERENCIA_BRACO_DIR_DIMENSOES_CORPORAIS').Value := bra_dir;
-          ParamByName('@CIRCUNFERENCIA_PERNA_ESQ_DIMENSOES_CORPORAIS').Value := per_esq;
-          ParamByName('@CIRCUNFERENCIA_PERNA_DIR_DIMENSOES_CORPORAIS').Value := per_dir;
-          ParamByName('@CIRCUNFERENCIA_PANTURRILHA_ESQ_DIMENSOES_CORPORAIS').Value := pant_esq;
-          ParamByName('@CIRCUNFERENCIA_PANTURRILHA_DIR_DIMENSOES_CORPORAIS').Value := pant_dir;
-          ParamByName('@CIRCUNFERENCIA_ABDOMINAL_DIMENSOES_CORPORAIS').Value := cir_abd;
-          ParamByName('@CIRCUNFERENCIA_CINTURA_DIMENSOES_CORPORAIS').Value := cir_cint;
-          ParamByName('@CIRCUNFERENCIA_QUADRIL_DIMENSOES_CORPORAIS').Value := cir_quad;
-          ParamByName('@CIRCUNFERENCIA_PEITORAL_DIMENSOES_CORPORAIS').Value := cir_peit;
-          ParamByName('@OUTRAS_MEDICOES_DIMENSOES_CORPORAIS').Value := outras_medicoes;
-          ado_proc_cad_aluno_info_circ.ExecProc;
-        end;
-    end;
-    ShowMessage('Medições cadastradas com sucesso!');
+  if id_aluno > 0 then
+  begin
 
-  except
-    on E: Exception do
+    try
+      with dm_principal do
+      begin
+        with ado_proc_cad_aluno_info_circ.Parameters do
+          begin
+            ParamByName('@ALUNO_ID_DIMENSOES_CORPORAIS').Value := id_aluno; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
+            ParamByName('@DATA_MEDICAO_DIMENSOES_CORPORAIS').Value := data;
+            ParamByName('@ALTURA_DIMENSOES_CORPORAIS').Value := altura;
+            ParamByName('@PESO_DIMENSOES_CORPORAIS').Value := peso;
+            ParamByName('@CIRCUNFERENCIA_BRACO_ESQ_DIMENSOES_CORPORAIS').Value := bra_esq;
+            ParamByName('@CIRCUNFERENCIA_BRACO_DIR_DIMENSOES_CORPORAIS').Value := bra_dir;
+            ParamByName('@CIRCUNFERENCIA_PERNA_ESQ_DIMENSOES_CORPORAIS').Value := per_esq;
+            ParamByName('@CIRCUNFERENCIA_PERNA_DIR_DIMENSOES_CORPORAIS').Value := per_dir;
+            ParamByName('@CIRCUNFERENCIA_PANTURRILHA_ESQ_DIMENSOES_CORPORAIS').Value := pant_esq;
+            ParamByName('@CIRCUNFERENCIA_PANTURRILHA_DIR_DIMENSOES_CORPORAIS').Value := pant_dir;
+            ParamByName('@CIRCUNFERENCIA_ABDOMINAL_DIMENSOES_CORPORAIS').Value := cir_abd;
+            ParamByName('@CIRCUNFERENCIA_CINTURA_DIMENSOES_CORPORAIS').Value := cir_cint;
+            ParamByName('@CIRCUNFERENCIA_QUADRIL_DIMENSOES_CORPORAIS').Value := cir_quad;
+            ParamByName('@CIRCUNFERENCIA_PEITORAL_DIMENSOES_CORPORAIS').Value := cir_peit;
+            ParamByName('@OUTRAS_MEDICOES_DIMENSOES_CORPORAIS').Value := outras_medicoes;
+            ado_proc_cad_aluno_info_circ.ExecProc;
+          end;
+      end;
+      ShowMessage('Medições cadastradas com sucesso!');
+
+    except
+      on E: Exception do
+      begin
+        ShowMessage('Erro: ' + E.Message + ' Medidas de Circunferências.');
+      end;
+    end;
+
+  end
+  else if not id_aluno > 0  then
+  begin
+    if id_aluno_novo > 0 then
     begin
-      ShowMessage('Erro: ' + E.Message + ' Medidas de Circunferências.');
+      try
+          with dm_principal do
+          begin
+            with ado_proc_cad_aluno_info_circ.Parameters do
+              begin
+                ParamByName('@ALUNO_ID_DIMENSOES_CORPORAIS').Value := id_aluno_novo; //////usar adoquery para contar e verificar se tem algum aluno com tal codigo se houver abrir como att, se não houver abrir como cad
+                ParamByName('@DATA_MEDICAO_DIMENSOES_CORPORAIS').Value := data;
+                ParamByName('@ALTURA_DIMENSOES_CORPORAIS').Value := altura;
+                ParamByName('@PESO_DIMENSOES_CORPORAIS').Value := peso;
+                ParamByName('@CIRCUNFERENCIA_BRACO_ESQ_DIMENSOES_CORPORAIS').Value := bra_esq;
+                ParamByName('@CIRCUNFERENCIA_BRACO_DIR_DIMENSOES_CORPORAIS').Value := bra_dir;
+                ParamByName('@CIRCUNFERENCIA_PERNA_ESQ_DIMENSOES_CORPORAIS').Value := per_esq;
+                ParamByName('@CIRCUNFERENCIA_PERNA_DIR_DIMENSOES_CORPORAIS').Value := per_dir;
+                ParamByName('@CIRCUNFERENCIA_PANTURRILHA_ESQ_DIMENSOES_CORPORAIS').Value := pant_esq;
+                ParamByName('@CIRCUNFERENCIA_PANTURRILHA_DIR_DIMENSOES_CORPORAIS').Value := pant_dir;
+                ParamByName('@CIRCUNFERENCIA_ABDOMINAL_DIMENSOES_CORPORAIS').Value := cir_abd;
+                ParamByName('@CIRCUNFERENCIA_CINTURA_DIMENSOES_CORPORAIS').Value := cir_cint;
+                ParamByName('@CIRCUNFERENCIA_QUADRIL_DIMENSOES_CORPORAIS').Value := cir_quad;
+                ParamByName('@CIRCUNFERENCIA_PEITORAL_DIMENSOES_CORPORAIS').Value := cir_peit;
+                ParamByName('@OUTRAS_MEDICOES_DIMENSOES_CORPORAIS').Value := outras_medicoes;
+                ado_proc_cad_aluno_info_circ.ExecProc;
+              end;
+          end;
+          ShowMessage('Medições cadastradas com sucesso!');
+
+        except
+          on E: Exception do
+          begin
+            ShowMessage('Erro: ' + E.Message + ' Medidas de Circunferências.');
+          end;
+        end;
+    end
+    else if not id_aluno_novo > 0 then
+    begin
+      ShowMessage('Necessário cadastrar as informações iniciais do Aluno primeiramente.');
     end;
   end;
 

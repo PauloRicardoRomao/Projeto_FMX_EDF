@@ -5,8 +5,6 @@ object form_exercicios: Tform_exercicios
   BorderStyle = Single
   ClientHeight = 545
   ClientWidth = 640
-  Fill.Color = xFF89A09A
-  Fill.Kind = Solid
   Position = DesktopCenter
   StyleBook = StyleBook1
   FormFactor.Width = 320
@@ -26,9 +24,6 @@ object form_exercicios: Tform_exercicios
       Size.Width = 640.000000000000000000
       Size.Height = 545.000000000000000000
       Size.PlatformDefault = False
-      Stroke.Kind = None
-      XRadius = 15.000000000000000000
-      YRadius = 15.000000000000000000
       object lbl_fco_treino: TLabel
         Position.X = 107.000000000000000000
         Position.Y = 176.000000000000000000
@@ -791,7 +786,6 @@ object form_exercicios: Tform_exercicios
     end
   end
   object BindSourceDB1: TBindSourceDB
-    DataSource = dm_treino.dt_source_consulta_grup_musc
     ScopeMappings = <>
     Left = 304
     Top = 256

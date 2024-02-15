@@ -13,6 +13,8 @@ object form_menu_novo: Tform_menu_novo
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
+  OnClose = FormClose
+  OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   object layout_fundo: TLayout
     Align = Client
@@ -407,7 +409,7 @@ object form_menu_novo: Tform_menu_novo
           Size.PlatformDefault = False
           OnClick = btn_exerciciosClick
           OnMouseEnter = btn_exerciciosMouseEnter
-          OnMouseLeave = btn_alunosMouseLeave
+          OnMouseLeave = btn_exerciciosMouseLeave
         end
         object lbl_btn_exercicios: TLabel
           Align = Bottom
