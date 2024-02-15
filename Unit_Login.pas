@@ -28,8 +28,9 @@ type
     procedure btn_entrarMouseLeave(Sender: TObject);
     procedure btn_entrarClick(Sender: TObject);
     procedure btn_menu_prim_acessoClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -62,6 +63,18 @@ begin
   form_login.Close;
 end;
 
+procedure Tform_login.btn_entrarMouseEnter(Sender: TObject);
+begin
+  btn_entrar.Fill.Color := $FF214358;
+  lbl_btn_entrar.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_login.btn_entrarMouseLeave(Sender: TObject);
+begin
+  btn_entrar.Fill.Color := $FF03223F;
+  lbl_btn_entrar.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
 procedure Tform_login.btn_entrarClick(Sender: TObject);
 begin
   if (edt_usuario.Text = '') or (edt_senha.Text = '') then
@@ -86,13 +99,8 @@ begin
         ado_query_login.Open;
         if ado_query_login.RecordCount > 0 then
         begin
-         { form_menu_principal := Tform_menu_principal.Create(Application);
-          //form_login.Hide;
-          form_menu_principal.ShowModal;
-          form_login.Close;  }
           form_menu_novo := Tform_menu_novo.Create(Application);
           form_menu_novo.ShowModal;
-          form_login.Close;
         end
         else
         begin
@@ -111,22 +119,15 @@ begin
   end;
 end;
 
-procedure Tform_login.btn_entrarMouseEnter(Sender: TObject);
+procedure Tform_login.FormDestroy(Sender: TObject);
 begin
-  btn_entrar.Fill.Color := $FF214358;
-  lbl_btn_entrar.TextSettings.FontColor := $FFFFFFFF;
-end;
-
-procedure Tform_login.btn_entrarMouseLeave(Sender: TObject);
-begin
-  btn_entrar.Fill.Color := $FF03223F;
-  lbl_btn_entrar.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+ // FreeAndNil(form_login);
 end;
 
 procedure Tform_login.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  form_login := nil;
-  form_login.Free;
+ // FormDestroy(form_login);
 end;
+
 
 end.

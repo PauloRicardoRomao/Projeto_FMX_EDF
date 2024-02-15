@@ -252,6 +252,7 @@ begin
   Criabtn_menu;
   btn_ficha_p_cad.Visible := False;
   tit_fund_ficha.Text := 'Ficha A';
+  btn_rem_ficha.Enabled := False;
 
   try
     with dm_treino do
@@ -277,7 +278,7 @@ procedure Tform_monta_treino.grid_ficha_treinoCellClick(const Column: TColumn;
   const Row: Integer);
 begin
   Try
-    if not dm_treino.ado_query_ficha_treinoID_EXERCICIO_TREINO.AsInteger > 0 then
+    if dm_treino.ado_query_ficha_treinoID_EXERCICIO_TREINO.AsInteger > 0 then
       btn_rem_ficha.Enabled := True
     else
       btn_rem_ficha.Enabled := False;
@@ -334,7 +335,7 @@ end;
 
 procedure Tform_monta_treino.btn_gravarClick(Sender: TObject);
 begin
-  form_finaliza_treino.Create(Application);
+  form_finaliza_treino := Tform_finaliza_treino.Create(Application);
   form_finaliza_treino.ShowModal;
 end;
 

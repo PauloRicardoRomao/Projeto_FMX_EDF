@@ -2,7 +2,7 @@ object form_cards_alunos: Tform_cards_alunos
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  BorderStyle = None
+  BorderStyle = Single
   ClientHeight = 597
   ClientWidth = 1000
   Position = MainFormCenter

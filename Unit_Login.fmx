@@ -13,6 +13,7 @@ object form_login: Tform_login
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   OnClose = FormClose
+  OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   object Layout1: TLayout
     Align = Client

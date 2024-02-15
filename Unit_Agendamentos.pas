@@ -28,14 +28,16 @@ type
     lbl_tit_fun_agendamentos: TLabel;
     BindSourceDB1: TBindSourceDB;
     grid_agendamentos: TStringGrid;
-    LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
     NavigatorBindSourceDB1: TBindNavigator;
     BindingsList1: TBindingsList;
     StyleBook1: TStyleBook;
     rb_ag_abertos: TRadioButton;
     rb_ag_todos: TRadioButton;
-    Rectangle1: TRectangle;
+    pnl_filtro: TRectangle;
     Layout1: TLayout;
+    BindSourceDB2: TBindSourceDB;
+    LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
+    layout_conteudo: TLayout;
     procedure btn_novo_agendamentoMouseEnter(Sender: TObject);
     procedure btn_novo_agendamentoMouseLeave(Sender: TObject);
     procedure btn_finaliza_consultaMouseEnter(Sender: TObject);
@@ -49,6 +51,7 @@ type
     procedure btn_finaliza_consultaClick(Sender: TObject);
     procedure rb_ag_abertosChange(Sender: TObject);
     procedure rb_ag_todosChange(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
   public
@@ -66,7 +69,7 @@ implementation
 
 {$R *.fmx}
 
-uses Unit_DM_Principal, Unit_Cards_Alunos, Unit_Menu_Principal;
+uses Unit_DM_Principal, Unit_Cards_Alunos, Unit_Menu_Principal, Unit_Menu_Novo;
 
 
 procedure Tform_agendamentos.FormCreate(Sender: TObject);
@@ -97,37 +100,6 @@ begin
   rb_ag_todos.IsChecked := False;
 end;
 
-procedure Tform_agendamentos.btn_finaliza_consultaMouseEnter(Sender: TObject);
-begin
-  btn_finaliza_consulta.Fill.Color := $FF214358;
-  lbl_btn_finaliza_consulta.TextSettings.FontColor := $FFFFFFFF;
-end;
-
-procedure Tform_agendamentos.btn_finaliza_consultaMouseLeave(Sender: TObject);
-begin
-  btn_finaliza_consulta.Fill.Color := $FF03223F;
-  lbl_btn_finaliza_consulta.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
-end;
-
-procedure Tform_agendamentos.btn_novo_agendamentoClick(Sender: TObject);
-begin
-  form_cards_alunos := Tform_cards_alunos.Create(Application);
-  form_cards_alunos.v_agendamento := 1;
-  form_cards_alunos.ShowModal;
-end;
-
-procedure Tform_agendamentos.btn_novo_agendamentoMouseEnter(Sender: TObject);
-begin
-  btn_novo_agendamento.Fill.Color := $FF214358;
-  lbl_btn_novo_agendamento.TextSettings.FontColor := $FFFFFFFF;
-end;
-
-procedure Tform_agendamentos.btn_novo_agendamentoMouseLeave(Sender: TObject);
-begin
-  btn_novo_agendamento.Fill.Color := $FF03223F;
-  lbl_btn_novo_agendamento.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
-end;
-
 procedure Tform_agendamentos.cld_agendaDayClick(Sender: TObject);
 var
   dia, mes, ano : string;
@@ -152,25 +124,49 @@ begin
   end;
 end;
 
+procedure Tform_agendamentos.btn_novo_agendamentoMouseEnter(Sender: TObject);
+begin
+  btn_novo_agendamento.Fill.Color := $FF214358;
+  lbl_btn_novo_agendamento.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_agendamentos.btn_novo_agendamentoMouseLeave(Sender: TObject);
+begin
+  btn_novo_agendamento.Fill.Color := $FF03223F;
+  lbl_btn_novo_agendamento.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
+procedure Tform_agendamentos.btn_novo_agendamentoClick(Sender: TObject);
+begin
+  form_cards_alunos := Tform_cards_alunos.Create(Application);
+  form_cards_alunos.v_agendamento := 1;
+  form_cards_alunos.ShowModal;
+end;
+
 procedure Tform_agendamentos.grid_agendamentosCellClick(const Column: TColumn;
   const Row: Integer);
 begin
-  Try
+  try
     with dm_principal do
     begin
-      if ado_query_consulta_agendamentos.RecNo > 0 then
+      if (ado_query_consulta_agendamentos.RecNo > 0) then
       begin
         agendamento := ado_query_consulta_agendamentosID_AGENDAMENTO.AsInteger;
         aluno := ado_query_consulta_agendamentosID_ALUNO.AsInteger;
         data_consulta := ado_query_consulta_agendamentosDATA_HORA_CONSULTA_AGENDAMENTO.AsDateTime;
         obs_consulta := ado_query_consulta_agendamentosOBS_CONSULTA_AGENDAMENTO.AsString;
         btn_finaliza_consulta.Enabled := True;
+      end
+      else
+      begin
+        btn_finaliza_consulta.Enabled := False;
       end;
     end;
   except
     on E: Exception do
       ShowMessage('Erro: ' + E.Message);
   end;
+
 end;
 
 procedure Tform_agendamentos.rb_ag_abertosChange(Sender: TObject);
@@ -242,6 +238,18 @@ begin
   end;
 end;
 
+procedure Tform_agendamentos.btn_finaliza_consultaMouseEnter(Sender: TObject);
+begin
+  btn_finaliza_consulta.Fill.Color := $FF214358;
+  lbl_btn_finaliza_consulta.TextSettings.FontColor := $FFFFFFFF;
+end;
+
+procedure Tform_agendamentos.btn_finaliza_consultaMouseLeave(Sender: TObject);
+begin
+  btn_finaliza_consulta.Fill.Color := $FF03223F;
+  lbl_btn_finaliza_consulta.TextSettings.FontColor := TAlphaColorRec.BlanchedAlmond;
+end;
+
 procedure Tform_agendamentos.btn_finaliza_consultaClick(Sender: TObject);
 begin
   Try
@@ -267,11 +275,16 @@ begin
   rb_ag_todos.IsChecked := False;
 end;
 
+procedure Tform_agendamentos.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(form_agendamentos);
+end;
+
 procedure Tform_agendamentos.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  form_agendamentos := nil;
-  form_agendamentos.Free;
+  FormDestroy(form_agendamentos);
+  form_menu_novo.ShowModal;
 end;
 
 end.

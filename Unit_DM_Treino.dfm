@@ -10,36 +10,42 @@ object dm_treino: Tdm_treino
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ALUNO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 255
+        Value = Null
       end
       item
         Name = '@NR_TREINO_ALUNO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@FOCO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end
       item
         Name = '@MODELO_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 255
+        Value = Null
       end
       item
         Name = '@OBS_TREINO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end>
     Left = 56
     Top = 128
@@ -391,18 +397,21 @@ object dm_treino: Tdm_treino
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ID_TREINO_DIA'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@GRUPO_MUSCULAR_TREINO_DIA'
         Attributes = [paNullable]
         DataType = ftString
         Size = 255
+        Value = Null
       end>
     Left = 576
     Top = 128
@@ -584,6 +593,7 @@ object dm_treino: Tdm_treino
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ID_ALUNO'
@@ -803,17 +813,20 @@ object dm_treino: Tdm_treino
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ID_EXERCICIO_TREINO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end>
     Left = 944
     Top = 128
   end
   object ado_query_consulta_treino: TADOQuery
+    Active = True
     Connection = dm_principal.ado_connection
     CursorType = ctStatic
     Parameters = <

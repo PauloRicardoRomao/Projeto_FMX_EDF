@@ -1,17 +1,20 @@
 object form_agendamentos: Tform_agendamentos
   Left = 0
   Top = 0
-  BorderIcons = [biSystemMenu]
+  BorderIcons = [biSystemMenu, biMaximize]
   ClientHeight = 716
   ClientWidth = 1281
   Position = DesktopCenter
   StyleBook = StyleBook1
   WindowState = wsMaximized
+  Constraints.MinHeight = 700.000000000000000000
+  Constraints.MinWidth = 1280.000000000000000000
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   OnClose = FormClose
+  OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   object Layout1: TLayout
     Align = Client
@@ -33,206 +36,213 @@ object form_agendamentos: Tform_agendamentos
         TabOrder = 1
         Viewport.Width = 1281.000000000000000000
         Viewport.Height = 623.000000000000000000
-        object pnl_fundo_agenda: TRectangle
-          Align = MostLeft
-          Fill.Color = xFF2E4347
-          Size.Width = 489.000000000000000000
+        object layout_conteudo: TLayout
+          Align = Top
+          Size.Width = 1281.000000000000000000
           Size.Height = 623.000000000000000000
           Size.PlatformDefault = False
-          Stroke.Kind = None
-          Stroke.Cap = Round
-          object cld_agenda: TCalendar
-            Align = Top
-            Date = 45315.000000000000000000
-            Margins.Left = 10.000000000000000000
-            Margins.Top = 10.000000000000000000
-            Margins.Right = 10.000000000000000000
-            Margins.Bottom = 10.000000000000000000
-            Position.X = 10.000000000000000000
-            Position.Y = 10.000000000000000000
-            Size.Width = 469.000000000000000000
-            Size.Height = 550.000000000000000000
+          TabOrder = 0
+          object btn_novo_agendamento: TRectangle
+            Align = Center
+            Cursor = crHandPoint
+            Fill.Color = xFF03223F
+            Margins.Left = 36.000000000000000000
+            Margins.Top = -100.000000000000000000
+            Margins.Right = 36.000000000000000000
+            Size.Width = 223.000000000000000000
+            Size.Height = 55.000000000000000000
             Size.PlatformDefault = False
-            TabOrder = 0
-            OnChange = cld_agendaDayClick
-            OnDateSelected = cld_agendaDayClick
-          end
-        end
-        object pnl_fundo_consultas_agendadas: TRectangle
-          Align = MostRight
-          Fill.Color = xFF89A09A
-          Position.X = 792.000000000000000000
-          Size.Width = 489.000000000000000000
-          Size.Height = 623.000000000000000000
-          Size.PlatformDefault = False
-          Stroke.Cap = Round
-          object tit_fund_agendamentos: TLabel
-            Align = MostTop
-            StyledSettings = []
-            Margins.Left = 10.000000000000000000
-            Margins.Top = 10.000000000000000000
-            Margins.Right = 10.000000000000000000
-            Margins.Bottom = 10.000000000000000000
-            Position.X = 10.000000000000000000
-            Position.Y = 10.000000000000000000
-            Size.Width = 469.000000000000000000
-            Size.Height = 39.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Family = 'Bahnschrift'
-            TextSettings.Font.Size = 25.000000000000000000
-            TextSettings.Font.StyleExt = {00070000000000000004000000}
-            TextSettings.FontColor = xFF2E4347
-            TextSettings.HorzAlign = Center
-            Text = 'Consultorias Agendadas'
-            TabOrder = 0
-          end
-          object pnl_fund_menu_consultas: TRectangle
-            Align = Top
-            Fill.Color = xFF89A09A
-            Position.Y = 514.000000000000000000
-            Size.Width = 489.000000000000000000
-            Size.Height = 111.000000000000000000
-            Size.PlatformDefault = False
-            object btn_finaliza_consulta: TRectangle
-              Align = Center
-              Cursor = crHandPoint
-              Enabled = False
-              Fill.Color = xFF03223F
-              Margins.Left = -250.000000000000000000
-              Size.Width = 223.000000000000000000
-              Size.Height = 55.000000000000000000
+            Stroke.Color = claBlanchedalmond
+            XRadius = 10.000000000000000000
+            YRadius = 10.000000000000000000
+            OnClick = btn_novo_agendamentoClick
+            OnMouseEnter = btn_novo_agendamentoMouseEnter
+            OnMouseLeave = btn_novo_agendamentoMouseLeave
+            object lbl_btn_novo_agendamento: TLabel
+              Align = Client
+              StyledSettings = [Style]
+              Margins.Left = 5.000000000000000000
+              Margins.Top = 3.000000000000000000
+              Margins.Right = 5.000000000000000000
+              Margins.Bottom = 3.000000000000000000
+              Size.Width = 213.000000000000000000
+              Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
-              Stroke.Color = claBlanchedalmond
-              XRadius = 10.000000000000000000
-              YRadius = 10.000000000000000000
-              OnClick = btn_finaliza_consultaClick
-              OnMouseEnter = btn_finaliza_consultaMouseEnter
-              OnMouseLeave = btn_finaliza_consultaMouseLeave
-              object lbl_btn_finaliza_consulta: TLabel
-                Align = Client
-                StyledSettings = [Style]
-                Margins.Left = 5.000000000000000000
-                Margins.Top = 3.000000000000000000
-                Margins.Right = 5.000000000000000000
-                Margins.Bottom = 3.000000000000000000
-                Size.Width = 213.000000000000000000
-                Size.Height = 49.000000000000000000
-                Size.PlatformDefault = False
-                TextSettings.Font.Family = 'Arial'
-                TextSettings.Font.Size = 20.000000000000000000
-                TextSettings.FontColor = claBlanchedalmond
-                TextSettings.HorzAlign = Center
-                Text = 'Consulta Realizada'
-                TabOrder = 0
-              end
+              TextSettings.Font.Family = 'Arial'
+              TextSettings.Font.Size = 20.000000000000000000
+              TextSettings.FontColor = claBlanchedalmond
+              TextSettings.HorzAlign = Center
+              Text = 'Novo Agendamento'
+              TabOrder = 0
             end
           end
-          object grid_agendamentos: TStringGrid
-            Align = Top
-            CanFocus = True
-            ClipChildren = True
-            Margins.Left = 5.000000000000000000
-            Margins.Right = 5.000000000000000000
-            Margins.Bottom = 5.000000000000000000
-            Position.X = 5.000000000000000000
-            Position.Y = 59.000000000000000000
-            Size.Width = 479.000000000000000000
-            Size.Height = 450.000000000000000000
+          object pnl_filtro: TRectangle
+            Align = Center
+            Fill.Color = xFF89A09A
+            Margins.Top = 300.000000000000000000
+            Size.Width = 295.000000000000000000
+            Size.Height = 164.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.Font.Family = 'Arial'
-            TextSettings.Font.Size = 14.000000000000000000
-            StyledSettings = [Style, FontColor]
-            TabOrder = 2
-            RowCount = 0
-            Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-            OnCellClick = grid_agendamentosCellClick
-            Viewport.Width = 475.000000000000000000
-            Viewport.Height = 425.000000000000000000
-            object NavigatorBindSourceDB1: TBindNavigator
-              Position.X = -16.000000000000000000
-              Position.Y = 40.000000000000000000
-              Size.Width = 240.000000000000000000
-              Size.Height = 25.000000000000000000
+            object rb_ag_todos: TRadioButton
+              Align = Top
+              Margins.Left = 15.000000000000000000
+              Margins.Top = 30.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 30.000000000000000000
+              Position.X = 15.000000000000000000
+              Position.Y = 109.000000000000000000
+              Size.Width = 270.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'RadioButton1Style1'
+              TabOrder = 1
+              Text = 'Visualizar todos os registros'
+              OnChange = rb_ag_todosChange
+            end
+            object rb_ag_abertos: TRadioButton
+              Align = Top
+              Margins.Left = 15.000000000000000000
+              Margins.Top = 30.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 30.000000000000000000
+              Position.X = 15.000000000000000000
+              Position.Y = 30.000000000000000000
+              Size.Width = 270.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'RadioButton1Style1'
+              TabOrder = 0
+              Text = 'Visualizar apenas em aberto'
+              OnChange = rb_ag_abertosChange
+            end
+          end
+          object pnl_fundo_agenda: TRectangle
+            Align = MostLeft
+            Fill.Color = xFF2E4347
+            Size.Width = 489.000000000000000000
+            Size.Height = 623.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            Stroke.Cap = Round
+            object cld_agenda: TCalendar
+              Align = Top
+              Date = 45315.000000000000000000
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 10.000000000000000000
+              Size.Width = 469.000000000000000000
+              Size.Height = 550.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              DataSource = BindSourceDB1
-              xRadius = 4.000000000000000000
-              yRadius = 4.000000000000000000
+              OnChange = cld_agendaDayClick
+              OnDateSelected = cld_agendaDayClick
             end
           end
-        end
-        object btn_novo_agendamento: TRectangle
-          Align = Center
-          Cursor = crHandPoint
-          Fill.Color = xFF03223F
-          Margins.Left = 36.000000000000000000
-          Margins.Top = -100.000000000000000000
-          Margins.Right = 36.000000000000000000
-          Size.Width = 223.000000000000000000
-          Size.Height = 55.000000000000000000
-          Size.PlatformDefault = False
-          Stroke.Color = claBlanchedalmond
-          XRadius = 10.000000000000000000
-          YRadius = 10.000000000000000000
-          OnClick = btn_novo_agendamentoClick
-          OnMouseEnter = btn_novo_agendamentoMouseEnter
-          OnMouseLeave = btn_novo_agendamentoMouseLeave
-          object lbl_btn_novo_agendamento: TLabel
-            Align = Client
-            StyledSettings = [Style]
-            Margins.Left = 5.000000000000000000
-            Margins.Top = 3.000000000000000000
-            Margins.Right = 5.000000000000000000
-            Margins.Bottom = 3.000000000000000000
-            Size.Width = 213.000000000000000000
-            Size.Height = 49.000000000000000000
+          object pnl_fundo_consultas_agendadas: TRectangle
+            Align = MostRight
+            Fill.Color = xFF89A09A
+            Position.X = 792.000000000000000000
+            Size.Width = 489.000000000000000000
+            Size.Height = 623.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.Font.Family = 'Arial'
-            TextSettings.Font.Size = 20.000000000000000000
-            TextSettings.FontColor = claBlanchedalmond
-            TextSettings.HorzAlign = Center
-            Text = 'Novo Agendamento'
-            TabOrder = 0
-          end
-        end
-        object Rectangle1: TRectangle
-          Align = Center
-          Fill.Color = xFF89A09A
-          Margins.Top = 300.000000000000000000
-          Size.Width = 295.000000000000000000
-          Size.Height = 164.000000000000000000
-          Size.PlatformDefault = False
-          object rb_ag_todos: TRadioButton
-            Align = Top
-            Margins.Left = 15.000000000000000000
-            Margins.Top = 30.000000000000000000
-            Margins.Right = 10.000000000000000000
-            Margins.Bottom = 30.000000000000000000
-            Position.X = 15.000000000000000000
-            Position.Y = 109.000000000000000000
-            Size.Width = 270.000000000000000000
-            Size.Height = 19.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'RadioButton1Style1'
-            TabOrder = 1
-            Text = 'Visualizar todos os registros'
-            OnChange = rb_ag_todosChange
-          end
-          object rb_ag_abertos: TRadioButton
-            Align = Top
-            Margins.Left = 15.000000000000000000
-            Margins.Top = 30.000000000000000000
-            Margins.Right = 10.000000000000000000
-            Margins.Bottom = 30.000000000000000000
-            Position.X = 15.000000000000000000
-            Position.Y = 30.000000000000000000
-            Size.Width = 270.000000000000000000
-            Size.Height = 19.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = 'RadioButton1Style1'
-            TabOrder = 0
-            Text = 'Visualizar apenas em aberto'
-            OnChange = rb_ag_abertosChange
+            Stroke.Cap = Round
+            object tit_fund_agendamentos: TLabel
+              Align = MostTop
+              StyledSettings = []
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 10.000000000000000000
+              Size.Width = 469.000000000000000000
+              Size.Height = 39.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Bahnschrift'
+              TextSettings.Font.Size = 25.000000000000000000
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              TextSettings.FontColor = xFF2E4347
+              TextSettings.HorzAlign = Center
+              Text = 'Consultorias Agendadas'
+              TabOrder = 0
+            end
+            object pnl_fund_menu_consultas: TRectangle
+              Align = Top
+              Fill.Color = xFF89A09A
+              Position.Y = 514.000000000000000000
+              Size.Width = 489.000000000000000000
+              Size.Height = 111.000000000000000000
+              Size.PlatformDefault = False
+              object btn_finaliza_consulta: TRectangle
+                Align = Center
+                Cursor = crHandPoint
+                Enabled = False
+                Fill.Color = xFF03223F
+                Margins.Left = -250.000000000000000000
+                Size.Width = 223.000000000000000000
+                Size.Height = 55.000000000000000000
+                Size.PlatformDefault = False
+                Stroke.Color = claBlanchedalmond
+                XRadius = 10.000000000000000000
+                YRadius = 10.000000000000000000
+                OnClick = btn_finaliza_consultaClick
+                OnMouseEnter = btn_finaliza_consultaMouseEnter
+                OnMouseLeave = btn_finaliza_consultaMouseLeave
+                object lbl_btn_finaliza_consulta: TLabel
+                  Align = Client
+                  StyledSettings = [Style]
+                  Margins.Left = 5.000000000000000000
+                  Margins.Top = 3.000000000000000000
+                  Margins.Right = 5.000000000000000000
+                  Margins.Bottom = 3.000000000000000000
+                  Size.Width = 213.000000000000000000
+                  Size.Height = 49.000000000000000000
+                  Size.PlatformDefault = False
+                  TextSettings.Font.Family = 'Arial'
+                  TextSettings.Font.Size = 20.000000000000000000
+                  TextSettings.FontColor = claBlanchedalmond
+                  TextSettings.HorzAlign = Center
+                  Text = 'Consulta Realizada'
+                  TabOrder = 0
+                end
+              end
+            end
+            object grid_agendamentos: TStringGrid
+              Align = Top
+              CanFocus = True
+              ClipChildren = True
+              Margins.Left = 5.000000000000000000
+              Margins.Right = 5.000000000000000000
+              Margins.Bottom = 5.000000000000000000
+              Position.X = 5.000000000000000000
+              Position.Y = 59.000000000000000000
+              Size.Width = 479.000000000000000000
+              Size.Height = 450.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Family = 'Arial'
+              TextSettings.Font.Size = 14.000000000000000000
+              StyledSettings = [Style, FontColor]
+              TabOrder = 2
+              RowCount = 0
+              Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+              OnCellClick = grid_agendamentosCellClick
+              Viewport.Width = 475.000000000000000000
+              Viewport.Height = 425.000000000000000000
+              object NavigatorBindSourceDB1: TBindNavigator
+                Position.X = -16.000000000000000000
+                Position.Y = 40.000000000000000000
+                Size.Width = 240.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                DataSource = BindSourceDB1
+                xRadius = 4.000000000000000000
+                yRadius = 4.000000000000000000
+              end
+            end
           end
         end
       end
@@ -1775,7 +1785,6 @@ object form_agendamentos: Tform_agendamentos
     end
   end
   object BindSourceDB1: TBindSourceDB
-    DataSource = dm_principal.dt_consulta_agendamentos
     ScopeMappings = <>
     Left = 608
     Top = 256
@@ -1785,31 +1794,39 @@ object form_agendamentos: Tform_agendamentos
     OutputConverters = <>
     Left = 20
     Top = 5
-    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
+    object LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource
       Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
+      DataSource = BindSourceDB2
       GridControl = grid_agendamentos
       Columns = <
         item
           MemberName = 'ID_AGENDAMENTO'
-          Header = 'C'#243'digo'
-          Width = 120
+          Header = 'C'#243'digo Agendamento'
+          TextWidth = 25
+        end
+        item
+          MemberName = 'ID_ALUNO'
+          Visible = False
         end
         item
           MemberName = 'NOME_ALUNO'
           Header = 'Aluno'
-          Width = 300
         end
         item
           MemberName = 'DATA_HORA_CONSULTA_AGENDAMENTO'
           Header = 'Data e Hora Consulta'
-          Width = 200
+          TextWidth = 40
         end
         item
           MemberName = 'OBS_CONSULTA_AGENDAMENTO'
           Header = 'Observa'#231#245'es'
-          Width = 450
+          TextWidth = 500
         end>
     end
+  end
+  object BindSourceDB2: TBindSourceDB
+    ScopeMappings = <>
+    Left = 624
+    Top = 344
   end
 end

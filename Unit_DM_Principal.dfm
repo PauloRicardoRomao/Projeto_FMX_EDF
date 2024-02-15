@@ -99,60 +99,70 @@ object dm_principal: Tdm_principal
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ID_ANAMNESE_MEDICA'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ID_ALUNO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@CONDICOES_MEDICAS_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end
       item
         Name = '@MEDICAMENTOS_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end
       item
         Name = '@RESTRICOES_ALIMENTARES_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end
       item
         Name = '@HISTORICO_EXERCICIOS_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end
       item
         Name = '@FREQUENCIA_CARDIACA_REPOUSO_ALUNO'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@PRESSAO_ARTERIAL_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 20
+        Value = Null
       end
       item
         Name = '@OUTRAS_OBSERVACOES_ALUNO'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end>
     Left = 392
     Top = 32
@@ -166,18 +176,21 @@ object dm_principal: Tdm_principal
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ALUNO_ID_DIMENSOES_CORPORAIS'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@DATA_MEDICAO_DIMENSOES_CORPORAIS'
         Attributes = [paNullable]
         DataType = ftWideString
         Size = 10
+        Value = Null
       end
       item
         Name = '@ALTURA_DIMENSOES_CORPORAIS'
@@ -185,6 +198,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@PESO_DIMENSOES_CORPORAIS'
@@ -192,6 +206,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_BRACO_ESQ_DIMENSOES_CORPORAIS'
@@ -199,6 +214,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_BRACO_DIR_DIMENSOES_CORPORAIS'
@@ -206,6 +222,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_PERNA_ESQ_DIMENSOES_CORPORAIS'
@@ -213,6 +230,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_PERNA_DIR_DIMENSOES_CORPORAIS'
@@ -220,6 +238,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_PANTURRILHA_ESQ_DIMENSOES_CORPORAIS'
@@ -227,6 +246,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_PANTURRILHA_DIR_DIMENSOES_CORPORAIS'
@@ -234,6 +254,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_ABDOMINAL_DIMENSOES_CORPORAIS'
@@ -241,6 +262,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_CINTURA_DIMENSOES_CORPORAIS'
@@ -248,6 +270,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_QUADRIL_DIMENSOES_CORPORAIS'
@@ -255,6 +278,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@CIRCUNFERENCIA_PEITORAL_DIMENSOES_CORPORAIS'
@@ -262,12 +286,14 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@OUTRAS_MEDICOES_DIMENSOES_CORPORAIS'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end>
     Left = 600
     Top = 32
@@ -281,18 +307,21 @@ object dm_principal: Tdm_principal
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ALUNO_ID_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@DATA_MEDICAO_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
         Attributes = [paNullable]
         DataType = ftWideString
         Size = 10
+        Value = Null
       end
       item
         Name = '@DOBRA_TRICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
@@ -300,6 +329,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@DOBRA_BICEPS_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
@@ -307,6 +337,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@DOBRA_SUBESCAPULAR_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
@@ -314,6 +345,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@DOBRA_SUPRAILIACA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
@@ -321,6 +353,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@DOBRA_ABDOMEN_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
@@ -328,6 +361,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@DOBRA_AXILAR_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
@@ -335,6 +369,7 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@DOBRA_PERNA_MEDIA_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
@@ -342,12 +377,14 @@ object dm_principal: Tdm_principal
         DataType = ftBCD
         NumericScale = 2
         Precision = 5
+        Value = Null
       end
       item
         Name = '@OUTRAS_MEDICOES_DOBRAS_CULTANEAS_DIMENSOES_CORPORAIS'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end>
     Left = 800
     Top = 32
@@ -415,7 +452,6 @@ object dm_principal: Tdm_principal
     Top = 152
   end
   object ado_query_consulta_completa_aluno: TADOQuery
-    Active = True
     Connection = ado_connection
     CursorType = ctStatic
     Parameters = <
@@ -689,7 +725,6 @@ object dm_principal: Tdm_principal
     end
   end
   object ado_query_consulta_aluno: TADOQuery
-    Active = True
     Connection = ado_connection
     CursorType = ctStatic
     Parameters = <
@@ -758,7 +793,6 @@ object dm_principal: Tdm_principal
     end
   end
   object ado_query_consulta_anamnese: TADOQuery
-    Active = True
     Connection = ado_connection
     CursorType = ctStatic
     Parameters = <
@@ -821,7 +855,6 @@ object dm_principal: Tdm_principal
     end
   end
   object ado_query_dim_circunferencias: TADOQuery
-    Active = True
     Connection = ado_connection
     CursorType = ctStatic
     Parameters = <
@@ -932,7 +965,6 @@ object dm_principal: Tdm_principal
     end
   end
   object ado_query_dim_dobras: TADOQuery
-    Active = True
     Connection = ado_connection
     CursorType = ctStatic
     Parameters = <
@@ -1050,7 +1082,6 @@ object dm_principal: Tdm_principal
     Top = 152
   end
   object ado_query_login: TADOQuery
-    Active = True
     Connection = ado_connection
     CursorType = ctStatic
     Parameters = <
@@ -1224,29 +1255,34 @@ object dm_principal: Tdm_principal
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = Null
       end
       item
         Name = '@AGENDAMENTO_CONSULTA'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@ALUNO_CONSULTA'
         Attributes = [paNullable]
         DataType = ftInteger
         Precision = 10
+        Value = Null
       end
       item
         Name = '@DATA_HORA_CONSULTA'
         Attributes = [paNullable]
         DataType = ftDateTime
+        Value = Null
       end
       item
         Name = '@OBS_CONSULTA'
         Attributes = [paNullable]
         DataType = ftString
         Size = 2147483647
+        Value = Null
       end>
     Left = 664
     Top = 280
